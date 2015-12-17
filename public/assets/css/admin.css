@@ -1,0 +1,346 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+     background: #f9f9f9;
+}
+
+h1, h2, h3, h4, h5, h6{
+      font-weight: 100;
+}
+/*
+ * Global add-ons
+ */
+ p{
+  font-size: 13px;
+ }
+.spd{
+  padding-right:0 !important; 
+}
+.spi{
+  padding-left: 0 !important;
+}
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+/************header***********/
+.logo_donc{
+  padding-left: 60px;
+   width: 120px;
+   float: left;
+   height: 50px;
+   background: url('../img/logo_sistema.svg') no-repeat center;
+}
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background: #1ca2df url('../img/ima_donc.png') no-repeat center bottom;
+    border-right: 1px solid #1399d3;
+    background-size: 110px;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b2e0f4;
+}
+.nav-sidebar > li > a:hover, .nav-sidebar > li > a:focus{
+  background-color: #1799d1;
+  color: #fff;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #0b85ba;
+}
+
+.navbar-inverse{
+  background: #1b3043;
+}
+.navbar-inverse .navbar-nav>li>a{
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.navbar-inverse .navbar-form .form-control{
+    border:none !important;
+    background: #31597c;
+    color: #b2e0f4;
+    font-size: 12px; 
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    font-style: italic;
+}
+.ico_grande{
+  font-size: 18px !important;
+}
+  .glyphicon-chevron-down{
+    margin-left: 10px;
+  }
+
+  .navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+  background: #fff;
+  color: #333;
+  border: none !important; 
+}
+.entopmenu{
+
+ /* top: 99.5% !important;*/
+      border: 1px solid #e6e6e6 !important;
+        border-top: none !important;
+          -webkit-box-shadow: 0px 1px 10px 0 rgba(0,0,0,0.05) !important;
+    box-shadow: 0px 1px 10px 0 rgba(0,0,0,0.05) !important;
+        right: -1px !important;
+}
+/*
+z
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+  font-size: 26px;
+}
+ .sub-menu{
+  float: left;
+  width: 100%;
+  padding: 5px 0;
+  background: #139bd6;
+ }
+  .sub-menu li{
+    float: left;
+    width: 100%;
+
+  }
+   .sub-menu li a{
+    
+        padding-right: 20px;
+    padding-left: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #b2e0f4;
+   }
+
+.caja_section{
+  float: left;
+  width: 100%;
+  background: #fff;
+  border-radius: 3px;
+  padding: 15px;
+  border: 1px solid #eee;
+  -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+}
+
+.caja_section label{
+  font-size: 13px;
+  font-weight: 600;
+ /*letter-spacing: 0.02em;*/
+  color: #777;
+}
+.caja_section .form-control{
+  font-style: italic;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #1CA2DF;
+  border-radius: 0 !important;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+}
+.caja_section .btn-primary{
+  clear: right;
+  float: right;
+  background: #8dca3d !important;
+  color: #fff !important;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  border: none !important;
+}
+.caja_section .alert{
+  font-size: 13px !important;
+  border: none;
+}
+.caja_section .table{
+
+}
+.caja_section tr:hover{
+  background: #f9f9f9;
+}
+.caja_section td{
+  padding: 12px 8px !important;
+  color: #777;
+    font-size: 12px !important;
+    border-bottom: 1px solid #eee !important;
+    border-top: none !important;
+}
+.caja_section thead th{
+   font-size: 13px !important;
+  color: #1B3043 !important;
+  border-bottom: 2px solid #8dca3d !important;
+}
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+.spd{
+  padding-right: 0 !important;
+}
+.spi{
+  padding-left: 0 !important;
+}
+.lbotones{
+  float: right;
+  margin:0 0 5px 0;
+}
+  .btn-donc-nuevo{
+    font-weight: 600;
+       background: #fcb90f;
+       color:#fff;
+       font-size: 12px;
+       -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  
+  -webkit-box-shadow: 0px 2px 0px #d19808;
+        -moz-box-shadow: 0px 2px 0px #d19808;
+        box-shadow: 0px 2px 0px #d19808;
+        letter-spacing: 0.03em;
+         }
+         .btn-donc-nuevo .glyphicon{
+          color: #fff;
+         }
+
+          .btn-donc-nuevo:hover{
+            color: #fff;
+            background: #f7b102;
+          }
+
+  .btn-donc-enlaces{
+    font-weight: 600;
+       background: #1CA2DF;
+       color:#fff;
+       font-size: 12px;
+       -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  
+  -webkit-box-shadow: 0px 2px 0px #1693c9;
+        -moz-box-shadow: 0px 2px 0px #1693c9;
+        box-shadow: 0px 2px 0px #1693c9;
+        letter-spacing: 0.03em;
+         }
+         .btn-donc-enlaces .glyphicon{
+          color: #fff;
+         }
+
+          .btn-donc-enlaces:hover{
+            color: #fff;
+            background: #1399d3;
+          }
+
+       .btn-donc-danger{
+        float: right;
+    font-weight: 600;
+       background: #d9534f;
+       color:#fff;
+       font-size: 12px;
+       -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  
+  -webkit-box-shadow: 0px 2px 0px #c42623;
+        -moz-box-shadow: 0px 2px 0px #c42623;
+        box-shadow: 0px 2px 0px #c42623;
+        letter-spacing: 0.03em;
+         }
+         .btn-donc-nuevo .glyphicon{
+          color: #fff;
+         }
+
+          .btn-donc-nuevo:hover{
+            color: #fff;
+            background: #f7b102;
+          }     

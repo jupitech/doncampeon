@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Doncampeon
+        psr4_prefix: Doncampeon
+        src_path: app
