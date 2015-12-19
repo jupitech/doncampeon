@@ -5,8 +5,8 @@
         <div class="col-sm-7 spi">
         <div class="col-sm-12 spi spd">
          <div class="lbotones">
-            <a href="http://doncampeon.app/ligas/create" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nueva Liga</a>
-             <a href="http://doncampeon.app/equipos" type="button" class="btn btn-donc-enlaces" aria-label="Left Align" > Equipos</a>
+            <a href="{{ URL::to('ligas/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nueva Liga</a>
+             <a href="{{ URL::to('equipos') }}" type="button" class="btn btn-donc-enlaces" aria-label="Left Align" > Equipos</a>
          </div>
          </div>
          	 <div class="caja_section">

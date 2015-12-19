@@ -17,15 +17,15 @@
             <li><a href="#">Escritorio</a></li>
             <li><a href="#">Opciones</a></li>
 
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{{ isset(Auth::user()->first_name) ? Auth::user()->first_name : Auth::user()->email }}} {{{ isset(Auth::user()->last_name) ? Auth::user()->last_name : Auth::user()->email }}}   <span class="glyphicon glyphicon-chevron-down"></span> </a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ isset(Auth::user()->first_name) ? Auth::user()->first_name : Auth::user()->email }} {{ isset(Auth::user()->last_name) ? Auth::user()->last_name : Auth::user()->email }}   <span class="glyphicon glyphicon-chevron-down"></span> </a>
             <ul class="dropdown-menu entopmenu">
                         <li>
                             <div class="navbar-login">
                                 <div class="row">
 
                                     <div class="col-lg-12">
-                                        <p class="text-left"><strong>{{{ isset(Auth::user()->first_name) ? Auth::user()->first_name : Auth::user()->email }}} {{{ isset(Auth::user()->last_name) ? Auth::user()->last_name : Auth::user()->email }}}</strong></p>
-                                        <p class="text-left small">{{{ isset(Auth::user()->email) ? Auth::user()->email : Auth::user()->email }}}</p>
+                                        <p class="text-left"><strong>{{ isset(Auth::user()->first_name) ? Auth::user()->first_name : Auth::user()->email }} {{ isset(Auth::user()->last_name) ? Auth::user()->last_name : Auth::user()->email }}</strong></p>
+                                        <p class="text-left small">{{ isset(Auth::user()->email) ? Auth::user()->email : Auth::user()->email }}</p>
                                         
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <p>
-                                            <a href="{{{ route('logout')}}}" class="btn btn-donc-danger">Cerrar Sesion</a>
+                                            <a href="{{ route('logout')}}" class="btn btn-donc-danger">Cerrar Sesion</a>
                                         </p>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@
 body {
   padding-top: 50px;
      font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-     background: #f9f9f9;
+     background: #f1f4f5;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6{
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background: #1ca2df url('../img/ima_donc.png') no-repeat center bottom;
-    border-right: 1px solid #1399d3;
+    /*border-right: 1px solid #1399d3;*/
     background-size: 110px;
   }
 }
@@ -76,8 +76,7 @@ h1, h2, h3, h4, h5, h6{
   margin-left: -20px;
 }
 .nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
+  padding: 7px 20px;
   font-size: 12px;
   font-weight: 600;
   color: #b2e0f4;

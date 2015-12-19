@@ -9,7 +9,7 @@
                            
                          
             </li>
-             <li><a href="http://doncampeon.app/equipos">Equipos</a></li>
+             <li><a href="{{ URL::to('equipos') }}">Equipos</a></li>
             <li><a href="#">Juego</a></li>
             <li><a href="#">Notificaciones</a></li>
           </ul>
