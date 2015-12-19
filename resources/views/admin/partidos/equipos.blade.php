@@ -1,7 +1,7 @@
 @extends('admin/layout')
 
 @section('content')
-      <h1 class="page-header">Equipos</h1>
+      <h1 class="page-header">Equipos de Edwin</h1>
         <div class="col-sm-7 spi">
           <div class="col-sm-12 spi spd">
          <div class="lbotones">
