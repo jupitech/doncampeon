@@ -1,0 +1,54 @@
+#ACCESAR A HOMESTEAD
+
+vagrant up
+//Activa el servidor virtual
+
+vagrant ssh
+//Ingresa a servidor virtual
+
+vagrant destroy
+//Elimina usuario por cualquier error
+
+
+#ACCESAR A SSH
+
+ssh usuario@00.00.00.00
+//Ingrensando a servidor
+
+
+ #NAVEGAR EN LARAVEL
+
+ php artisan 
+ //Ayuda a realizar operaciones de datos dentro de laravel
+
+ php artisan make:seeder NombreTableSeeder
+ //Agrega area del seeder para subir datos al db
+
+ php artisan db:seed
+ //Ingresa datos en las tablas asignadas
+
+ php artisan db:seed --class=UserTableSeeder
+ //Ingresa datos de una tabla en especifico
+
+ php artisan migrate
+ //Actualiza las migraciones creadas
+
+
+
+
+ #TINKER
+
+ php artisan tinker
+//Ingresa a area para agregar nuevos datos desde la consola a la db
+
+ #GIT
+
+ git clone git@github.com:[tu_cuenta_de_github]/[repositorio].git
+ //Dentro de la carpeta donde se clonara el repositorio desde github hacia servidor
+
+ git remote add [nombre] git@github.com:[tu_cuenta_de_github]/[repositorio].git
+ //Agrega el nombre [nombre] a repositorio remoto en el servidor
+
+ git fetch [nombre]
+ git merge [nombre]/master
+ //Actualiza los datos del nombre del repositorio remoto asignado ejemplo 'git fetch upstream' 'git merge upstream/master'

@@ -41,10 +41,10 @@ Route::post('/registro', [
 });
 
 //}); 
-Route::group(['middleware' => 'auth','role:admin'], function()
+Route::group(['middleware' => ['auth','role:admin']], function()
 {
   Route:: get("equipostodos","EquiposController@indexp");
-   //EscritorioP
+   //Escritorio
 	Route::get('/escritorio', function () {
 
     return view('admin/escritorio');
@@ -52,17 +52,11 @@ Route::group(['middleware' => 'auth','role:admin'], function()
 
 	});
 
-  //Equipos
-	//Route::get('/equipos', function () {
-
-   // return view('admin/partidos/nuevoequipo');
-	//});
-
     // Registration routes...
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', ['as' => '/register', 'uses' => 'Auth\AuthController@postRegister']);
 
-   //Equipos
+//Equipos
 Route::resource('equipos','EquiposController');
 Route::resource('ligas','LigasController');
 
