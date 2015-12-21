@@ -34,7 +34,7 @@
     <div class="container-fluid">
         <div class="row">
       @yield('menulateral')
-        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main spd spi">
           @yield('content')
         </div>
       </div>
@@ -54,4 +54,11 @@
                   $('.selectpicker2').selectpicker();
             </script>
   </body>
+
+  <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+
 </html>

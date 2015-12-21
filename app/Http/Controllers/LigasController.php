@@ -3,8 +3,13 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use Redirect;
 use Doncampeon\Http\Requests;
+use Doncampeon\Http\Requests\LigasCreateRequest;
+use Doncampeon\Http\Requests\LigasUpdateRequest;
 use Doncampeon\Http\Controllers\Controller;
+use Doncampeon\Models\Ligas;
 
 class LigasController extends Controller
 {
@@ -15,7 +20,7 @@ class LigasController extends Controller
      */
     public function index()
     {
-        $ligas=\Doncampeon\Models\Ligas::All();
+        $ligas=Ligas::All();
          return view('admin.partidos.ligas',compact('ligas'));
     }
 
@@ -35,13 +40,14 @@ class LigasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LigasCreateRequest $request)
     {
-         \Doncampeon\Models\Ligas::create([
+           Ligas::create([
                 'nombre_liga' =>$request['nombre_liga'],
               
             ]);
-        return redirect('/ligas')->with('message','store');
+        Session::flash('message','Liga creada correctamente.');
+        return Redirect::to('/ligas');
     }
 
     /**
@@ -63,7 +69,8 @@ class LigasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ligas=Ligas::find($id);
+        return view('admin.partidos.editarliga',['ligas'=>$ligas]);
     }
 
     /**
@@ -73,9 +80,13 @@ class LigasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LigasUpdateRequest $request, $id)
     {
-        //
+        $ligas=Ligas::find($id);
+        $ligas->fill($request->all());
+        $ligas->save();
+        Session::flash('message','Liga "'.$ligas->nombre_liga.'" editada correctamente.');
+        return Redirect::to('/ligas');
     }
 
     /**
@@ -86,6 +97,8 @@ class LigasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ligas::destroy($id);
+         Session::flash('message','Liga eliminada correctamente.');
+        return Redirect::to('/ligas');
     }
 }

@@ -157,14 +157,50 @@ z
 .main {
   padding: 20px;
 }
+.area_submenus{
+   margin-top: -20px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.caja_submenus{
+ 
+  background: #fff;
+      border-bottom: 1px solid #eee;
+      float: left;
+      width: 100%;
+      padding: 0px 10px;
+}
+.caja_submenus ul{
+  padding: 0;
+  list-style: none;
+}
+.caja_submenus li{
+  float: left;
+  margin-right: 10px;
+}
+.caja_submenus li a{
+  float: left;
+  padding: 10px 10px 8px 10px;
+  font-size: 12px;
+  color: #333;
+  border-bottom: 2px solid #fff;
+  text-decoration: none;
+
+}
+.caja_submenus li a:hover{
+  background: #f9f9f9;
+  border-bottom: 2px solid #1CA2DF;
+}
+
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }
 .main .page-header {
-  margin-top: 0;
+  margin-top: 10px;
   font-size: 26px;
 }
  .sub-menu{
@@ -319,7 +355,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
             color: #fff;
             background: #1399d3;
           }
-
+   
        .btn-donc-danger{
         float: right;
     font-weight: 600;
@@ -343,3 +379,69 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
             color: #fff;
             background: #f7b102;
           }     
+
+.ico_op{
+  float: left;
+  margin-right: 5px;
+}
+.dropdown-menu-op{
+      top: -10px;
+    right: 0;
+    left: auto;
+    margin-right: 30px;
+    max-width: 300px;
+    min-width: 240px;
+     width: 240px;
+}
+.dropdown-menu-op li{
+  padding: 3px 5px;
+}
+.dropdown-menu-op li p{
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+.dropdown-menu-op .btn-donc-danger{
+  float: left;
+  font-size: 11px;
+  padding: 3px 6px;
+  margin-top: -3px;
+}
+
+
+    .btn-donc-editar{
+          font-weight: 600;
+    background: #fff;
+    color: #555;
+    font-size: 12px;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    border: 1px solid #ccc;
+    padding: 5px 7px;
+    margin: -6px 0;
+    }      
+     .btn-donc-editar:hover{
+         background:#1399D3;
+         color: #fff;
+         border: 1px solid #1693c9;
+     }
+
+     .btn-donc-eliminar{
+          font-weight: 600;
+    background: #fff;
+    color: #555;
+    font-size: 12px;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    border: 1px solid #ccc;
+    padding: 5px 7px;
+    margin: -6px 0;
+    }      
+     .btn-donc-eliminar:hover{
+         background:#ce4442;
+         color: #fff;
+         border: 1px solid #ce4442;
+     }

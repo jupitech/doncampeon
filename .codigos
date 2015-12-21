@@ -36,6 +36,8 @@ ssh usuario@00.00.00.00
  php artisan migrate
  //Actualiza las migraciones creadas
 
+ php artisan make:migration add_deleted_to_ligas_table --table=dc_ligas
+ //Para realizar cambios a una tabla en especifico
 
 
 
