@@ -37,7 +37,7 @@
                   	<tr>
                   		<td>{{$equipo->nombre_equipo}}</td>
                   		<td>{{$equipo->alias}}</td>
-                  		<td></td>
+                  		<td>{{$equipo->getPaisNombre()}}</td>
                   		<td></td>
                   	</tr>
                   	@endforeach	
