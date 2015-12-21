@@ -1,12 +1,11 @@
 @extends('admin/layout')
 
 @section('content')
-      <h1 class="page-header">Equipos</h1>
+      <h1 class="page-header">Paises</h1>
         <div class="col-sm-7 spi">
-          <div class="col-sm-12 spi spd">
+        <div class="col-sm-12 spi spd">
          <div class="lbotones">
-            <a href="{{ URL::to('equipos/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Equipo</a>
-             <a href="{{ URL::to('ligas') }}" type="button" class="btn btn-donc-enlaces" aria-label="Left Align" > Ligas</a>
+            <a href="{{ URL::to('pais/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Pais</a>
          </div>
          </div>
          	 <div class="caja_section">
@@ -18,7 +17,7 @@
 					  <div class="col-sm-12 spd spi">
 					  	<div class="alert alert-success alert-dismissible" role="alert">
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							  Equipo <strong>Guardado!</strong> exitosamente.
+							  Pais <strong>Guardado!</strong> exitosamente.
 							</div>
 					  </div>
                       
@@ -26,18 +25,14 @@
                   <table class="table">
                   	<thead>
                   	<tr>
-                  		<th>Equipo</th>
-                  		<th>Alias</th>
                   		<th>Pais</th>
                   		<th>Opciones</th>
                   	</tr>
                   	</thead>
                   	<tbody>
-                  	@foreach($equipos as $equipo)
+                  	@foreach($pais as $paises)
                   	<tr>
-                  		<td>{{$equipo->nombre_equipo}}</td>
-                  		<td>{{$equipo->alias}}</td>
-                  		<td>{{$equipo->getPaisNombre()}}</td>
+                  		<td>{{$paises->nombre}}</td>
                   		<td></td>
                   	</tr>
                   	@endforeach	

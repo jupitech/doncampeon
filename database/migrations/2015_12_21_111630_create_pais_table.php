@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDcligasTable extends Migration
+class CreatePaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateDcligasTable extends Migration
      */
     public function up()
     {
-          Schema::create('dc_ligas', function(Blueprint $table)
+       Schema::create('dc_pais', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('nombre_liga')->unique();
-             $table->rememberToken();
+            $table->string('nombre')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateDcligasTable extends Migration
      */
     public function down()
     {
-         Schema::drop('dc_ligas');
+        //
     }
 }

@@ -59,5 +59,6 @@ Route::post('/register', ['as' => '/register', 'uses' => 'Auth\AuthController@po
 //Equipos
 Route::resource('equipos','EquiposController');
 Route::resource('ligas','LigasController');
+Route::resource('pais','PaisController');
 
 });

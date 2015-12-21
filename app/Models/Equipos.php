@@ -18,16 +18,19 @@ class Equipos extends Model{
      *
      * @var array
      */
-    protected $fillable = ['nombre_equipo', 'liga_equipo', 'pais_equipo'];
+    protected $fillable = ['nombre_equipo', 'alias', 'pais_equipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','remember_token'];
+    protected $hidden = ['remember_token'];
 
     public function getLigasNombre(){
         return \Doncampeon\Models\Ligas::where('id',$this->liga_equipo)->first()->nombre_liga;
+    }
+    public function getPaisNombre(){
+        return \Doncampeon\Models\Pais::where('id',$this->pais_equipo)->first()->nombre;
     }
 }

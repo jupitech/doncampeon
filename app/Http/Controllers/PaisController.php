@@ -3,17 +3,12 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Doncampeon\Http\Requests;
 use Doncampeon\Http\Controllers\Controller;
-use Doncampeon\Models\Equipos;
-use JWTAuth;
 
-class EquiposController extends Controller
+class PaisController extends Controller
 {
-
-    public function __contruct(){
-        $this->middleware('jwt.auth', ['except' => ['index']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,22 +16,10 @@ class EquiposController extends Controller
      */
     public function index()
     {
-        $equipos=\Doncampeon\Models\Equipos::All();
-         return view('admin.partidos.equipos',compact('equipos'));
-
-
+       $pais=\Doncampeon\Models\Pais::All();
+         return view('admin.opciones.pais',compact('pais'));
     }
 
- public function indexp()
-    {
-      $equiposp=\Doncampeon\Models\Equipos::all();
-        return response()->json(
-            ['datos'=> $equiposp],200
-           
-            );
-
-         
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,7 +27,7 @@ class EquiposController extends Controller
      */
     public function create()
     {
-        return view('admin.partidos.nuevoequipo');
+        return view('admin.opciones.nuevopais');
     }
 
     /**
@@ -55,12 +38,11 @@ class EquiposController extends Controller
      */
     public function store(Request $request)
     {
-        \Doncampeon\Models\Equipos::create([
-                'nombre_equipo' =>$request['nombre_equipo'],
-                'alias'   =>$request['alias'],
-                'pais_equipo'   =>$request['pais_equipo'],
+         \Doncampeon\Models\Pais::create([
+                'nombre' =>$request['nombre'],
+              
             ]);
-        return redirect('/equipos')->with('message','store');
+        return redirect('/pais')->with('message','store');
     }
 
     /**

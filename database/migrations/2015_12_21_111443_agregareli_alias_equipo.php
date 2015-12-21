@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDcligasTable extends Migration
+class AgregareliAliasEquipo extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class CreateDcligasTable extends Migration
      */
     public function up()
     {
-          Schema::create('dc_ligas', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->string('nombre_liga')->unique();
-             $table->rememberToken();
-            $table->timestamps();
+       Schema::table('dc_equipos', function ($table) {
+                 $table->string('alias');
+                 $table->dropColumn('liga_equipo');
         });
     }
 
@@ -28,6 +25,6 @@ class CreateDcligasTable extends Migration
      */
     public function down()
     {
-         Schema::drop('dc_ligas');
+        //
     }
 }

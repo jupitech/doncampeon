@@ -21,6 +21,9 @@ ssh usuario@00.00.00.00
  php artisan 
  //Ayuda a realizar operaciones de datos dentro de laravel
 
+ composer dumpautoload
+//Ayuda a reiniciar composer para importaciones de archivos no reconocidos
+
  php artisan make:seeder NombreTableSeeder
  //Agrega area del seeder para subir datos al db
 
