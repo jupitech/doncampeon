@@ -27,9 +27,6 @@ class Equipos extends Model{
      */
     protected $hidden = ['remember_token'];
 
-    public function getLigasNombre(){
-        return \Doncampeon\Models\Ligas::where('id',$this->liga_equipo)->first()->nombre_liga;
-    }
     public function getPaisNombre(){
         return \Doncampeon\Models\Pais::where('id',$this->pais_equipo)->first()->nombre;
     }
