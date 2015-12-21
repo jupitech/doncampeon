@@ -35,7 +35,9 @@
                   	<tbody>
                   	@foreach($equipos as $equipo)
                   	<tr>
-                  		
+                  		<td>{{$equipo->nombre_equipo}}</td>
+                  		<td></td>
+                  		<td>}</td>
                   		<td></td>
                   	</tr>
                   	@endforeach	
