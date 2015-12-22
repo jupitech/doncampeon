@@ -63,8 +63,9 @@ h1, h2, h3, h4, h5, h6{
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+   /* background: #fff;*/
     background: #1ca2df url('../img/ima_donc.png') no-repeat center bottom;
-    /*border-right: 1px solid #1399d3;*/
+    border-right: 1px solid #eee;
     background-size: 110px;
   }
 }
@@ -78,8 +79,9 @@ h1, h2, h3, h4, h5, h6{
 .nav-sidebar > li > a {
   padding: 7px 20px;
   font-size: 12px;
-  font-weight: 600;
-  color: #b2e0f4;
+  font-weight: normal;
+  color: #333;
+  /*color: #b2e0f4;*/
 }
 .nav-sidebar > li > a:hover, .nav-sidebar > li > a:focus{
   background-color: #1799d1;
@@ -202,6 +204,7 @@ z
 .main .page-header {
   margin-top: 10px;
   font-size: 26px;
+  margin-bottom: 10px;
 }
  .sub-menu{
   float: left;
@@ -311,17 +314,17 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   margin:0 0 5px 0;
 }
   .btn-donc-nuevo{
-    font-weight: 600;
-       background: #fcb90f;
+    font-weight: normal;
+       background: #1CA2DF;
        color:#fff;
        font-size: 12px;
        -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
   
-  -webkit-box-shadow: 0px 2px 0px #d19808;
-        -moz-box-shadow: 0px 2px 0px #d19808;
-        box-shadow: 0px 2px 0px #d19808;
+  -webkit-box-shadow: 0px 2px 0px #1693c9;
+        -moz-box-shadow: 0px 2px 0px #1693c9;
+        box-shadow: 0px 2px 0px #1693c9;
         letter-spacing: 0.03em;
          }
          .btn-donc-nuevo .glyphicon{
@@ -330,7 +333,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 
           .btn-donc-nuevo:hover{
             color: #fff;
-            background: #f7b102;
+            background: #1CA2DF;
           }
 
   .btn-donc-enlaces{
@@ -377,7 +380,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 
           .btn-donc-nuevo:hover{
             color: #fff;
-            background: #f7b102;
+            background: #1CA2DF;
           }     
 
 .ico_op{

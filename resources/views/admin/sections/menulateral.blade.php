@@ -3,7 +3,7 @@
 
         <div class="col-sm-2 col-md-1 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-cloud"></span> | Escritorio <span class="sr-only">(current)</span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> | Escritorio <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Partidos</a>
           
                            
@@ -14,7 +14,7 @@
             <li><a href="#">Notificaciones</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Usuarios</a> </li>
+            <li><a href="">Campeones</a> </li>
             <li><a href="">Movimientos</a></li>
             <li><a href="">Tukis</a></li>
             <li><a href="">News</a></li>
