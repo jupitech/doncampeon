@@ -96,11 +96,28 @@
                                                        <thead>
                                                          <tr>
                                                              <th>Ligas asignadas</th>
+                                                             <th></th>
                                                          </tr>
                                                        </thead>
                                                        @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
                                                          <tr>
                                                            <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
+                                                           <td>
+                                                             <span class="ico_op dropdown">
+                                                                  <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-resize-full" data-toggle="dropdown"></a>
+                                                                <ul class="dropdown-menu dropdown-menu-op">
+                                                                        <li>
+                                                                        <p>
+                                                                                {!! Form::open(['route'=>['destroyliga',$ligaequipo->id],'method'=>'DELETE']) !!}
+                                                                                      {!! Form::submit('Desasignar',['class' => 'btn btn-donc-danger']) !!}
+                                                                                {!! Form::close() !!}
+                                                                            </p>
+                                                                         <p> {{$ligaequipo->Nombreliga->nombre_liga}}</p>
+                                                                        </li>
+                                                                    </ul>
+
+                                                            </span>
+                                                           </td>
                                                          </tr>
                                                           @endforeach
                                                        </table>

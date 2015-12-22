@@ -11,7 +11,7 @@ use Doncampeon\Http\Requests\EquiposCreateRequest;
 use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
-use Doncampeon\Models\ligasequipos;
+use Doncampeon\Models\Ligasequipos;
 use JWTAuth;
 
 class EquiposController extends Controller
@@ -129,6 +129,13 @@ class EquiposController extends Controller
     {
           Equipos::destroy($id);
          Session::flash('message','Equipo eliminado correctamente.');
+        return Redirect::to('/equipos');
+    }
+
+    public function destroyliga($id)
+    {
+          Ligasequipos::destroy($id);
+         Session::flash('message','Liga desasignada correctamente.');
         return Redirect::to('/equipos');
     }
 }
