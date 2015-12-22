@@ -12,19 +12,15 @@
          </div>
          </div>
          	 <div class="caja_section">
-
-					<?php
-					$mensaje=Session::get('message');
-					?>
-					@if($mensaje=='store')
-					  <div class="col-sm-12 spd spi">
-					  	<div class="alert alert-success alert-dismissible" role="alert">
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							  Equipo <strong>Guardado!</strong> exitosamente.
-							</div>
-					  </div>
-                      
-					@endif
+          @if(Session::has('message'))
+                      <div class="col-sm-12 spd spi">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          {{Session::get('message')}}
+                        </div>
+                      </div>
+                                
+                    @endif
                   <table class="table">
                   	<thead>
                   	<tr>
@@ -48,7 +44,11 @@
                             <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
                           <ul class="dropdown-menu dropdown-menu-op">
                                   <li>
-                                  <p><a href="{{ route('logout')}}" class="btn btn-donc-danger">Eliminar</a></p>
+                                  <p>
+                                          {!! Form::open(['route'=>['equipos.destroy',$equipo->id],'method'=>'DELETE']) !!}
+                                                {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
+                                          {!! Form::close() !!}
+                                      </p>
                                    <p> {{$equipo->nombre_equipo}}</p>
                                   </li>
                               </ul>

@@ -3,14 +3,14 @@
 @section('content')
   @include('admin.sections.menuequipos')
       <div class="col-sm-12">
-          <h1 class="page-header">Nuevo Equipo</h1>
+          <h1 class="page-header">Editar Equipo</h1>
              <div class="col-sm-6 spi">
              	 <div class="caja_section">
                   @include('admin.sections.errors')
              	      <?php
                       $elpais=\Doncampeon\Models\Pais::orderBy('id','ASC')->lists('nombre','id');
                       ?>
-                        {!! Form::open(['route'=>'equipos.store','method'=>'POST']) !!}
+                        {!! Form::model($equipos,['route'=>['equipos.update',$equipos->id],'method'=>'PUT']) !!}
 
                             <div class="form-group">
                                 <label>Nombre</label>

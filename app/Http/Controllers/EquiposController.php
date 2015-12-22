@@ -4,7 +4,11 @@ namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Doncampeon\Http\Requests;
+use Session;
+use Redirect;
 use Doncampeon\Http\Controllers\Controller;
+use Doncampeon\Http\Requests\EquiposCreateRequest;
+use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
 use JWTAuth;
 
@@ -21,7 +25,7 @@ class EquiposController extends Controller
      */
     public function index()
     {
-        $equipos=\Doncampeon\Models\Equipos::All();
+        $equipos=Equipos::All();
          return view('admin.partidos.equipos',compact('equipos'));
 
 
@@ -29,7 +33,7 @@ class EquiposController extends Controller
 
  public function indexp()
     {
-      $equiposp=\Doncampeon\Models\Equipos::all();
+      $equiposp=Equipos::all();
         return response()->json(
             ['datos'=> $equiposp],200
            
@@ -53,14 +57,15 @@ class EquiposController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EquiposCreateRequest $request)
     {
-        \Doncampeon\Models\Equipos::create([
+        Equipos::create([
                 'nombre_equipo' =>$request['nombre_equipo'],
                 'alias'   =>$request['alias'],
                 'pais_equipo'   =>$request['pais_equipo'],
             ]);
-        return redirect('/equipos')->with('message','store');
+       Session::flash('message','Equipo creado correctamente.');
+        return Redirect::to('/equipos');
     }
 
     /**
@@ -82,7 +87,8 @@ class EquiposController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipos=Equipos::find($id);
+        return view('admin.partidos.editarequipo',['equipos'=>$equipos]);
     }
 
     /**
@@ -94,7 +100,11 @@ class EquiposController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipos=Equipos::find($id);
+        $equipos->fill($request->all());
+        $equipos->save();
+        Session::flash('message','Equipo "'.$equipos->nombre_equipo.'" editado correctamente.');
+        return Redirect::to('/equipos');
     }
 
     /**
@@ -105,6 +115,8 @@ class EquiposController extends Controller
      */
     public function destroy($id)
     {
-        //
+          Equipos::destroy($id);
+         Session::flash('message','Equipo eliminado correctamente.');
+        return Redirect::to('/equipos');
     }
 }
