@@ -135,7 +135,7 @@ class EquiposController extends Controller
     public function destroyliga($id)
     {
           Ligasequipos::destroy($id);
-         Session::flash('message','Liga desasignada correctamente.');
+         Session::flash('message','Liga asignada correctamente.');
         return Redirect::to('/equipos');
     }
 }
