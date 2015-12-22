@@ -3,9 +3,11 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Redirect;
 use Doncampeon\Http\Requests;
 use Doncampeon\Http\Controllers\Controller;
+use Doncampeon\Models\Pais;
 
 class PaisController extends Controller
 {
@@ -16,7 +18,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-       $pais=\Doncampeon\Models\Pais::All();
+       $pais=Pais::All();
          return view('admin.opciones.pais',compact('pais'));
     }
 
@@ -38,11 +40,12 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-         \Doncampeon\Models\Pais::create([
+         Pais::create([
                 'nombre' =>$request['nombre'],
               
             ]);
-        return redirect('/pais')->with('message','store');
+         Session::flash('message','Pais creado correctamente.');
+        return Redirect::to('/pais');
     }
 
     /**
@@ -64,7 +67,8 @@ class PaisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pais=Pais::find($id);
+        return view('admin.opciones.editarpais',['pais'=>$pais]);
     }
 
     /**
@@ -76,7 +80,11 @@ class PaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pais=Pais::find($id);
+        $pais->fill($request->all());
+        $pais->save();
+        Session::flash('message','Pais "'.$pais->nombre.'" editado correctamente.');
+        return Redirect::to('/pais');
     }
 
     /**
@@ -87,6 +95,8 @@ class PaisController extends Controller
      */
     public function destroy($id)
     {
-        //
+          Pais::destroy($id);
+         Session::flash('message','Equipo eliminado correctamente.');
+        return Redirect::to('/pais');
     }
 }
