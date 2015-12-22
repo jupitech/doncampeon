@@ -18,8 +18,14 @@
      {!! Html::style('assets/css/admin.css') !!}
      {!! Html::style('assets/css/bootstrap-select.css') !!}
     <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     {!! Html::script('assets/js/bootstrap-select.js') !!}
+     {!! Html::script('assets/js/bootstrap.min.js') !!}
+     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,9 +51,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-     {!! Html::script('assets/js/bootstrap-select.js') !!}
-     {!! Html::script('assets/js/bootstrap.min.js') !!}
+
      
             <script>
                $('.selectpicker').selectpicker();

@@ -10,6 +10,7 @@ use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Http\Requests\EquiposCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
+use Doncampeon\Models\ligasequipos;
 use JWTAuth;
 
 class EquiposController extends Controller
@@ -65,6 +66,16 @@ class EquiposController extends Controller
                 'pais_equipo'   =>$request['pais_equipo'],
             ]);
        Session::flash('message','Equipo creado correctamente.');
+        return Redirect::to('/equipos');
+    }
+
+     public function storeligas(Request $request)
+    {
+        ligasequipos::create([
+                'ligas_id' =>$request['ligas_id'],
+                'equipos_id'   =>$request['equipos_id'],
+            ]);
+       Session::flash('message','Equipo asignado correctamente.');
         return Redirect::to('/equipos');
     }
 

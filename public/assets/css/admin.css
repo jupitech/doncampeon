@@ -408,7 +408,10 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   padding: 3px 6px;
   margin-top: -3px;
 }
-
+.form-group{
+      float: left;
+    width: 100%;
+}
 
     .btn-donc-editar{
           font-weight: 600;
@@ -444,4 +447,32 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
          background:#ce4442;
          color: #fff;
          border: 1px solid #ce4442;
+     }
+
+     /************tabs***************/
+     .nav-tabs>li>a{
+      font-size: 13px;
+      letter-spacing: 0.005em;
+      font-weight: 600;
+     }
+     .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+       font-size: 13px;
+     }
+     .tab-content{
+      padding-top: 15px;
+     }
+      .dataTables_length{
+        margin-left: 5px;
+      }
+     .dataTables_length label{
+      font-size: 11px;
+      font-weight: normal;
+      letter-spacing: 0.01em;
+      color: #aaa;
+      margin: 0 5px;
+     }
+     .dataTables_length select{
+          border-radius: 3px;
+          border: 1px solid #ccc;
+          padding: 4px;
      }
