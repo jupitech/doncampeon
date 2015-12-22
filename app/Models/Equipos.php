@@ -30,4 +30,16 @@ class Equipos extends Model{
     public function getPaisNombre(){
         return \Doncampeon\Models\Pais::where('id',$this->pais_equipo)->first()->nombre;
     }
+
+    public function getLigasEquipo($id){
+        $equipoliga= \Doncampeon\Models\Ligasequipos::where('equipos_id',$id)->get();
+        return $equipoliga;
+    }
+    
+
+    public function getLigasSin(){
+        $lasligas= \Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
+        return $lasligas;
+    }
+
 }

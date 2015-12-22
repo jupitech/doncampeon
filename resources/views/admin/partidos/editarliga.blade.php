@@ -6,6 +6,7 @@
               <h1 class="page-header">Editar Liga</h1>
                  <div class="col-sm-6 spi">
                  	 <div class="caja_section">
+                      <div class="col-sm-12">
                  	  @include('admin.sections.errors')
                             {!! Form::model($ligas,['route'=>['ligas.update',$ligas->id],'method'=>'PUT']) !!}
 
@@ -20,7 +21,7 @@
                                 </div>
                             {!! Form::close() !!}
                      
-                  
+                     </div>
                  	 </div>
                  </div>
          </div>

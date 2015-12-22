@@ -6,6 +6,7 @@
           <h1 class="page-header">Nuevo Equipo</h1>
              <div class="col-sm-6 spi">
              	 <div class="caja_section">
+               <div class="col-sm-12">
                   @include('admin.sections.errors')
              	      <?php
                       $elpais=\Doncampeon\Models\Pais::orderBy('id','ASC')->lists('nombre','id');
@@ -36,7 +37,7 @@
                                 {!! Form::submit('Guardar',['class' => 'btn btn-primary']) !!}
                             </div>
                         {!! Form::close() !!}
-                 
+                 </div>
               
              	 </div>
              </div>

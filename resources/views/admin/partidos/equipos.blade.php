@@ -13,7 +13,7 @@
          </div>
          	 <div class="caja_section">
           @if(Session::has('message'))
-                      <div class="col-sm-12 spd spi">
+                      <div class="col-sm-12">
                         <div class="alert alert-success alert-dismissible" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                           {{Session::get('message')}}
@@ -51,10 +51,14 @@
                   	<tbody>
                   	@foreach($equipos as $equipo)
                   	<tr>
-                  		<td>{{$equipo->nombre_equipo}}</td>
+                  		<td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                   		<td>{{$equipo->alias}}</td>
                   		<td>{{$equipo->getPaisNombre()}}</td>
-                      <td></td>
+                      <td>
+                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                            | {{$ligaequipo->Nombreliga->nombre_liga}}
+                       @endforeach
+                      </td>
                   		<td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal-{{$equipo->id}}">Ligas</a>
@@ -73,10 +77,10 @@
 
                                                                   <div class="form-group">
                                                                   <div class="col-sm-2">
-                                                                    <label>Liga</label>
+                                                                     <label class="label-modal">Liga</label>
                                                                   </div>
                                                                   <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$laliga, null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
+                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
@@ -86,6 +90,21 @@
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
                                                                   </div>
                                                               {!! Form::close() !!}
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                       <table class="table">
+                                                       <thead>
+                                                         <tr>
+                                                             <th>Ligas asignadas</th>
+                                                         </tr>
+                                                       </thead>
+                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                                                         <tr>
+                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
+                                                         </tr>
+                                                          @endforeach
+                                                       </table>
+                                                      
                                                     </div>
                                                 </div>
                                               </div>
@@ -136,7 +155,12 @@
                       <td>{{$equipo->nombre_equipo}}</td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
-                      <td></td>
+                      <td>
+                         @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                            | {{$ligaequipo->Nombreliga->nombre_liga}}
+                       @endforeach
+
+                      </td>
                       <td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal1-{{$equipo->id}}">Ligas</a>
@@ -155,10 +179,10 @@
 
                                                                   <div class="form-group">
                                                                   <div class="col-sm-2">
-                                                                    <label>Liga</label>
+                                                                    <label class="label-modal">Liga</label>
                                                                   </div>
                                                                   <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$laliga, null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
+                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
@@ -168,6 +192,21 @@
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
                                                                   </div>
                                                               {!! Form::close() !!}
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                       <table class="table">
+                                                       <thead>
+                                                         <tr>
+                                                             <th>Ligas asignadas</th>
+                                                         </tr>
+                                                       </thead>
+                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                                                         <tr>
+                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
+                                                         </tr>
+                                                          @endforeach
+                                                       </table>
+                                                      
                                                     </div>
                                                 </div>
                                               </div>
@@ -222,7 +261,11 @@
                       <td>{{$equipo->nombre_equipo}}</td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
-                      <td></td>
+                      <td>
+                         @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                            | {{$ligaequipo->Nombreliga->nombre_liga}}
+                       @endforeach
+                      </td>
                       <td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal2-{{$equipo->id}}">Ligas</a>
@@ -241,10 +284,10 @@
 
                                                                   <div class="form-group">
                                                                   <div class="col-sm-2">
-                                                                    <label>Liga</label>
+                                                                     <label class="label-modal">Liga</label>
                                                                   </div>
                                                                   <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$laliga, null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
+                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
@@ -254,6 +297,21 @@
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
                                                                   </div>
                                                               {!! Form::close() !!}
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                       <table class="table">
+                                                       <thead>
+                                                         <tr>
+                                                             <th>Ligas asignadas</th>
+                                                         </tr>
+                                                       </thead>
+                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                                                         <tr>
+                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
+                                                         </tr>
+                                                          @endforeach
+                                                       </table>
+                                                      
                                                     </div>
                                                 </div>
                                               </div>

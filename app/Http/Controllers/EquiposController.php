@@ -8,6 +8,7 @@ use Session;
 use Redirect;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Http\Requests\EquiposCreateRequest;
+use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
 use Doncampeon\Models\ligasequipos;
@@ -71,7 +72,7 @@ class EquiposController extends Controller
 
      public function storeligas(Request $request)
     {
-        ligasequipos::create([
+        Ligasequipos::create([
                 'ligas_id' =>$request['ligas_id'],
                 'equipos_id'   =>$request['equipos_id'],
             ]);

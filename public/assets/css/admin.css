@@ -228,7 +228,7 @@ z
   width: 100%;
   background: #fff;
   border-radius: 3px;
-  padding: 15px;
+  padding: 15px 0;
   border: 1px solid #eee;
   -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
@@ -455,6 +455,10 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       letter-spacing: 0.005em;
       font-weight: 600;
      }
+     .nav-tabs>li:first-child.active>a{
+      border-left: none !important;
+         border-radius: 0px 4px 0 0 !important;
+     }
      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
        font-size: 13px;
      }
@@ -475,6 +479,9 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
           border-radius: 3px;
           border: 1px solid #ccc;
           padding: 4px;
+     }
+     .dataTables_filter{
+      margin-right: 15px;
      }
      .dataTables_filter input{
       border: 1px solid #ccc;
@@ -502,4 +509,32 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
          background: #8DCA3D !important;
          border: 1px solid #8DCA3D !important;
          color: #fff !important;
+
+     }
+     .dataTables_wrapper .dataTables_paginate{
+      margin-right: 15px;
+      margin-top: 10px;
+
+     }
+
+     .modal-content{
+      border-radius: 3px !important;
+      -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.1); 
+       box-shadow: 0 3px 9px rgba(0,0,0,.1); 
+       border: none; 
+     }
+     .modal-title{
+       font-size: 17px;
+       font-weight: normal;
+     }
+     .label-modal{
+      margin-top: 8px;
+     }
+     /******tables************/
+     .prin_td{
+       color: #333 !important;
+       font-weight: 600;
+       padding-left: 15px !important;
+       margin:0;
+       font-size: 12px;
      }

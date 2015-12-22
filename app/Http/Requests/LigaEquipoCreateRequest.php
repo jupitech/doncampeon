@@ -24,8 +24,13 @@ class LigaEquipoCreateRequest extends Request
     public function rules()
     {
         return [
-            'ligas_id'=>'required|unique:ligas_equipos',
-             'alias'=>'required',
+            'ligas_id'=>'required|unique:ligas_equipos,ligas_id,equipos_id',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'ligas_id.required'=>'El equipo ya a sido asignado a esta liga',
         ];
     }
 }
