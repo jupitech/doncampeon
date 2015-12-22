@@ -169,7 +169,7 @@
                     <tbody>
                     @foreach($equiposnacionales as $equipo)
                     <tr>
-                      <td>{{$equipo->nombre_equipo}}</td>
+                      <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
                       <td>
@@ -275,7 +275,7 @@
                     <tbody>
                     @foreach($equiposinternacionales as $equipo)
                     <tr>
-                      <td>{{$equipo->nombre_equipo}}</td>
+                      <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
                       <td>
