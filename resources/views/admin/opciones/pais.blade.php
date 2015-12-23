@@ -3,7 +3,7 @@
 @section('content')
  <div class="col-sm-12">
       <h1 class="page-header">Paises</h1>
-        <div class="col-sm-6 spi">
+        <div class="col-sm-6 spi spd">
         <div class="col-sm-12 spi spd">
          <div class="lbotones">
             <a href="{{ URL::to('pais/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Pais</a>

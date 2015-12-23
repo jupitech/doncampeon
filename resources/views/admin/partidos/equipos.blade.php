@@ -4,7 +4,7 @@
      @include('admin.sections.menuequipos')
       <div class="col-sm-12">
       <h1 class="page-header">Equipos</h1>
-        <div class="col-lg-7 col-md-9 col-sm-12 col-sx-12 spi">
+        <div class="col-lg-8 col-md-10 col-sm-12 col-sx-12 spi spd">
           <div class="col-sm-12 spi spd">
          <div class="lbotones">
             <a href="{{ URL::to('equipos/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Equipo</a>
@@ -41,6 +41,7 @@
                   <table id="tabledonc" class="table dataTable" cellspacing="0" width="100%">
                   	<thead>
                   	<tr>
+                     <th>Camisola</th>
                   		<th>Equipo</th>
                   		<th>Alias</th>
                   		<th>Pais</th>
@@ -51,6 +52,7 @@
                   	<tbody>
                   	@foreach($equipos as $equipo)
                   	<tr>
+                       <td class="area_camisola"><p class="img-camisola"></p></td>
                   		<td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                   		<td>{{$equipo->alias}}</td>
                   		<td>{{$equipo->getPaisNombre()}}</td>
@@ -159,6 +161,7 @@
                     <table id="tabledonc2" class="table dataTable" cellspacing="0" width="100%">
                     <thead>
                     <tr>
+                     <th>Camisola</th>
                       <th>Equipo</th>
                       <th>Alias</th>
                       <th>Pais</th>
@@ -169,6 +172,7 @@
                     <tbody>
                     @foreach($equiposnacionales as $equipo)
                     <tr>
+                     <td class="area_camisola"><p class="img-camisola"></p></td>
                       <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
@@ -265,6 +269,7 @@
                    <table id="tabledonc3" class="table dataTable" cellspacing="0" width="100%">
                     <thead>
                     <tr>
+                    <th>Camisola</th>
                       <th>Equipo</th>
                       <th>Alias</th>
                       <th>Pais</th>
@@ -275,6 +280,7 @@
                     <tbody>
                     @foreach($equiposinternacionales as $equipo)
                     <tr>
+                     <td class="area_camisola"><p class="img-camisola"></p></td>
                       <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                       <td>{{$equipo->alias}}</td>
                       <td>{{$equipo->getPaisNombre()}}</td>
