@@ -3,46 +3,58 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Doncampeon\Http\Requests;
+use Session;
+use Redirect;
 use Doncampeon\Http\Controllers\Controller;
+use Doncampeon\User;
+use Doncampeon\Models\RoleUser;
+use Doncampeon\Models\UserProfile;
+
+use Doncampeon\Http\Requests\UsuariosCreateRequest;
+
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $user=\App\User::get();
-        return response()->json([
-               "msg"=> "Success",
-               "user"=>$user->toArray()
-            ],200
-            );
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+     public function __contruct(){
+        $this->middleware('role:admin|editor');
     }
-
+   
     /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(UsuariosCreateRequest $request)
     {
-        //
+         $user=User::create([
+                  'username' => $request['username'],
+                  'email' => $request['email'],
+                  'password' => bcrypt($request['password'])
+                        ]);
+          $user->save();
+
+         $userprofile=UserProfile::create([
+                  'user_id' => $user->id,
+                  'first_name' => $request['first_name'],
+                  'last_name' => $request['last_name'],
+                        ]);
+         $userprofile->save();
+
+           $roleuser=RoleUser::create([
+                'role_id' =>$request['role_id'],
+                'user_id' =>$user->id,
+            ]);
+          $roleuser->save();
+
+
+
+        Session::flash('message','Usuario "'. $user->username .'" creado correctamente.');
+        return Redirect::to('/opciones');
+      
+
     }
 
     /**
@@ -64,7 +76,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+         $user=User::find($id);
+          $userprofile=UserProfile::where('user_id',$user->id)->first();
+          $roleuser=RoleUser::where('user_id',$user->id)->first();
+        return view('admin.editarusuario',['user'=>$user,'userprofile'=>$userprofile,'roleuser'=>$roleuser]);
     }
 
     /**
@@ -76,7 +91,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request['password']!=''){
+        $user=User::find($id);
+        $user->fill([
+                'password' => bcrypt($request['password'])
+            ]);
+        $user->save();
+        }
+
+
+         $userprofile=UserProfile::where('user_id',$id)->first();
+          $userprofile->fill([
+                  'first_name' => $request['first_name'],
+                  'last_name' => $request['last_name'],
+                  'edad' => $request['edad'],
+                  'pais' => $request['pais'],
+                  'direccion' => $request['direccion'],
+                   'facebook' => $request['facebook'],
+                   'twitter' => $request['twitter'],
+                        ]);
+         $userprofile->save();
+
+           $roleuser=RoleUser::where('user_id',$id)->first();
+        $roleuser->fill([
+                 'role_id' => $request['role_id'],
+            ]);
+          $roleuser->save();
+
+        Session::flash('message','Usuario editado correctamente.');
+        return Redirect::to('/opciones');
     }
 
     /**
@@ -87,6 +130,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($id!='1'){
+          User::destroy($id);
+          UserProfile::destroy($id);
+          RoleUser::destroy($id);
+         Session::flash('message','Usuario eliminado correctamente.');
+        return Redirect::to('/opciones');
+        }else{
+            Session::flash('message','Usuario no puede eliminarse es Admin Principal.');
+        return Redirect::to('/opciones');
+        }
     }
 }

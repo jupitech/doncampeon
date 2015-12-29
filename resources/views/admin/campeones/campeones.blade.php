@@ -1,9 +1,9 @@
 @extends('admin/layout')
 
 @section('content')
-     @include('admin.sections.menuequipos')
+     @include('admin.sections.menucampeones')
       <div class="col-sm-12">
-      <h1 class="page-header">Ligas</h1>
+      <h1 class="page-header">Campeones</h1>
         <div class="col-lg-8 col-md-10 col-sm-12 col-sx-12 spi spd">
         <div class="col-sm-12 spi spd">
          <div class="lbotones">
@@ -14,7 +14,7 @@
          	 <div class="caja_section">
 
 					@if(Session::has('message'))
-					  <div class="col-sm-12">
+					  <div class="col-sm-12 spd spi">
 					  	<div class="alert alert-success alert-dismissible" role="alert">
 							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							  {{Session::get('message')}}
@@ -32,7 +32,7 @@
                   	<tbody>
                   	@foreach($ligas as $liga)
                   	<tr>
-                  		<td><p class="prin_td">{{$liga->nombre_liga}}</p></td>
+                  		<td>{{$liga->nombre_liga}}</td>
                   		<td>
                         <span class="ico_op">
                            {!!link_to_route('ligas.edit', $title = '', $parameters = $liga->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}

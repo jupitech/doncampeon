@@ -40,7 +40,7 @@
     <div class="container-fluid">
         <div class="row">
       @yield('menulateral')
-        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main spd spi">
+        <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-11 col-lg-offset-1 main spd spi">
           @yield('content')
         </div>
       </div>

@@ -42,11 +42,12 @@ class LigasController extends Controller
      */
     public function store(LigasCreateRequest $request)
     {
-           Ligas::create([
+           $ligas=Ligas::create([
                 'nombre_liga' =>$request['nombre_liga'],
               
             ]);
-        Session::flash('message','Liga creada correctamente.');
+            $ligas->save();
+        Session::flash('message','Liga "'. $ligas->nombre_liga .'" creada correctamente.');
         return Redirect::to('/ligas');
     }
 

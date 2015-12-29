@@ -18,14 +18,11 @@ Route::post('/', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 
-Route::group(['middleware' => 'cors'], function(){
-    Route::get("equiposp","EquiposController@indexp");
-});
 
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
 
- Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
+Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
 Route::post('/registro', [
     'as' => 'auth.register',
     'uses' => 'Api\AutorizarController@register'
@@ -41,26 +38,41 @@ Route::post('/registro', [
 });
 
 //}); 
-Route::group(['middleware' => ['auth','role:admin']], function()
+Route::group(['middleware' => ['auth','role:admin|editor']], function()
 {
-  Route:: get("equipostodos","EquiposController@indexp");
-   //Escritorio
-	Route::get('/escritorio', function () {
 
-    return view('admin/escritorio');
+         //Escritorio
+      	Route::get('/escritorio', function () {
+
+          return view('admin/escritorio');
 
 
-	});
+      	});
 
-    // Registration routes...
-Route::get('/register', 'Auth\AuthController@getRegister');
-Route::post('/register', ['as' => '/register', 'uses' => 'Auth\AuthController@postRegister']);
+      //Opciones
+        Route::get('/opciones', function () {
+          return view('admin/opciones');
+        });
 
-//Equipos
-Route::resource('equipos','EquiposController');
-Route::post('equipos/storeligas',['as' => 'storeligas', 'uses' => 'EquiposController@storeligas']);
-Route::delete('equipos/destroyliga/{id}',['as' => 'destroyliga', 'uses' => 'EquiposController@destroyliga']);
-Route::resource('ligas','LigasController');
-Route::resource('pais','PaisController');
+          // Registration routes...
+      Route::get('/register', 'Auth\AuthController@getRegister');
+      Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
+       //Usuarios Sistema
+    // Route::resource('usuarios','UserController');
+      
+       Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
+       Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
+        Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
+       Route::group(['middleware' => ['auth','role:admin']], function()
+        {
+              Route::delete('usuarios/destroy/{id}',['as' => 'usuarios.destroy', 'uses' => 'UserController@destroy']);
+     
+        });
+      //Equipos
+      Route::resource('equipos','EquiposController');
+      Route::post('equipos/storeligas',['as' => 'storeligas', 'uses' => 'EquiposController@storeligas']);
+      Route::delete('equipos/destroyliga/{id}',['as' => 'destroyliga', 'uses' => 'EquiposController@destroyliga']);
+      Route::resource('ligas','LigasController');
+      Route::resource('pais','PaisController');
 
 });

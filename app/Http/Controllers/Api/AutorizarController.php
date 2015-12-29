@@ -32,7 +32,7 @@ class AutorizarController extends Controller
 public function register(RegisterRequest $request)
   {
     $newUser = $this->user->create([
-      'name' => $request->get('name'),
+      'username' => $request->get('username'),
       'email' => $request->get('email'),
       'password' => bcrypt($request->get('password'))
     ]);
