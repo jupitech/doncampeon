@@ -72,4 +72,14 @@ class AuthenticateController extends Controller
         return response()->json(compact('user'));
     }
 
+     public function register(Request $request){
+ 
+        $newuser= $request->all();
+        $password=Hash::make($request->input('password'));
+ 
+        $newuser['password'] = $password;
+ 
+        return User::create($newuser);
+    }
+
 }
