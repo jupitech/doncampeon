@@ -27,16 +27,6 @@ class UserCampeonesController extends Controller
 
     }
 
- public function indexp()
-    {
-      $equiposp=\Doncampeon\Models\Equipos::all();
-        return response()->json(
-            ['datos'=> $equiposp],200
-           
-            );
-
-         
-    }
     /**
      * Show the form for creating a new resource.
      *

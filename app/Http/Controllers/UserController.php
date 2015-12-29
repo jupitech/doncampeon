@@ -12,6 +12,7 @@ use Doncampeon\Models\RoleUser;
 use Doncampeon\Models\UserProfile;
 
 use Doncampeon\Http\Requests\UsuariosCreateRequest;
+use Doncampeon\Http\Requests\UsuariosUpdateRequest;
 
 
 class UserController extends Controller
@@ -89,7 +90,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UsuariosUpdateRequest $request, $id)
     {
         if($request['password']!=''){
         $user=User::find($id);
@@ -131,9 +132,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         if($id!='1'){
-          User::destroy($id);
-          UserProfile::destroy($id);
-          RoleUser::destroy($id);
+          $user=User::find($id);
+          
+          $user->delete();
+         
+
          Session::flash('message','Usuario eliminado correctamente.');
         return Redirect::to('/opciones');
         }else{
@@ -141,4 +144,16 @@ class UserController extends Controller
         return Redirect::to('/opciones');
         }
     }
+
+
+    public function restaurar($id)
+    {
+       
+       User::withTrashed()->where('id',$id)->restore();
+
+         Session::flash('message','Usuario restaurado correctamente.');
+        return Redirect::to('/opciones');
+
+      } 
+
 }

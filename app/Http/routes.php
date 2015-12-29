@@ -63,9 +63,11 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
        Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
        Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
         Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
+
        Route::group(['middleware' => ['auth','role:admin']], function()
         {
               Route::delete('usuarios/destroy/{id}',['as' => 'usuarios.destroy', 'uses' => 'UserController@destroy']);
+              Route::put('usuarios/restaurar/{id}',['as' => 'usuarios.restaurar', 'uses' => 'UserController@restaurar']);
      
         });
       //Equipos

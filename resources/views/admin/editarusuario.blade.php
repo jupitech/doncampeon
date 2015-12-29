@@ -28,13 +28,13 @@
                              <div class="col-lg-6 col-md-6 ">
                                      <div class="form-group">
                                         <label>Nombre</label>
-                                        {!! Form::text('first_name',$userprofile->first_name, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
+                                        {!! Form::text('first_name',$userprofile->first_name, ['class'=> 'form-control','placeholder'=>'Ingresa nombre']) !!}
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
                                         <div class="form-group">
                                             <label>Apellido</label>
-                                            {!! Form::text('last_name',$userprofile->last_name, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
+                                            {!! Form::text('last_name',$userprofile->last_name, ['class'=> 'form-control','placeholder'=>'Ingresa apellido']) !!}
                                         </div>
                                 </div>
                                  <div class="col-lg-2 col-md-2 ">

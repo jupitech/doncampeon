@@ -9,10 +9,11 @@ use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword,HasRoleAndPermission;
+    use Authenticatable, CanResetPassword,HasRoleAndPermission,SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -28,12 +29,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $fillable = ['username', 'email', 'password'];
 
+
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+     protected $dates = ['deleted_at'];
 
     public function RolUsuario(){
         return $this->hasOne('\Doncampeon\Models\RoleUser','user_id','id');

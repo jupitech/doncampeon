@@ -3,6 +3,7 @@
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoleUser extends Model
 {
@@ -27,4 +28,5 @@ class RoleUser extends Model
      * @var array
      */
     protected $hidden = ['created_at','updated_at'];
+        protected $dates = ['deleted_at'];
 }

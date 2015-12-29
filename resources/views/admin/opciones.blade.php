@@ -4,6 +4,7 @@
 <?php
 		
 		 $user=\Doncampeon\User::all();
+		 $userpapelera=\Doncampeon\User::onlyTrashed()->get();
       
     $roles=\Doncampeon\Models\Roles::whereNotIn('id',[4])->orderBy('id','ASC')->lists('name','id');
 	$roleseditor=\Doncampeon\Models\Roles::whereNotIn('id',[1,4])->orderBy('id','ASC')->lists('name','id');
@@ -102,6 +103,71 @@
 
 
 													</div>	
+                                                    <strong><p>Usuarios inactivos</p></strong>
+													<div class="col-sm-12">
+														
+														<table class="table">
+													                  	<thead>
+													                  	<tr>
+													                  		<th>Nombre</th>
+													                  		<th>Usuario</th>
+													                  		<th>Rol</th>
+													                  		<th>Nivel</th>
+													                  		<th>Opciones</th>
+													                  	</tr>
+													                  	</thead>
+													                  	<tbody>
+													                  	@foreach($userpapelera as $users)
+													                  	<tr>
+													                  		<td>
+													                  			<p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
+													                  		</td>
+													                  		<td>{{$users->username}}({{$users->email}})</td>
+
+													                  		<td>{{$users->getRolNombre()}}</td>
+													                  		<td>{{$users->getRolLevel()}}</td>
+													                  		<td>
+																			@role('admin')
+													                        <span class="ico_op">
+													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+													                        </span>
+
+													                        <span class="ico_op dropdown">
+													                            <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-heart" data-toggle="dropdown"></a>
+													                          <ul class="dropdown-menu dropdown-menu-op">
+													                                  <li>
+													                                      <p>
+													                                          {!! Form::open(['route'=>['usuarios.restaurar',$users->id],'method'=>'PUT']) !!}
+													                                                {!! Form::submit('Restaurar',['class' => 'btn btn-donc-danger']) !!}
+													                                          {!! Form::close() !!}
+													                                      </p>
+													                                      <p> {{$users->username}}?</p>
+													                                   
+													                                  </li>
+													                              </ul>
+
+													                        </span>
+																			
+
+													                        @endrole
+
+													                       @role('editor')
+													                       @if($users->getRolLevel()!=1)
+													                        <span class="ico_op">
+													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+													                        </span>
+													                        @endrole
+																			@endif
+
+													                      </td>
+													                  	</tr>
+													                  	@endforeach	
+													                  	</tbody>
+													                  </table>
+
+
+													</div>	
+
 
 
 												</div>
