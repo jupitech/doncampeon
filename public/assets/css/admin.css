@@ -201,6 +201,70 @@ z
   border-bottom: 2px solid #1CA2DF;
 }
 
+/************campeones***********/
+.glyphicon-huevorojo{
+   float: left;
+    width: 25px;
+    height: 30px;
+    background: url('../img/huevo_rojo.svg') no-repeat left center;
+    background-size: 18px;
+}
+.glyphicon-huevoblanco{
+    float: left;
+    width: 20px;
+    height: 16px;
+    background: url('../img/huevo_blanco.svg') no-repeat left center;
+    background-size: 12px;
+}
+
+.glyphicon-huevonegro{
+    float: left;
+    width: 15px;
+    height: 16px;
+    background: url('../img/huevo_negro.svg') no-repeat left center;
+    background-size: 10px;
+}
+
+.nav-sidebar > li > a:hover .glyphicon-huevonegro{
+   background: url('../img/huevo_blanco.svg') no-repeat left center;
+    background-size: 10px;
+}
+
+
+.caja_drop .form-control{
+  font-style: italic;
+  font-size: 13px !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 2px solid #84cded;
+  border-radius: 0 !important;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+}
+.caja_drop .form-control:focus{
+  border-bottom: 2px solid #1CA2DF;
+}
+
+.caja_drop label{
+  font-size: 13px;
+  font-weight: 600;
+ /*letter-spacing: 0.02em;*/
+  color: #777;
+}
+
+.caja_drop .btn-primary{
+  clear: right;
+  float: right;
+  background: #8dca3d !important;
+  color: #fff !important;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  border: none !important;
+}
+
+
 @media (min-width: 768px) {
   .main {
     padding-right: 20px;

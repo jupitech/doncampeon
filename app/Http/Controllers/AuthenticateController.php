@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Doncampeon\Http\Requests;
 use Doncampeon\Http\Controllers\Controller;
 use JWTAuth;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Doncampeon\User;
 

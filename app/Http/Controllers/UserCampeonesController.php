@@ -3,39 +3,24 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Doncampeon\Http\Requests;
+use Session;
+use Redirect;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\User;
+use Doncampeon\Models\RoleUser;
+use Doncampeon\Models\UserProfile;
+use Doncampeon\Http\Requests\UsuariosCreateRequest;
+use Doncampeon\Http\Requests\UsuariosUpdateRequest;
+
 use Validator;
 
 class UserCampeonesController extends Controller
 {
     public function __contruct(){
-        $this->middleware('jwt.auth', ['except' => ['index']]);
+        $this->middleware('role:admin|editor');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $equipos=\Doncampeon\User::All();
-         return view('admin.partidos.equipos',compact('equipos'));
-
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.partidos.nuevoequipo');
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -43,16 +28,35 @@ class UserCampeonesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   public function store(UsuariosCreateRequest $request)
     {
-         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-        return redirect('/equipos')->with('message','store');
-    }
+         $user=User::create([
+                  'username' => $request['username'],
+                  'email' => $request['email'],
+                  'password' => bcrypt($request['password'])
+                        ]);
+          $user->save();
 
+         $userprofile=UserProfile::create([
+                  'user_id' => $user->id,
+                  'first_name' => $request['first_name'],
+                  'last_name' => $request['last_name'],
+                        ]);
+         $userprofile->save();
+
+           $roleuser=RoleUser::create([
+                'role_id' =>4,
+                'user_id' =>$user->id,
+            ]);
+          $roleuser->save();
+
+
+
+        Session::flash('message','Campeón "'. $user->username .'" creado correctamente.');
+        return Redirect::to('/campeones');
+      
+
+    }
     /**
      * Display the specified resource.
      *

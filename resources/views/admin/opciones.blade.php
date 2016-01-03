@@ -54,49 +54,52 @@
 													                  	</thead>
 													                  	<tbody>
 													                  	@foreach($user as $users)
-													                  	<tr>
-													                  		<td>
-													                  			<p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
-													                  		</td>
-													                  		<td>{{$users->username}}({{$users->email}})</td>
+													                  		@if($users->getRolLevel()!=4)
+																                  	<tr>
+																                  		<td>
+																                  			<p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
+																                  		</td>
+																                  		<td>{{$users->username}}({{$users->email}})</td>
 
-													                  		<td>{{$users->getRolNombre()}}</td>
-													                  		<td>{{$users->getRolLevel()}}</td>
-													                  		<td>
-																			@role('admin')
-													                        <span class="ico_op">
-													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-													                        </span>
+																                  		<td>{{$users->getRolNombre()}}</td>
+																                  		<td>{{$users->getRolLevel()}}</td>
+																                  		<td>
+																						@role('admin')
+																                        <span class="ico_op">
+																                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+																                        </span>
 
-													                        <span class="ico_op dropdown">
-													                            <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
-													                          <ul class="dropdown-menu dropdown-menu-op">
-													                                  <li>
-													                                      <p>
-													                                          {!! Form::open(['route'=>['usuarios.destroy',$users->id],'method'=>'DELETE']) !!}
-													                                                {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
-													                                          {!! Form::close() !!}
-													                                      </p>
-													                                      <p> {{$users->username}}?</p>
-													                                   
-													                                  </li>
-													                              </ul>
+																                        <span class="ico_op dropdown">
+																                            <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
+																                          <ul class="dropdown-menu dropdown-menu-op">
+																                                  <li>
+																                                      <p>
+																                                          {!! Form::open(['route'=>['usuarios.destroy',$users->id],'method'=>'DELETE']) !!}
+																                                                {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
+																                                          {!! Form::close() !!}
+																                                      </p>
+																                                      <p> {{$users->username}}?</p>
+																                                   
+																                                  </li>
+																                              </ul>
 
-													                        </span>
-																			
+																                        </span>
+																						
 
-													                        @endrole
+																                        @endrole
 
-													                       @role('editor')
-													                       @if($users->getRolLevel()!=1)
-													                        <span class="ico_op">
-													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-													                        </span>
-													                        @endrole
-																			@endif
+																                       @role('editor')
+																                       @if($users->getRolLevel()!=1)
+																                        <span class="ico_op">
+																                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+																                        </span>
+																                        	@endif
+																                        @endrole
+																					
 
-													                      </td>
-													                  	</tr>
+																                      </td>
+																                  	</tr>
+																         	@endif
 													                  	@endforeach	
 													                  	</tbody>
 													                  </table>
@@ -118,49 +121,52 @@
 													                  	</thead>
 													                  	<tbody>
 													                  	@foreach($userpapelera as $users)
-													                  	<tr>
-													                  		<td>
-													                  			<p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
-													                  		</td>
-													                  		<td>{{$users->username}}({{$users->email}})</td>
+													                  	@if($users->getRolLevel()!=4)
+																		                  	<tr>
+																		                  		<td>
+																		                  			<p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
+																		                  		</td>
+																		                  		<td>{{$users->username}}({{$users->email}})</td>
 
-													                  		<td>{{$users->getRolNombre()}}</td>
-													                  		<td>{{$users->getRolLevel()}}</td>
-													                  		<td>
-																			@role('admin')
-													                        <span class="ico_op">
-													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-													                        </span>
+																		                  		<td>{{$users->getRolNombre()}}</td>
+																		                  		<td>{{$users->getRolLevel()}}</td>
+																		                  		<td>
+																								@role('admin')
+																		                        <span class="ico_op">
+																		                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+																		                        </span>
 
-													                        <span class="ico_op dropdown">
-													                            <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-heart" data-toggle="dropdown"></a>
-													                          <ul class="dropdown-menu dropdown-menu-op">
-													                                  <li>
-													                                      <p>
-													                                          {!! Form::open(['route'=>['usuarios.restaurar',$users->id],'method'=>'PUT']) !!}
-													                                                {!! Form::submit('Restaurar',['class' => 'btn btn-donc-danger']) !!}
-													                                          {!! Form::close() !!}
-													                                      </p>
-													                                      <p> {{$users->username}}?</p>
-													                                   
-													                                  </li>
-													                              </ul>
+																		                        <span class="ico_op dropdown">
+																		                            <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-heart" data-toggle="dropdown"></a>
+																		                          <ul class="dropdown-menu dropdown-menu-op">
+																		                                  <li>
+																		                                      <p>
+																		                                          {!! Form::open(['route'=>['usuarios.restaurar',$users->id],'method'=>'PUT']) !!}
+																		                                                {!! Form::submit('Restaurar',['class' => 'btn btn-donc-danger']) !!}
+																		                                          {!! Form::close() !!}
+																		                                      </p>
+																		                                      <p> {{$users->username}}?</p>
+																		                                   
+																		                                  </li>
+																		                              </ul>
 
-													                        </span>
-																			
+																		                        </span>
+																								
 
-													                        @endrole
+																		                        @endrole
 
-													                       @role('editor')
-													                       @if($users->getRolLevel()!=1)
-													                        <span class="ico_op">
-													                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-													                        </span>
-													                        @endrole
-																			@endif
+																		                       @role('editor')
+																		                       @if($users->getRolLevel()!=1)
+																		                        <span class="ico_op">
+																		                           {!!link_to_route('usuarios.edit', $title = '', $parameters = $users->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+																		                        </span>
+																		                        @endif
+																		                        @endrole
+																								
 
-													                      </td>
-													                  	</tr>
+																		                      </td>
+																		                  	</tr>
+									 									@endif
 													                  	@endforeach	
 													                  	</tbody>
 													                  </table>

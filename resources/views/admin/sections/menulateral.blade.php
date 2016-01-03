@@ -14,7 +14,7 @@
             <li><a href="#">Notificaciones</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Campeones</a> </li>
+            <li><a href="{{ URL::to('/campeones') }}"><span class="glyphicon-huevonegro"></span>| Campeones</a> </li>
             <li><a href="">Movimientos</a></li>
             <li><a href="">Tukis</a></li>
             <li><a href="">News</a></li>

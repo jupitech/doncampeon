@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*use Mail;*/
 
 // Authentication routes...
 Route::get('/',  [ 'uses' => 'Auth\AuthController@getLogin','as' =>'login']);
@@ -42,35 +42,58 @@ Route::post('/registro', [
 Route::group(['middleware' => ['auth','role:admin|editor']], function()
 {
 
+  //Mail Ejemplo
+   Route::get('/email', function () {
+
+          Mail::send('emails.test',['name'=>'Carlos'], function($message){
+          
+              $message->to('carlos.ruano@crweb.net')->subject('Hola Don Campeon!');
+          });
+
+
+        });
+
          //Escritorio
-      	Route::get('/escritorio', function () {
+      Route::get('/escritorio', function () {
 
           return view('admin/escritorio');
 
 
       	});
 
+        //campeones
+      Route::get('/campeones', function () {
+          return view('admin/campeones/campeones');
+        });
+
+      Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
+
       //Opciones
-        Route::get('/opciones', function () {
+      Route::get('/opciones', function () {
           return view('admin/opciones');
         });
 
-          // Registration routes...
+      // Registration routes...
       Route::get('/register', 'Auth\AuthController@getRegister');
       Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
-       //Usuarios Sistema
-    // Route::resource('usuarios','UserController');
-      
-       Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
-       Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
-        Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
 
-       Route::group(['middleware' => ['auth','role:admin']], function()
+
+       //Usuarios Sistema
+    
+      
+      Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
+      Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
+      Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
+
+
+
+      Route::group(['middleware' => ['auth','role:admin']], function()
         {
               Route::delete('usuarios/destroy/{id}',['as' => 'usuarios.destroy', 'uses' => 'UserController@destroy']);
               Route::put('usuarios/restaurar/{id}',['as' => 'usuarios.restaurar', 'uses' => 'UserController@restaurar']);
      
         });
+
       //Equipos
       Route::resource('equipos','EquiposController');
       Route::post('equipos/storeligas',['as' => 'storeligas', 'uses' => 'EquiposController@storeligas']);
