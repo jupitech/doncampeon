@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 {
 
   //Mail Ejemplo
-   Route::get('/email', function () {
+  /* Route::get('/email', function () {
 
           Mail::send('emails.test',['name'=>'Carlos'], function($message){
           
@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
 
         });
+        */
 
          //Escritorio
       Route::get('/escritorio', function () {
@@ -100,5 +101,17 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::delete('equipos/destroyliga/{id}',['as' => 'destroyliga', 'uses' => 'EquiposController@destroyliga']);
       Route::resource('ligas','LigasController');
       Route::resource('pais','PaisController');
+
+
+      //Juego
+       Route::get('juego',['as' => 'juego', 'uses' => 'JuegoParametrosController@index']);
+       Route::put('juego/updatepuntosiniciales/{id}',['as' => 'updatepuntosiniciales', 'uses' => 'JuegoParametrosController@updatepuntosiniciales']);
+       Route::put('juego/updateminimoretos/{id}',['as' => 'updateminimoretos', 'uses' => 'JuegoParametrosController@updateminimoretos']);
+       Route::put('juego/updatepuntosrecompensa/{id}',['as' => 'updatepuntosrecompensa', 'uses' => 'JuegoParametrosController@updatepuntosrecompensa']);
+       Route::put('juego/updaterecompensanojuegos/{id}',['as' => 'updaterecompensanojuegos', 'uses' => 'JuegoParametrosController@updaterecompensanojuegos']);
+        Route::put('juego/updaterecompensapjuegos/{id}',['as' => 'updaterecompensapjuegos', 'uses' => 'JuegoParametrosController@updaterecompensapjuegos']);
+   
+   
+
 
 });

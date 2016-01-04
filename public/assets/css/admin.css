@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6{
 .nav-sidebar > li > a {
   padding: 7px 20px;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 600;
   color: #333;
   /*color: #b2e0f4;*/
 }
@@ -229,6 +229,51 @@ z
    background: url('../img/huevo_blanco.svg') no-repeat left center;
     background-size: 10px;
 }
+
+/************iconos menu lateral**************************/
+        .glyphicon-equiposnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/equipos_negro.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-equiposnegro{
+           background: url('../img/equipos_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .glyphicon-equiposblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/equipos_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+
+
+        .glyphicon-juegonegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/juego_negro.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-juegonegro{
+           background: url('../img/juego_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .glyphicon-juegoblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/juego_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
 
 
 .caja_drop .form-control{
@@ -633,4 +678,106 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        border-radius: 20px;
        background: #eee url('../img/camisola.png') no-repeat center bottom;
        background-size: 35px;
+     }
+     .descripcion_area{
+      font-size: 15px;
+      margin:15px 0;
+     }
+
+  
+    .bs-callout {
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    }  
+ .bs-callout-info {
+    border-left-color: #1b809e;
+    }
+    .caja_small{
+      float: left;
+      width: 100%;
+      min-height: 200px;
+          border: 1px solid #eee;
+              -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+      border-radius: 4px;
+      margin-bottom: 15px;
+
+    }
+    .caja_small h3{
+      color: #1CA2DF;
+      margin: 0;
+      padding:10px 15px;
+      float: left;
+      width: 100%;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .puntos_juego{
+      float: left;
+      width: 100%;
+      margin: 15px 0;
+      position: relative;
+    }
+    .puntos_juego p{
+      text-align: center;
+      font-size: 50px;
+      font-weight: normal;
+      color: #8DCA3D;
+    }
+          .area_opciones{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 0;
+            right: 0;
+          }
+          .area_opciones .ico_op{
+            float: right;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
+          .area_opciones .dropdown-menu-op{
+            top: -12px;
+            right: 3px;
+          }
+             .btn_opcio{
+              margin-top: 3px !important;
+              padding: 4px 8px !important;
+             }
+
+    .descri_parametros{
+      min-height: 100px;
+    }
+    .descri_parametros p{
+      color: #777;
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.01em;
+    }
+    .area_db{
+      float: left;
+      width: 100%;
+      border-top: #eee;
+      background: #f9f9f9;
+      padding: 8px 10px;
+    }
+    .area_db p{
+      padding-left: 10px;
+      float: left;
+      font-family: 'Inconsolata', sans-serif;
+      text-align: right;
+      margin: 0;
+      color: #dd1cb4;
+    }
+     .area_db span{
+      margin-top: 2px;
+      float: left;
+       color: #777;
      }

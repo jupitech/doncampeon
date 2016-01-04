@@ -9,8 +9,8 @@
                            
                          
             </li>
-             <li><a href="{{ URL::to('equipos') }}">Equipos</a></li>
-            <li><a href="#">Juego</a></li>
+             <li><a href="{{ URL::to('equipos') }}"><span class="glyphicon-equiposnegro"></span>| Equipos</a></li>
+            <li><a href="{{ URL::to('juego') }}"><span class="glyphicon-juegonegro"></span>| Juego</a></li>
             <li><a href="#">Notificaciones</a></li>
           </ul>
           <ul class="nav nav-sidebar">
