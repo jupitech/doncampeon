@@ -18,7 +18,7 @@ class EquiposController extends Controller
 {
 
     public function __contruct(){
-        $this->middleware('jwt.auth', ['except' => ['index']]);
+       $this->middleware('auth.basic');
     }
     /**
      * Display a listing of the resource.
@@ -33,11 +33,26 @@ class EquiposController extends Controller
 
     }
 
+
+
+private function transformEquipos($equiposp){
+    return array_map([$this, 'transform'], $equiposp->toArray());
+}
+
+private function transform($equiposp){
+    return [
+           'id' => $equiposp['id'],
+           'nombre_equipo' => $equiposp['nombre_equipo'],
+           'pais_equipo' => $equiposp['pais_equipo'],
+           'alias' => $equiposp['alias'],
+        ];
+}
+
  public function indexp()
     {
       $equiposp=Equipos::all();
         return response()->json(
-            ['datos'=> $equiposp],200
+            ['datos'=> $this->transformEquipos($equiposp)],200
            
             );
 

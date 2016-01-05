@@ -3,14 +3,20 @@
 @section('content')
      @include('admin.sections.menuequipos')
       <div class="col-sm-12">
-      <h1 class="page-header">Ligas</h1>
-        <div class="col-lg-8 col-md-10 col-sm-12 col-sx-12 spi spd">
-        <div class="col-sm-12 spi spd">
+      <h1 class="page-header">
+     <div class="col-sm-6 spi spd">
+      Ligas
+      </div>
+      <div class="col-sm-6 spi spd">
          <div class="lbotones">
             <a href="{{ URL::to('ligas/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nueva Liga</a>
              
          </div>
          </div>
+
+      </h1>
+        <div class="col-lg-8 col-md-10 col-sm-12 col-sx-12 spi spd">
+        
          	 <div class="caja_section">
 
 					@if(Session::has('message'))

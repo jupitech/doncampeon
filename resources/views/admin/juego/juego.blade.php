@@ -6,6 +6,7 @@
 		
 		
  ?>
+  @include('admin.sections.menujuego')
 		<div class="col-sm-12">
       			<h1 class="page-header">Juego</h1>
 		          <div class="col-sm-12 col-md-12 col-lg-10 spi spd">
@@ -25,8 +26,7 @@
 				        
 				          		<ul class="tab_donc nav nav-tabs" role="tablist">
 						            <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Reglas Generales</a></li>
-						            <li role="presentation"><a href="#usuarios" aria-controls="usuarios" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Niveles del Usuario</a></li>
-						            <li role="presentation"><a href="#seguridad" aria-controls="seguridad" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-fire"></span> Seguridad</a></li>
+						           
 						          </ul>  
 
 						           <div class="tab-content">
@@ -213,14 +213,8 @@
 												 </div>
               								 </div>
 
-              								 <div role="tabpanel" class="tab-pane" id="usuarios">
-												
-												
-												
-              								 </div>
 
-              								  <div role="tabpanel" class="tab-pane" id="seguridad">
-              								 </div>
+
   								    </div>
 				          </div>
 		          </div>

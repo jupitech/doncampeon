@@ -4,28 +4,26 @@ namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pais extends Model
+class GameNivel extends Model
 {
      /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'dc_pais';
+    protected $table = 'game_nivel';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nivel_nombre','nivel_alias','nivel_puntos','nivel_minimo'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [];
-
-   
+    protected $hidden = ['created_at','updated_at'];
 }

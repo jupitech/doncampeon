@@ -11,14 +11,23 @@ return [
      | to accept any value, the allowed methods however have to be explicitly listed.
      |
      */
-    'defaults' => [
+     'defaults' => [
        'supportsCredentials' => false,
-         'allowedOrigins' => ['*'],
+       'allowedOrigins' => [],
+       'allowedHeaders' => [],
+       'allowedMethods' => [],
+       'exposedHeaders' => [],
+       'maxAge' => 0,
+       'hosts' => [],
+   ],
+
+   'paths' => [
+       'v1/*' => [
+           'allowedOrigins' => ['*'],
            'allowedHeaders' => ['*'],
            'allowedMethods' => ['*'],
-       'exposedHeaders' => [],
-         'maxAge' => 0,
-       'hosts' => [],
+           'maxAge' => 3600,
+       ],
    ],
 
 ];

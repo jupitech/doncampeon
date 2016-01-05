@@ -22,6 +22,8 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getL
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
 
+  Route::get('/equiposp', 'EquiposController@indexp');
+
 Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
 Route::post('/registro', [
     'as' => 'auth.register',
@@ -105,13 +107,16 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
       //Juego
        Route::get('juego',['as' => 'juego', 'uses' => 'JuegoParametrosController@index']);
+       Route::get('nivelgame',['as' => 'nivelgame', 'uses' => 'GameNivelController@index']);
        Route::put('juego/updatepuntosiniciales/{id}',['as' => 'updatepuntosiniciales', 'uses' => 'JuegoParametrosController@updatepuntosiniciales']);
        Route::put('juego/updateminimoretos/{id}',['as' => 'updateminimoretos', 'uses' => 'JuegoParametrosController@updateminimoretos']);
        Route::put('juego/updatepuntosrecompensa/{id}',['as' => 'updatepuntosrecompensa', 'uses' => 'JuegoParametrosController@updatepuntosrecompensa']);
        Route::put('juego/updaterecompensanojuegos/{id}',['as' => 'updaterecompensanojuegos', 'uses' => 'JuegoParametrosController@updaterecompensanojuegos']);
-        Route::put('juego/updaterecompensapjuegos/{id}',['as' => 'updaterecompensapjuegos', 'uses' => 'JuegoParametrosController@updaterecompensapjuegos']);
-   
-   
-
+       Route::put('juego/updaterecompensapjuegos/{id}',['as' => 'updaterecompensapjuegos', 'uses' => 'JuegoParametrosController@updaterecompensapjuegos']);
+      
+       //Niveles
+         Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
+         Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
+          Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
 
 });

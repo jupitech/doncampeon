@@ -42,4 +42,5 @@ class Equipos extends Model{
         return $lasligas;
     }
 
+
 }

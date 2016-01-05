@@ -17,8 +17,8 @@ class Kernel extends HttpKernel
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-       // \Barryvdh\Cors\Middleware\HandleCors::class,
-      //\Doncampeon\Http\Middleware\VerifyCsrfToken::class,
+      //\Barryvdh\Cors\Middleware\HandleCors::class,
+     // \Doncampeon\Http\Middleware\VerifyCsrfToken::class,
     ];
 
     /**
@@ -31,8 +31,8 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Doncampeon\Http\Middleware\RedirectIfAuthenticated::class,
         'role' => \Bican\Roles\Middleware\VerifyRole::class,
-        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+      'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+      'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
            'role' => \Bican\Roles\Middleware\VerifyRole::class,
             'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
             'level' => \Bican\Roles\Middleware\VerifyLevel::class,
