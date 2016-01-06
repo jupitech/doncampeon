@@ -51,6 +51,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
        public function getUserProfile(){
         return \Doncampeon\Models\UserProfile::where('user_id',$this->id)->first();
     }
+
+         public function getUserGame(){
+        return \Doncampeon\Models\UserGame::where('user_id',$this->id)->first();
+    }
      
 
 

@@ -4,22 +4,21 @@ namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class UserGame extends Model
 {
-     //  use SoftDeletes;
-    /**
+     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'roles';
+    protected $table = 'user_game';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name','slug','description','level'];
+    protected $fillable = ['user_id','equipo_nacional','equipo_internacional','puntos_iniciales','puntos_acumulados','nivel_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -28,10 +27,7 @@ class Roles extends Model
      */
     protected $hidden = ['created_at','updated_at'];
 
-    public function scopeRolesadmin($query){
-        $query->whereNotIn('id',[4]);
-    }
-    public function scopeRoleseditor($query){
-        $query->whereNotIn('id',[1,4]);
+      public function getNivel(){
+        return \Doncampeon\Models\GameNivel::where('id',$this->nivel_id)->first()->nivel_nombre;
     }
 }

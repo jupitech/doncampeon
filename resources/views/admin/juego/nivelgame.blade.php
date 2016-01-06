@@ -53,7 +53,7 @@
 															  	    <div class="caja_small">
 															  	       <h3>{{$game_niveles->nivel_nombre}}</h3>
 															  	        <div class="imagen_nivel">
-																	  		<span class="imagen" style="background:url('../assets/img/{{$game_niveles->nivel_alias}}.svg') no-repeat center bottom !important;">
+																	  		<span class="imagen" style="background:url('../assets/img/niveles/{{$game_niveles->nivel_alias}}.svg') no-repeat center bottom !important;">
 																	  			
 																	  		</span>
 																			<div class="area_opciones">
@@ -74,7 +74,7 @@
 						                                                                        		     {!! Form::text('nivel_alias', $game_niveles->nivel_alias, ['class'=> 'form-control']) !!}
 					                                                                        		     </div>
 					                                                                        	</div>
-					                                                                        	<div class="col-sm-6">
+					                                                                        	<div class="col-sm-12">
 					                                                                        		    <div class="form-group">
 						                                                                        	         <label>Puntos</label>
 						                                                                        		     {!! Form::number('nivel_puntos', $game_niveles->nivel_puntos, ['class'=> 'form-control']) !!}
@@ -84,6 +84,12 @@
 					                                                                        		    <div class="form-group">
 						                                                                        	         <label>Minimo</label>
 						                                                                        		     {!! Form::number('nivel_minimo', $game_niveles->nivel_minimo, ['class'=> 'form-control']) !!}
+					                                                                        		     </div>
+					                                                                        	</div>
+					                                                                        	<div class="col-sm-6">
+					                                                                        		    <div class="form-group">
+						                                                                        	         <label>Bonificación</label>
+						                                                                        		     {!! Form::number('nivel_bonus', $game_niveles->nivel_bonus, ['class'=> 'form-control']) !!}
 					                                                                        		     </div>
 					                                                                        	</div>
 					                                                                        	<div class="col-md-offset-8 col-sm-4">
@@ -97,10 +103,19 @@
 																 			</div>
 
 																	    </div>
-																		<div class="puntos_juego">
-																 			<p class="p_niveles"><span class="glyphicon glyphicon-chevron-up"></span> {{$game_niveles->nivel_puntos}}</p>
-																 			<p class="mi_niveles"><span class="glyphicon glyphicon-minus-sign"></span> {{$game_niveles->nivel_minimo}}</p>
-																 			
+																		<div class="puntos_juego smb">
+																				<div class="p_niveles">
+																					<span class="glyphicon glyphicon-chevron-up"></span> 
+																		 			<p>{{$game_niveles->nivel_puntos}}</p>
+																				</div>
+																				<div class="mi_niveles">
+																					<span class="glyphicon glyphicon-alert"></span>   
+																		 			<p> {{$game_niveles->nivel_minimo}}</p>
+																	 			</div>
+																	 			<div class="bon_niveles">
+																	 				<span class="glyphicon glyphicon-plus"></span>   
+																		 			<p> {{$game_niveles->nivel_bonus}}</p>
+																	 			</div>
 															  	      </div>
 															  	      <div class="area_db">
 																 			<span class="nombre">Alias: </span>

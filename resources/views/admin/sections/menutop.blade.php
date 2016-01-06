@@ -15,7 +15,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Escritorio</a></li>
-            <li><a href="#">Opciones</a></li>
+            <li><a href="{{ URL::to('/opciones') }}">Opciones</a></li>
 
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ isset(Auth::user()->getUserProfile()->first_name) ? Auth::user()->getUserProfile()->first_name : Auth::user()->email }} {{ isset(Auth::user()->getUserProfile()->last_name) ? Auth::user()->getUserProfile()->last_name : Auth::user()->email }}   <span class="glyphicon glyphicon-chevron-down"></span> </a>
             <ul class="dropdown-menu entopmenu">

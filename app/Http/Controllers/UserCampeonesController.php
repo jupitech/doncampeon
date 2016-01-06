@@ -10,6 +10,8 @@ use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\User;
 use Doncampeon\Models\RoleUser;
 use Doncampeon\Models\UserProfile;
+use Doncampeon\Models\UserGame;
+use Doncampeon\Models\Juego;
 use Doncampeon\Http\Requests\UsuariosCreateRequest;
 use Doncampeon\Http\Requests\UsuariosUpdateRequest;
 
@@ -28,7 +30,7 @@ class UserCampeonesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-   public function store(UsuariosCreateRequest $request)
+   public function store(Request $request)
     {
          $user=User::create([
                   'username' => $request['username'],
@@ -41,6 +43,8 @@ class UserCampeonesController extends Controller
                   'user_id' => $user->id,
                   'first_name' => $request['first_name'],
                   'last_name' => $request['last_name'],
+                  'direccion' => $request['direccion'],
+                  'pais' => $request['pais'],
                         ]);
          $userprofile->save();
 
@@ -49,6 +53,18 @@ class UserCampeonesController extends Controller
                 'user_id' =>$user->id,
             ]);
           $roleuser->save();
+
+          $puntoinicial=Juego::find(1);
+
+           $usergame=UserGame::create([
+                  'user_id' => $user->id,
+                  'equipo_nacional' => $request['equipo_nacional'],
+                  'equipo_internacional' => $request['equipo_internacional'],
+                  'puntos_iniciales' => $puntoinicial->puntos_iniciales,
+                  'puntos_acumulados' => $puntoinicial->puntos_iniciales,
+                  'nivel_id'=> 1,
+                        ]);
+         $usergame->save();
 
 
 
@@ -76,7 +92,11 @@ class UserCampeonesController extends Controller
      */
     public function edit($id)
     {
-        //
+         $user=User::find($id);
+          $userprofile=UserProfile::where('user_id',$user->id)->first();
+          $roleuser=RoleUser::where('user_id',$user->id)->first();
+           $usergame=UserGame::where('user_id',$user->id)->first();
+        return view('admin.campeones.editarcampeon',['user'=>$user,'userprofile'=>$userprofile,'roleuser'=>$roleuser,'usergame'=>$usergame]);
     }
 
     /**
@@ -88,7 +108,35 @@ class UserCampeonesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         if($request['password']!=''){
+        $user=User::find($id);
+        $user->fill([
+                'password' => bcrypt($request['password'])
+            ]);
+        $user->save();
+        }
+
+
+         $userprofile=UserProfile::where('user_id',$id)->first();
+          $userprofile->fill([
+                  'first_name' => $request['first_name'],
+                  'last_name' => $request['last_name'],
+                  'edad' => $request['edad'],
+                  'pais' => $request['pais'],
+                  'direccion' => $request['direccion'],
+                        ]);
+         $userprofile->save();
+
+         $usergame=UserGame::where('user_id',$id)->first();
+         $usergame->fill([
+                  'equipo_nacional' => $request['equipo_nacional'],
+                  'equipo_internacional' => $request['equipo_internacional'],
+                        ]);
+         $usergame->save();
+
+
+        Session::flash('message','Campeón editado correctamente.');
+        return Redirect::to('/campeones');
     }
 
     /**
@@ -99,6 +147,28 @@ class UserCampeonesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         if($id!='1'){
+          $user=User::find($id);
+          
+          $user->delete();
+         
+
+         Session::flash('message','Usuario inactivo correctamente.');
+        return Redirect::to('/opciones');
+        }else{
+            Session::flash('message','Usuario no puede eliminarse es Admin Principal.');
+        return Redirect::to('/campeones');
+        }
     }
+
+     public function restaurar($id)
+    {
+       
+       User::withTrashed()->where('id',$id)->restore();
+
+         Session::flash('message','Usuario restaurado correctamente.');
+        return Redirect::to('/campeones');
+
+      } 
+
 }

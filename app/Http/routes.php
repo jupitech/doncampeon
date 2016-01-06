@@ -64,12 +64,23 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
       	});
 
+
+         //partidos
+      Route::get('/partidos', function () {
+
+          return view('admin/partidos/partidos');
+
+
+        });
+
         //campeones
       Route::get('/campeones', function () {
           return view('admin/campeones/campeones');
         });
 
       Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
+       Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
+        Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
 
       //Opciones
       Route::get('/opciones', function () {
@@ -94,6 +105,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
         {
               Route::delete('usuarios/destroy/{id}',['as' => 'usuarios.destroy', 'uses' => 'UserController@destroy']);
               Route::put('usuarios/restaurar/{id}',['as' => 'usuarios.restaurar', 'uses' => 'UserController@restaurar']);
+              Route::delete('campeones/destroy/{id}',['as' => 'campeones.destroy', 'uses' => 'UserCampeonesController@destroy']);
+              Route::put('campeones/restaurar/{id}',['as' => 'campeones.restaurar', 'uses' => 'UserCampeonesController@restaurar']);
      
         });
 
@@ -117,6 +130,6 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
        //Niveles
          Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
          Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
-          Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
+        Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
 
 });

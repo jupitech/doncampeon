@@ -35,6 +35,12 @@
                                         {!! Form::number('nivel_minimo', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
+                                 <div class="col-sm-6">
+                                       <div class="form-group">
+                                        <label>Puntos bonificados</label>
+                                        {!! Form::number('nivel_bonus', null, ['class'=> 'form-control']) !!}
+                                    </div>
+                                </div>
                                 
 
                                 <div>

@@ -275,6 +275,27 @@ z
             background-size: 13px;
         }
 
+         .glyphicon-partidosnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/partidos_negro.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-partidosnegro{
+           background: url('../img/partidos_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .glyphicon-partidosblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/partidos_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
 
 .caja_drop .form-control{
   font-style: italic;
@@ -304,9 +325,15 @@ z
   background: #8dca3d !important;
   color: #fff !important;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.03em;
   border: none !important;
+      -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    -webkit-box-shadow: 0px 2px 0px #7ab22c;
+    -moz-box-shadow: 0px 2px 0px #7ab22c;
+    box-shadow: 0px 2px 0px #7ab22c;
 }
 
 
@@ -383,9 +410,16 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   background: #8dca3d !important;
   color: #fff !important;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.03em;
   border: none !important;
+
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    -webkit-box-shadow: 0px 2px 0px #7ab22c;
+    -moz-box-shadow: 0px 2px 0px #7ab22c;
+    box-shadow: 0px 2px 0px #7ab22c;
 }
 .caja_section .alert{
   font-size: 13px !important;
@@ -400,7 +434,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 .caja_section td{
   padding: 12px 8px !important;
   color: #777;
-    font-size: 11px !important;
+    font-size: 11px;
     border-bottom: 1px solid #eee !important;
     border-top: none !important;
     letter-spacing: 0.02em;
@@ -803,12 +837,102 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        width: 100%;
      }
      .p_niveles{
+      
+      float: left;
+      width: 100%;
+      margin-bottom: 0;
+      padding: 10px;
+      border-top: 1px solid #eee;
+     }
+     .p_niveles p{
       font-size: 30px !important;
+      margin-bottom: 0;
+     }
+     .p_niveles span{
+      float: left;
+      color: #8DCA3D;
+      margin-top: 10px;
      }
      .mi_niveles{
-      font-size: 20px !important;
-      color: #999 !important;
+         border-top: 1px solid #eee;
+         border-right: 1px solid #eee;
+         float: left;
+         width: 50%;
+         padding: 10px;
      }
+     .mi_niveles p{
+      font-size: 20px !important;
+      color: #FFA801 !important;
+      margin-bottom: 0;
+     }
+     .mi_niveles span{
+        float: left;
+        color: #FFA801;
+        margin-top: 5px;
+     }
+
+      .bon_niveles{
+         border-top: 1px solid #eee;
+         float: left;
+         width: 50%;
+         padding: 10px;
+      }
+
+      .bon_niveles p{
+      font-size: 20px !important;
+      color: #1CA2DF !important;
+      margin-bottom: 0;
+     }
+     .bon_niveles span{
+        float: left;
+        color: #1CA2DF;
+        margin-top: 5px;
+     }
+
      .btn_ni{
       margin-bottom: 5px;
      }
+      .puntos_acu{
+        font-size: 15px !important;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+        color: #1CA2DF !important;
+      }
+      .smb{
+        margin-bottom: 0 !important;
+      }
+      .caja_submenu{
+
+        margin-bottom: 15px;
+        float: left;
+        width: 100%;
+        background: #fff;
+        border: 1px solid #eee;
+         border-top: 2px solid #8dca3d;
+        -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+        box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
+            border-radius: 3px;
+      }
+      .caja_submenu ul{
+        margin-bottom: 0;
+        padding: 0;
+        float: left;
+        width: 100%;
+        list-style: none;
+      }
+      .caja_submenu li{
+        float: left;
+      }
+      .caja_submenu li a{
+        letter-spacing: 0.03em;
+        float: left;
+        padding: 10px 15px;
+        font-size: 13px;
+        color: #333;
+        border-bottom: 2px solid #fff;
+        text-decoration: none;
+      }
+       .caja_submenu li a:hover{
+        background: #f9f9f9;
+        border-bottom: 2px solid #8dca3d;
+       }

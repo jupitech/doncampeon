@@ -29,4 +29,8 @@ class UserProfile extends Model
      */
     protected $hidden = ['created_at','updated_at'];
      protected $dates = ['deleted_at'];
+
+     public function getPaisNombre(){
+        return \Doncampeon\Models\Pais::where('id',$this->pais)->first()->nombre;
+    }
 }

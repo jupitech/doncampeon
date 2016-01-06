@@ -149,6 +149,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         /*Roles*/
         Bican\Roles\RolesServiceProvider::class,
+           /*Debugbar*/
+        Barryvdh\Debugbar\ServiceProvider::class,
        
 
     ],
@@ -201,7 +203,8 @@ return [
         'Form'      => 'Collective\Html\FormFacade',
         'Html'      => 'Collective\Html\HtmlFacade',
         'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

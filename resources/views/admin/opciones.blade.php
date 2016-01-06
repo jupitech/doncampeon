@@ -6,8 +6,8 @@
 		 $user=\Doncampeon\User::all();
 		 $userpapelera=\Doncampeon\User::onlyTrashed()->get();
       
-    $roles=\Doncampeon\Models\Roles::whereNotIn('id',[4])->orderBy('id','ASC')->lists('name','id');
-	$roleseditor=\Doncampeon\Models\Roles::whereNotIn('id',[1,4])->orderBy('id','ASC')->lists('name','id');
+    $roles=\Doncampeon\Models\Roles::Rolesadmin()->orderBy('id','ASC')->lists('name','id');
+	$roleseditor=\Doncampeon\Models\Roles::Roleseditor()->orderBy('id','ASC')->lists('name','id');
 		
  ?>
 		<div class="col-sm-12">
