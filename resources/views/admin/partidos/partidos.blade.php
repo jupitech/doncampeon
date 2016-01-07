@@ -3,11 +3,32 @@
 @section('content')
  @include('admin.sections.menuequipos')
 <?php
-	
+	$laliga=\Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
 		
  ?>
 		<div class="col-sm-12">
-      			<h1 class="page-header">Partidos</h1>
+      			<h1 class="page-header">
+      			 <div class="col-sm-6 spi spd">
+		                  Partidos
+		             </div>
+		            <div class="col-sm-6 spi spd">
+		               <div class="area_btn_partido">
+
+						  {!! Form::open(['route'=>['partidos.create'],'method'=>'GET']) !!}
+						  <div class="col-lg-7 col-sm-6 spi spd">
+						  	  {!! Form::select('ligas_id',$laliga, null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
+						  </div>
+						  <div class="col-lg-5 col-sm-6 spi spd">
+						  		{!! Form::submit('Nuevo partido',['class' => ' btn_partido btn btn-donc-nuevo']) !!}
+						  </div>
+						   
+                          
+                    		{!! Form::close() !!}
+
+		                  
+		               </div>
+              	 </div>
+      			</h1>
 		          <div class="col-sm-12 spi spd">
 		          <div class="caja_submenu">
 		          	 <ul>

@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
 
         });
+        Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
+        Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
 
         //campeones
       Route::get('/campeones', function () {

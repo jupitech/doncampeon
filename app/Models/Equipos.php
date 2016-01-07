@@ -41,6 +41,11 @@ class Equipos extends Model{
         $lasligas= \Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
         return $lasligas;
     }
+     
+
+    public function LigasEquipo(){
+        return $this->hasOne('\Doncampeon\Models\Ligasequipos','equipos_id','id');
+    } 
 
 
 }

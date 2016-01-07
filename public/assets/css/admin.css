@@ -901,6 +901,9 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       .smb{
         margin-bottom: 0 !important;
       }
+
+
+      /**********partidos**************/
       .caja_submenu{
 
         margin-bottom: 15px;
@@ -936,3 +939,45 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         background: #f9f9f9;
         border-bottom: 2px solid #8dca3d;
        }
+
+       .area_btn_partido{
+          float: right;
+              margin: 0;
+              width: 60%;
+       }
+       .area_btn_partido .bootstrap-select > .dropdown-toggle{
+        float: left;
+       }
+       .area_btn_partido .bootstrap-select.btn-group .dropdown-menu li a span.text{
+        font-size: 12px;
+       }
+       .area_btn_partido input{
+        float: right;
+            width: 95%;
+       }
+
+       .area_btn_partido .form-control {
+          font-style: italic;
+          font-size: 13px !important;
+          border-top: none !important;
+          border-left: none !important;
+          border-right: none !important;
+          border-bottom: 2px solid #84cded;
+          border-radius: 0 !important;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,0);
+      }
+      .btn_partido{
+        text-align: left;
+        padding-left: 25px;
+            background:#1CA2DF url('../img/partidos_blanco.png') no-repeat 5px center;
+    background-size: 13px;
+      }
+      .btn_partido:hover{
+        background:#1CA2DF url('../img/partidos_blanco.png') no-repeat 5px center;
+          background-size: 13px
+      }
+      .input-group-addon{
+        background: none !important;
+        border: none;
+      }

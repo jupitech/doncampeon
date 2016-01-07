@@ -17,6 +17,7 @@
      {!! Html::style('assets/css/bootstrap.min.css') !!}
      {!! Html::style('assets/css/admin.css') !!}
      {!! Html::style('assets/css/bootstrap-select.css') !!}
+     {!! Html::style('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -25,6 +26,8 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      {!! Html::script('assets/js/bootstrap-select.js') !!}
      {!! Html::script('assets/js/bootstrap.min.js') !!}
+     {!! Html::script('assets/js/bower_components/moment/moment.js') !!}
+     {!! Html::script('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
      <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
