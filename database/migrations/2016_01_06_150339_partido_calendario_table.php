@@ -19,7 +19,7 @@ class PartidoCalendarioTable extends Migration
             $table->integer('liga');
             $table->integer('estadio');
             $table->string('descripcion');
-            $table->date('fecha_partido');
+            $table->timestamp('fecha_partido');
             $table->time('hora_partido');
             $table->integer('editor_id')->unsigned()->index();
             $table->foreign('editor_id')->references('id')->on('users')->onDelete('cascade');

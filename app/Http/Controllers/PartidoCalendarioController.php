@@ -9,6 +9,7 @@ use Doncampeon\Http\Requests;
 use Doncampeon\Http\Requests\PartidosCreateRequest;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Models\PartidoCalendario;
+use Carbon\Carbon;
 
 class PartidoCalendarioController extends Controller
 {
@@ -19,7 +20,8 @@ class PartidoCalendarioController extends Controller
      */
     public function index()
     {
-        $partidos=PartidoCalendario::All();
+          //Traendo partidos que no han sido terminados en el dia de hoy en
+        $partidos=PartidoCalendario::latest('fecha_partido')->where('fecha_partido','>=',Carbon::now())->get();
          return view('admin.partidos.partidos',compact('partidos'));
     }
 

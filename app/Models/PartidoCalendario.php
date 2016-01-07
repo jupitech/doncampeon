@@ -29,6 +29,10 @@ class PartidoCalendario extends Model
      */
     protected $hidden = ['created_at','updated_at'];
 
+    public function setFechaPartidoAttribute($date){
+        $this->attributes['fecha_partido'] = Carbon::parse($date);
+    }
+
       public function EquipoCasa(){
         return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_casa');
     }
