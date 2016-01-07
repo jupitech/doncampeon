@@ -3,6 +3,7 @@
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PartidoCalendario extends Model
 {
@@ -19,6 +20,7 @@ class PartidoCalendario extends Model
      * @var array
      */
     protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido','editor_id'];
+    protected $dates =['fecha_partido'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -27,5 +29,13 @@ class PartidoCalendario extends Model
      */
     protected $hidden = ['created_at','updated_at'];
 
-    
+      public function EquipoCasa(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_casa');
+    }
+    public function EquipoVisita(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_visita');
+    }
+     public function NombreLiga(){
+        return $this->hasOne('\Doncampeon\Models\Ligas','id','liga');
+    }
 }

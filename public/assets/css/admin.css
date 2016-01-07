@@ -981,3 +981,100 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         background: none !important;
         border: none;
       }
+       .caja_partido{
+        padding: 0 !important;
+        margin-bottom: 15px;
+       }
+
+      .caja_partido .area_date{
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+      .f_partido{
+        float: left;
+        width: 100%;
+        padding:7px 10px 7px 35px;
+        border-right: 1px solid #eee;
+        font-size: 14px;
+        color: #1CA2DF;
+        margin: 0;
+        font-weight: bold;
+        letter-spacing: 0.03em;
+        background: url('../img/ico_fecha.png') no-repeat 10px center;
+        background-size: 15px;
+      }
+      .h_partido{
+        float: left;
+        text-align: right;
+        width: 100%;
+       padding:7px 35px 7px 10px;
+        font-size: 13px;
+        color: #999;
+        margin: 0;
+        font-weight: normal;
+        letter-spacing: 0.03em;
+         background: url('../img/ico_hora.png') no-repeat right 10px center;
+        background-size: 15px;
+      }
+      .caja_partido .area_equipos{
+        float: left;
+        width: 100%;
+         border-bottom: 1px solid #eee;
+      }
+      .caja_partido .area_equipos h3{
+            float: left;
+            width: 100%;
+            padding:10px 5px;
+            margin: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+      }
+      .area_equipos .ima_equipo{
+        float: left;
+        width: 100%;
+        height: 100px;
+        background-size: 45% !important;
+      }
+       .caja_partido .area_equipos p{
+        font-size: 12px;
+        text-align: center;
+        padding: 8px 5px;
+        float: left;
+        width: 100%;
+        color: #8dca3d;
+        margin: 0;
+        font-weight: 600;
+         letter-spacing: 0.03em;
+       }
+
+       .caja_partido .area_ligas{
+        float: left;
+        width: 100%;
+         border-bottom: 1px solid #eee;
+       }
+       .caja_partido .area_ligas p{
+         float: left;
+         width: 100%;
+         text-align: left;
+         padding: 7px 10px;
+         font-size: 13px;
+         color: #777;
+         margin: 0;
+         font-style: italic;
+       }
+       .caja_partido .area_opcionesp{
+        float: left;
+        width: 100%;
+        padding: 5px 5px;
+        background: #f9f9f9;
+        height: 40px;
+       }
+       .caja_partido .area_opcionesp .ico_op{
+        float: right;
+       }
+       .caja_partido .area_opcionesp a{
+        float: left;
+        margin-top: 0px;
+       }

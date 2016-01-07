@@ -66,12 +66,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
 
          //partidos
-      Route::get('/partidos', function () {
-
-          return view('admin/partidos/partidos');
-
-
-        });
+     
+       Route::get('partidos',['as' => 'partidos', 'uses' => 'PartidoCalendarioController@index']);
         Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
         Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
 

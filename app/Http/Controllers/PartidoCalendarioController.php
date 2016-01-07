@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use Doncampeon\Http\Requests;
+use Doncampeon\Http\Requests\PartidosCreateRequest;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Models\PartidoCalendario;
 
@@ -18,7 +19,8 @@ class PartidoCalendarioController extends Controller
      */
     public function index()
     {
-        //
+        $partidos=PartidoCalendario::All();
+         return view('admin.partidos.partidos',compact('partidos'));
     }
 
     /**
@@ -38,7 +40,7 @@ class PartidoCalendarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PartidosCreateRequest $request)
     {
          PartidoCalendario::create([
                 'equipo_casa' =>$request['equipo_casa'],

@@ -6,7 +6,7 @@
               <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> | Escritorio <span class="sr-only">(current)</span></a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="{{ URL::to('/partidos') }}"><span class="glyphicon-partidosnegro"></span>|Partidos</a> </li>
+            <li><a href="{{ URL::to('partidos') }}"><span class="glyphicon-partidosnegro"></span>|Partidos</a> </li>
             <li><a href="{{ URL::to('equipos') }}"><span class="glyphicon-equiposnegro"></span>| Equipos</a></li>
             <li><a href="{{ URL::to('juego') }}"><span class="glyphicon-juegonegro"></span>| Juego</a></li>
             <li><a href="#">Notificaciones</a></li>
