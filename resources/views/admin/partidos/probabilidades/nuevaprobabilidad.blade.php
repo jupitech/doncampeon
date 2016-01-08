@@ -4,7 +4,7 @@
   @include('admin.sections.menuequipos')
       <div class="col-sm-12">
           <h1 class="page-header">Nueva Probabilidad</h1>
-             <div class="col-sm-6 spi">
+             <div class="col-sm-12 col-md-10 col-lg-6 spi">
                <div class="caja_section">
                <div class="col-sm-12">
                   @include('admin.sections.errors')
@@ -38,7 +38,7 @@
                               </div>
                               <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label>% Probabilidad</label>
+                                    <label>% Proba</label>
                                     {!! Form::number('probabilidad_por', null, ['class'=> 'form-control','placeholder'=>'% proba.']) !!}
                                 </div>
                               </div>
