@@ -68,6 +68,10 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          //partidos
      
        Route::get('partidos',['as' => 'partidos', 'uses' => 'PartidoCalendarioController@index']);
+        Route::get('partidos/hoy',['as' => 'partidos.hoy', 'uses' => 'PartidoCalendarioController@indexhoy']);
+         Route::get('partidos/semana',['as' => 'partidos.semana', 'uses' => 'PartidoCalendarioController@indexsemana']);
+         Route::get('partidos/2semanas',['as' => 'partidos.2semanas', 'uses' => 'PartidoCalendarioController@index2semanas']);
+            Route::get('partidos/mes',['as' => 'partidos.mes', 'uses' => 'PartidoCalendarioController@indexmes']);
         Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
         Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
 

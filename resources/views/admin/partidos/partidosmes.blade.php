@@ -9,7 +9,7 @@
 		<div class="col-sm-12">
       			<h1 class="page-header">
       			 <div class="col-sm-6 spi spd">
-		                  Partidos
+		                  Partidos-Semana
 		             </div>
 		            <div class="col-sm-6 spi spd">
 		               @include('admin.partidos.section.areanuevo')
@@ -18,11 +18,11 @@
 		          <div class="col-sm-12 spi spd">
 		          <div class="caja_submenu">
 		          	 <ul>
-		          	 	<li><a href="{{ URL::to('partidos') }}"><strong>Calendario</strong></a></li>
+		          	 	<li><a href="{{ URL::to('partidos') }}">Calendario</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/hoy') }}">Hoy</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/semana') }}">Semana</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/2semanas') }}">15 dias</a></li>
-		          	 	<li><a href="{{ URL::to('partidos/mes') }}">Mes</a></li>
+		          	 	<li><a href="{{ URL::to('partidos/mes') }}"><strong>Mes</strong></a></li>
 		          	 </ul>
 		          </div>
 						          <div class="col-sm-12">
@@ -39,7 +39,7 @@
 						          </div>
 
 			          <div class="col-sm-12 spd spi">
-			          	   @include('admin.partidos.section.contenidopartidos')
+			          	    @include('admin.partidos.section.contenidopartidos')
 			          </div>
 		          </div>
           </div>

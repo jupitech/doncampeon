@@ -20,9 +20,34 @@ class PartidoCalendarioController extends Controller
      */
     public function index()
     {
-          //Traendo partidos que no han sido terminados en el dia de hoy en
-        $partidos=PartidoCalendario::latest('fecha_partido')->where('fecha_partido','>=',Carbon::now())->get();
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->get();
          return view('admin.partidos.partidos',compact('partidos'));
+    }
+
+     public function indexhoy()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','=',Carbon::today())->get();
+         return view('admin.partidos.partidoshoy',compact('partidos'));
+    }
+    public function indexsemana()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfWeek())->get();
+         return view('admin.partidos.partidossemana',compact('partidos'));
+    }
+     public function index2semanas()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfWeek()->addDays(7))->get();
+         return view('admin.partidos.partidos2semanas',compact('partidos'));
+    }
+     public function indexmes()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfMonth())->get();
+         return view('admin.partidos.partidosmes',compact('partidos'));
     }
 
     /**
