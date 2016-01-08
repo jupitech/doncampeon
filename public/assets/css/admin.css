@@ -1094,6 +1094,12 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
             font-family: 'Inconsolata', sans-serif;
         margin-left: 5px;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 15px;
         color: #dd1cb4;
+       }
+       .c_verde{
+        background: #8dca3d;
+        color:#fff; 
+        padding: 5px;
+        border-radius: 3px;
        }

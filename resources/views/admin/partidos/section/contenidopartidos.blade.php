@@ -38,16 +38,28 @@ $midia=\Carbon\Carbon::today();
 			          	     			  <div class="area_opcionesp">
 						          	     			  <div class="col-sm-6 spd spi area_crono">
 						          	     			  	 @if($partido->fecha_partido==$midia)
-						          	     			  	 <p>Faltan </p>
 						          	     			  	   <p id="count_partido_{{$partido->id}}" class="l_partido"></p>
 											      				<script>
 														      					$(document).ready(function(){
 														      						var nextYear = moment.tz("{{$mihora}} {{ $partido->hora_partido}}", "America/Guatemala");
-																				   $('#count_partido_{{$partido->id}}').countdown(nextYear.toDate(), function(event) {
+																				   $('#counts_partido_{{$partido->id}}').countdown(nextYear.toDate(), function(event) {
 																					    $(this).html(event.strftime('%H:%M:%S'));
-																					  });
+																					  },{elapse: true});
+
+
+																				   $('#count_partido_{{$partido->id}}').countdown(nextYear.toDate(), {elapse: true})
+																						 .on('update.countdown', function(event) {
+																						   var $this = $(this);
+																						   if (event.elapsed) {
+																						    $this.html(event.strftime('<span class="c_verde">Iniciado: %H:%M:%S</span>'));
+																						   } else {
+																						   $this.html(event.strftime('<span>Faltan:%H:%M:%S</span>'));
+																						  }
+																					});
 																				});
 														      				</script>
+
+
 															@endif	
 						          	     			  </div>
 						          	     			  <div class="col-sm-6 spd spi">
