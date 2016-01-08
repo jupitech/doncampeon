@@ -4,7 +4,7 @@
  @include('admin.sections.menuequipos')
 <?php
 	$laliga=\Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
-		
+	
  ?>
 		<div class="col-sm-12">
       			<h1 class="page-header">
@@ -15,6 +15,9 @@
 		               @include('admin.partidos.section.areanuevo')
               		 </div>
       			</h1>
+      			<div class="col-sm-12">
+      				
+      			</div>
 		          <div class="col-sm-12 spi spd">
 		          <div class="caja_submenu">
 		          	 <ul>

@@ -27,6 +27,8 @@
      {!! Html::script('assets/js/bootstrap-select.js') !!}
      {!! Html::script('assets/js/bootstrap.min.js') !!}
      {!! Html::script('assets/js/bower_components/moment/moment.js') !!}
+      {!! Html::script('assets/js/moment-timezone.js') !!}
+     {!! Html::script('assets/js/jquery.countdown.js') !!}
      {!! Html::script('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
      <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
