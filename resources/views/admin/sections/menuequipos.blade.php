@@ -4,6 +4,7 @@
              <li><a href="{{ URL::to('partidos') }}"><strong>Partidos</strong></a> </li>
                <li><a href="{{ URL::to('equipos') }}"><strong>Equipos</strong></a> </li>
                <li><a href="{{ URL::to('ligas') }}">Ligas</a></li>
+               <li><a href="{{ URL::to('probabilidades') }}">Probabilidades</a></li>
                <li><a href="{{ URL::to('pais') }}"><span class="glyphicon glyphicon-cog"></span> | Paises</a></li>
             </ul>
         </div>
