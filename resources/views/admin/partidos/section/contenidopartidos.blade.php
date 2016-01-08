@@ -35,7 +35,7 @@
 				                                  <ul class="dropdown-menu dropdown-menu-op">
 				                                          <li>
 				                                          <p>
-				                                                  {!! Form::open(['route'=>['equipos.destroy',$partido->id],'method'=>'DELETE']) !!}
+				                                                  {!! Form::open(['route'=>['partidos.destroy',$partido->id],'method'=>'DELETE']) !!}
 				                                                        {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
 				                                                  {!! Form::close() !!}
 				                                              </p>
@@ -45,7 +45,7 @@
 
 				                              </span>
 			          	     			  	    <span class="ico_op">
-					                                   {!!link_to_route('equipos.edit', $title = '', $parameters = $partido->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+					                                   {!!link_to_route('partidos.edit', $title = '', $parameters = $partido->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
 					                              </span>
 			          	     			  </div>
 			          	     		</div>

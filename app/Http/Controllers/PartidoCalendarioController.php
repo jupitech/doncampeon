@@ -101,7 +101,8 @@ class PartidoCalendarioController extends Controller
      */
     public function edit($id)
     {
-        //
+         $partidos=PartidoCalendario::find($id);
+        return view('admin.partidos.editarpartidos',['partidos'=>$partidos]);
     }
 
     /**
@@ -111,9 +112,13 @@ class PartidoCalendarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PartidosCreateRequest $request, $id)
     {
-        //
+           $partidos=PartidoCalendario::find($id);
+        $partidos->fill($request->all());
+        $partidos->save();
+        Session::flash('message','Partido del "'.$partidos->fecha_partido->format('d/m/y').'" a las "'.$partidos->hora_partido.'" editado correctamente.');
+        return Redirect::to('/partidos');
     }
 
     /**
@@ -124,6 +129,8 @@ class PartidoCalendarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+         PartidoCalendario::destroy($id);
+         Session::flash('message','Liga eliminada correctamente.');
+        return Redirect::to('/partidos');
     }
 }
