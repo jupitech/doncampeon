@@ -51,7 +51,26 @@ $midia=\Carbon\Carbon::today();
 																						 .on('update.countdown', function(event) {
 																						   var $this = $(this);
 																						   if (event.elapsed) {
-																						    $this.html(event.strftime('<span class="c_verde">Iniciado: %H:%M:%S</span>'));
+																						   	if(event.offset.hours<2){
+																						   		if(event.offset.hours<1){
+																						   			if(event.offset.minutes<45){
+																						   				$this.html(event.strftime('<span class="c_morado">1T %H:%M:%S</span>'));
+																						   		    }else{
+																						   		    	$this.html(event.strftime('<span class="c_morado">1T</span><span class="c_naranja">AN %H:%M:%S</span>'));	
+																						   		    }
+																						   		}
+																						   		else if(event.offset.hours<1){
+																						   				$this.html(event.strftime('<span class="c_morado">1T</span><span class="c_naranja">AN %H:%M:%S</span>'));	
+																						   		}
+																						   		else if(event.offset.minutes<45){
+
+																						   			$this.html(event.strftime('<span class="c_morado">1T</span><span class="c_naranja">AN</span><span class="c_verde">2T %H:%M:%S</span>'));
+																						   		} else{
+																						   		$this.html(event.strftime('<span class="c_verde">Partido terminado</span>'));
+																						   		}
+																						    
+																						   		
+																						   	}
 																						   } else {
 																						   $this.html(event.strftime('<span>Faltan:%H:%M:%S</span>'));
 																						  }

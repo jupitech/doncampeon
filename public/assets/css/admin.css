@@ -1086,7 +1086,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        }
        .area_crono{
         float: left;
-        padding:5px 5px 5px 10px;
+        padding:0px 5px 0px 10px;
        }
        .area_crono p{
         float: left;
@@ -1097,8 +1097,25 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         font-size: 15px;
         color: #dd1cb4;
        }
+       .area_crono span{
+        float: left;
+        margin-right: 3px;
+       }
+
        .c_verde{
         background: #8dca3d;
+        color:#fff; 
+        padding: 5px;
+        border-radius: 3px;
+       }
+        .c_morado{
+        background: #AD1A9D;
+        color:#fff; 
+        padding: 5px;
+        border-radius: 3px;
+       }
+       .c_naranja{
+        background: #FF4C0D;
         color:#fff; 
         padding: 5px;
         border-radius: 3px;
