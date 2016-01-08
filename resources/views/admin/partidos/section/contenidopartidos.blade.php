@@ -70,6 +70,8 @@ $midia=\Carbon\Carbon::today();
 																						   		}
 																						    
 																						   		
+																						   	} else{
+																						   		$this.html(event.strftime('<span class="c_verde">Partido terminado</span>'));
 																						   	}
 																						   } else {
 																						   $this.html(event.strftime('<span>Faltan:%H:%M:%S</span>'));
@@ -104,4 +106,4 @@ $midia=\Carbon\Carbon::today();
 			          	     			  </div>
 			          	     		</div>
 			          	     	</div>
-			          	    @endforeach
+	    @endforeach

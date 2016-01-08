@@ -9,7 +9,7 @@
 		<div class="col-sm-12">
       			<h1 class="page-header">
       			 <div class="col-sm-6 spi spd">
-		                  Partidos-Semana
+		                  Partidos-Mes
 		             </div>
 		            <div class="col-sm-6 spi spd">
 		               @include('admin.partidos.section.areanuevo')
