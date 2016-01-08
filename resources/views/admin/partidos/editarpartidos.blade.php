@@ -50,7 +50,7 @@
 
                                <div class="col-sm-6 spi">
                                  <div class="form-group">
-                                    <label>Hora del partido</label>
+                                    <label>Hora del partido  Actual es: {{$partidos->hora_partido}}</label>
                                      {!! Form::text('hora_partido', $partidos->hora_partido,  ['id'=>'datetimepicker3','class'=> 'form-control','placeholder'=>'Ingresa fecha aqui']) !!}
                                   
                                 </div>

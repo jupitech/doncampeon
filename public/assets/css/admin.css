@@ -1091,8 +1091,9 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        .area_crono p{
         float: left;
         margin: 0;
-
+            font-family: 'Inconsolata', sans-serif;
         margin-left: 5px;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 16px;
+        color: #dd1cb4;
        }
