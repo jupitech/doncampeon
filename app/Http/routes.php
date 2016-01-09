@@ -79,9 +79,10 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          Route::put('partidos/update/{id}',['as' => 'partidos.update', 'uses' => 'PartidoCalendarioController@update']);
 
          //Probabilidades
-           Route::get('probabilidades',['as' => 'probabilidades', 'uses' => 'ProbabilidadesLigasController@index']);
-           Route::get('probabilidades/create',['as' => 'probabilidades.create', 'uses' => 'ProbabilidadesLigasController@create']);
-           Route::post('probabilidades/store',['as' => 'probabilidades.store', 'uses' => 'ProbabilidadesLigasController@store']);  
+         Route::get('probabilidades',['as' => 'probabilidades', 'uses' => 'ProbabilidadesLigasController@index']);
+         Route::get('probabilidades/create',['as' => 'probabilidades.create', 'uses' => 'ProbabilidadesLigasController@create']);
+         Route::post('probabilidades/store',['as' => 'probabilidades.store', 'uses' => 'ProbabilidadesLigasController@store']);  
+         Route::delete('probabilidades/destroy/{id}',['as' => 'probabilidades.destroy', 'uses' => 'ProbabilidadesLigasController@destroy']);
 
         //campeones
           Route::get('/campeones', function () {

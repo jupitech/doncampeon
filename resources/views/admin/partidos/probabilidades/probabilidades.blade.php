@@ -65,11 +65,11 @@
                                                         <ul class="dropdown-menu dropdown-menu-op">
                                                                 <li>
                                                                     <p>
-                                                                        {!! Form::open(['route'=>['ligas.destroy',$liga->id],'method'=>'DELETE']) !!}
+                                                                        {!! Form::open(['route'=>['probabilidades.destroy',$probabilidad->id],'method'=>'DELETE']) !!}
                                                                               {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
                                                                         {!! Form::close() !!}
                                                                     </p>
-                                                                    <p> {{$liga->nombre_liga}}?</p>
+                                                                    <p> {{$probabilidad->marcador_casa}} a {{$probabilidad->marcador_visita}}</p>
                                                                  
                                                                 </li>
                                                             </ul>

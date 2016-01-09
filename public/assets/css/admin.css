@@ -1138,6 +1138,12 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        }
 
        /*********probabilidades************/
+       .area_probabilidades{
+        float: left;
+        width: 100%;
+        height: 400px;
+            overflow-y: auto;
+               }
 
        .first_td{
         margin:0;

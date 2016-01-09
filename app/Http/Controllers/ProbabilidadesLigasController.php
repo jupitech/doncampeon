@@ -96,6 +96,8 @@ class ProbabilidadesLigasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProbabilidadesLigas::destroy($id);
+         Session::flash('message','Probabilidad eliminada correctamente.');
+        return Redirect::to('/probabilidades');
     }
 }
