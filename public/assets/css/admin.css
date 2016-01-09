@@ -1190,3 +1190,24 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
               font-size: 13px;
               text-align: center;
          }
+
+         .fondopro_4{
+        background: #f7d9f3;
+        
+       }
+       .fondopro_4:hover{
+        background: #f4d0f0 !important;
+        
+       }
+       .fondopro_4 td{
+        border-color: #f2c4ec !important;
+        color: #d671ca;
+        font-weight: 600;
+       }
+       .fondopro_4 .td_pago{
+              background: #f2c4ec;
+              border-color: #efb8e9 !important;
+              font-weight: bolder;
+              font-size: 13px;
+              text-align: center;
+         }
