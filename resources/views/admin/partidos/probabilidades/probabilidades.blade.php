@@ -25,7 +25,7 @@
             </div>
                       
           @endif
-          
+          {{-- ligas --}}
          	 <div class="col-sm-12 spd spi">
                 @foreach($ligas as $liga)
                  <div class="col-lg-4 col-md-6 col-sm-6">
@@ -48,13 +48,15 @@
                                                   <?php 
                                                         $probabilidades=\Doncampeon\Models\ProbabilidadesLigas::where('ligas_id',$liga->id)->get();
                                                    ?>
+                                                   {{-- Probabilidades en Ligas --}}
+                                                   
                                                   @foreach($probabilidades as $probabilidad)
                                                   <tr class="fondopro_{{$probabilidad->duplicador}}">
-                                                     <td class="td_pago">{{$probabilidad->duplicador}}X</td>
+                                                    <td class="td_pago">{{$probabilidad->duplicador}}X</td>
                                                     <td><p class="first_td">{{$probabilidad->marcador_casa}}</p> </td>
                                                     <td>{{$probabilidad->marcador_visita}}</td>
                                                     <td>{{$probabilidad->no_partidos}}</td>
-                                                     <td>{{$probabilidad->probabilidad_por}}%</td>
+                                                    <td>{{$probabilidad->probabilidad_por}}%</td>
                                                       
                                                     <td>
                                                       <span class="ico_op">

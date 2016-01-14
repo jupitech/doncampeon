@@ -10,13 +10,13 @@
             <div class="col-sm-6 spi spd">
                <div class="lbotones">
                   <a href="{{ URL::to('equipos/create') }}" type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Equipo</a>
-                  
+
                </div>
                </div>
 
       </h1>
         <div class="col-lg-8 col-md-12 col-sm-12 col-sx-12 spi spd">
-          
+
          	 <div class="caja_section">
           @if(Session::has('message'))
                       <div class="col-sm-12">
@@ -25,21 +25,20 @@
                           {{Session::get('message')}}
                         </div>
                       </div>
-                                
                     @endif
               <?php
                     $laliga=\Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
                     $equiposnacionales=\Doncampeon\Models\Equipos::where('pais_equipo','1')->get();
                     $equiposinternacionales=\Doncampeon\Models\Equipos::where('pais_equipo','>','1')->get();
-                    ?> 
+                    ?>
 
            <!-- Nav tabs -->
           <ul class="tab_donc nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#todos" aria-controls="todos" role="tab" data-toggle="tab">Todos</a></li>
             <li role="presentation"><a href="#nacionales" aria-controls="nacionales" role="tab" data-toggle="tab">Nacionales</a></li>
             <li role="presentation"><a href="#internacionales" aria-controls="internacionales" role="tab" data-toggle="tab">Internacionales</a></li>
-          </ul>   
-          
+          </ul>
+
 
            <div class="tab-content">
                <div role="tabpanel" class="tab-pane active" id="todos">
@@ -63,14 +62,14 @@
                   		<td>{{$equipo->alias}}</td>
                   		<td>{{$equipo->getPaisNombre()}}</td>
                       <td>
-                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                            | {{$ligaequipo->Nombreliga->nombre_liga}}
-                       @endforeach
+                           @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
+                                | {{$ligaequipo->Nombreliga->nombre_liga}}
+                           @endforeach
                       </td>
                   		<td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal-{{$equipo->id}}">Ligas</a>
-                                    
+                                 {{-- Asignar Ligas --}}
                                 <div class="modal fade modal-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -92,7 +91,7 @@
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
-                                                                  
+
 
                                                                   <div>
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
@@ -129,7 +128,7 @@
                                                          </tr>
                                                           @endforeach
                                                        </table>
-                                                      
+
                                                     </div>
                                                 </div>
                                               </div>
@@ -159,7 +158,7 @@
 
                       </td>
                   	</tr>
-                  	@endforeach	
+                  	@endforeach
                   	</tbody>
                   </table>
                 </div>
@@ -191,7 +190,7 @@
                       <td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal1-{{$equipo->id}}">Ligas</a>
-                                    
+
                                 <div class="modal fade modal1-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -213,7 +212,7 @@
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
-                                                                  
+
 
                                                                   <div>
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
@@ -250,7 +249,7 @@
                                                          </tr>
                                                           @endforeach
                                                        </table>
-                                                      
+
                                                     </div>
                                                 </div>
                                               </div>
@@ -280,7 +279,7 @@
 
                       </td>
                     </tr>
-                    @endforeach 
+                    @endforeach
                     </tbody>
                   </table>
 
@@ -315,7 +314,7 @@
                       <td>
                               <span class="ico_op">
                                 <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal2-{{$equipo->id}}">Ligas</a>
-                                    
+
                                 <div class="modal fade modal2-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -337,7 +336,7 @@
                                                                        {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
                                                                   </div>
                                                                   </div>
-                                                                  
+
 
                                                                   <div>
                                                                       {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
@@ -374,7 +373,7 @@
                                                          </tr>
                                                           @endforeach
                                                        </table>
-                                                      
+
                                                     </div>
                                                 </div>
                                               </div>
@@ -404,7 +403,7 @@
 
                       </td>
                     </tr>
-                    @endforeach 
+                    @endforeach
                     </tbody>
                   </table>
 
@@ -413,10 +412,10 @@
 
 
                 </div>
-             
+
 
           </div>
-         
+
          	 </div>
         </div>
         </div>
