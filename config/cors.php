@@ -22,7 +22,7 @@ return [
    ],
 
    'paths' => [
-       'v1/*' => [
+       'api/*' => [
            'allowedOrigins' => ['*'],
            'allowedHeaders' => ['*'],
            'allowedMethods' => ['*'],

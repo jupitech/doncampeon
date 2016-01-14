@@ -18,7 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
       //\Barryvdh\Cors\Middleware\HandleCors::class,
-     // \Doncampeon\Http\Middleware\VerifyCsrfToken::class,
+        \Doncampeon\Http\Middleware\VerifyCsrfToken::class,
     ];
 
     /**
@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
            'role' => \Bican\Roles\Middleware\VerifyRole::class,
             'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
             'level' => \Bican\Roles\Middleware\VerifyLevel::class,
-              'cors' => \Doncampeon\Http\Middleware\Cors::class,
-      //  'cors' => \Barryvdh\Cors\Middleware\HandleCors::class, // <<< add this line
+             // 'cors' => \Doncampeon\Http\Middleware\Cors::class,
+           'cors' => \Barryvdh\Cors\Middleware\HandleCors::class, // <<< add this line
     ];
 }
