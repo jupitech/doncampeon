@@ -19,7 +19,7 @@ class PartidoCalendario extends Model
      *
      * @var array
      */
-    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido'];
+    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido','editor_id'];
     protected $dates =['fecha_partido'];
 
     /**
@@ -27,7 +27,7 @@ class PartidoCalendario extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at','editor_id'];
+    protected $hidden = ['created_at','updated_at'];
 
     public function setFechaPartidoAttribute($date){
         $this->attributes['fecha_partido'] = Carbon::parse($date);
