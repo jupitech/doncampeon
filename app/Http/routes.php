@@ -24,7 +24,7 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 
   Route::get('/equiposp', 'EquiposController@indexp');
 
-Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
+/*Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
 Route::post('/registro', [
     'as' => 'auth.register',
     'uses' => 'Api\AutorizarController@register'
@@ -32,12 +32,17 @@ Route::post('/registro', [
   Route::post('/login', [
       'as' => 'auth.login',
     'uses' =>  'Api\AutorizarController@login'
-  ]);
+  ]);*/
 
+    
+    //Autenticacion de Usuario
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::post('registro', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+    //Traendo partidos al api
+     Route::get('partidos', 'Api\ApiPartidoCalendarioController@index');
 });
 
 //}); 

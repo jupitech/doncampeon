@@ -19,7 +19,7 @@ class PartidoCalendario extends Model
      *
      * @var array
      */
-    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido','editor_id'];
+    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido'];
     protected $dates =['fecha_partido'];
 
     /**
@@ -27,7 +27,7 @@ class PartidoCalendario extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at','updated_at','editor_id'];
 
     public function setFechaPartidoAttribute($date){
         $this->attributes['fecha_partido'] = Carbon::parse($date);
@@ -36,7 +36,14 @@ class PartidoCalendario extends Model
       public function EquipoCasa(){
         return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_casa');
     }
+      public function EquipoCasaNombre(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_casa');
+    }
     public function EquipoVisita(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_visita');
+    }
+
+     public function EquipoVisitaNombre(){
         return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_visita');
     }
      public function NombreLiga(){

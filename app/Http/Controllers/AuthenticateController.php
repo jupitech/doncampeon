@@ -10,6 +10,7 @@ use JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Doncampeon\User;
+use Doncampeon\Models\PartidoCalendario;
 
 class AuthenticateController extends Controller
 {
@@ -24,8 +25,9 @@ class AuthenticateController extends Controller
 
     public function index()
     {
-        // Retrieve all the users in the database and return them
-       return "Auth index";
+       // Retrieve all the users in the database and return them
+    $partidocalendario = PartidoCalendario::all();
+    return $partidocalendario;
     }
 
   

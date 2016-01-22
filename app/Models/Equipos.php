@@ -25,7 +25,7 @@ class Equipos extends Model{
      *
      * @var array
      */
-    protected $hidden = ['remember_token'];
+    protected $hidden = ['remember_token','created_at','updated_at'];
 
     public function getPaisNombre(){
         return \Doncampeon\Models\Pais::where('id',$this->pais_equipo)->first()->nombre;
