@@ -42,7 +42,8 @@ Route::post('/registro', [
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
     //Traendo partidos al api
-     Route::get('partidos', 'Api\ApiPartidoCalendarioController@index');
+     Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
+     Route::get('partidoshoy', 'Api\ApiPartidoCalendarioController@indexhoy');
 });
 
 //}); 
