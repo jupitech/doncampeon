@@ -27,10 +27,17 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at'];
      protected $dates = ['deleted_at'];
 
      public function getPaisNombre(){
         return \Doncampeon\Models\Pais::where('id',$this->pais)->first()->nombre;
+    }
+      public function PaisNomUsuario(){
+         return $this->hasOne('\Doncampeon\Models\Pais','id','pais');
+    }
+
+       public function InfoUsuario(){
+        return $this->hasOne('\Doncampeon\User','id','user_id');
     }
 }

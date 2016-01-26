@@ -25,9 +25,28 @@ class UserGame extends Model
      *
      * @var array
      */
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at'];
 
       public function getNivel(){
         return \Doncampeon\Models\GameNivel::where('id',$this->nivel_id)->first()->nivel_nombre;
+    }
+
+      public function InfoUsuario(){
+        return $this->hasOne('\Doncampeon\User','id','user_id');
+    }
+
+      public function PerfilUsuario(){
+        return $this->hasOne('\Doncampeon\Models\UserProfile','user_id','user_id')->with("PaisNomUsuario");
+    }
+
+       public function EquipoNacional(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_nacional');
+    }
+
+    public function EquipoInternacional(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipo_internacional');
+    }
+    public function NivelGame(){
+        return $this->hasOne('\Doncampeon\Models\GameNivel','id','nivel_id');
     }
 }

@@ -35,7 +35,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token','created_at','updated_at','first_name','last_name','deleted_at'];
      protected $dates = ['deleted_at'];
 
     public function RolUsuario(){

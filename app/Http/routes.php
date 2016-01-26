@@ -40,6 +40,9 @@ Route::post('/registro', [
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::post('registro', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+   //Perfil del Usuario
+     Route::get('perfilusuario/{id}', 'Api\ApiPerfilUserController@perfilusuario');
+     Route::get('perfilgame/{id}', 'Api\ApiPerfilUserController@perfilgame');
 
     //Traendo partidos al api
      Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
