@@ -715,6 +715,15 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        background: #eee url('../img/camisola.png') no-repeat center bottom;
        background-size: 35px;
      }
+
+      .img-liga{
+      text-align: center;
+      margin:0 auto;
+       width: 40px;
+       height: 40px;
+       background: #eee url('../img/camisola.png') no-repeat center bottom;
+       background-size: 35px;
+     }
      .descripcion_area{
       font-size: 15px;
       margin:15px 0;
