@@ -15,7 +15,10 @@
                                     <label>Nombre</label>
                                     {!! Form::text('nombre_liga', null, ['class'=> 'form-control','placeholder'=>'Ingresa nombre de la Liga']) !!}
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label>Alias</label>
+                                    {!! Form::text('alias', null, ['class'=> 'form-control','placeholder'=>'Ingresa el alias']) !!}
+                                </div>
 
                                 <div>
                                     {!! Form::submit('Guardar',['class' => 'btn btn-primary']) !!}

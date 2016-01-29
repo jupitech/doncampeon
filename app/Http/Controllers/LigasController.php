@@ -44,7 +44,7 @@ class LigasController extends Controller
     {
            $ligas=Ligas::create([
                 'nombre_liga' =>$request['nombre_liga'],
-              
+                'alias' =>$request['alias'],
             ]);
             $ligas->save();
         Session::flash('message','Liga "'. $ligas->nombre_liga .'" creada correctamente.');
