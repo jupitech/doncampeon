@@ -47,6 +47,7 @@ Route::post('/registro', [
     //Traendo partidos al api
      Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
      Route::get('partidoshoy', 'Api\ApiPartidoCalendarioController@indexhoy');
+     Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
 });
 
 //}); 
