@@ -32,6 +32,7 @@
                   	<thead>
                   	<tr>
                   		<th>Liga</th>
+                      <th>Alias</th>
                   		<th>Opciones</th>
                   	</tr>
                   	</thead>
@@ -39,6 +40,7 @@
                   	@foreach($ligas as $liga)
                   	<tr>
                   		<td><p class="prin_td">{{$liga->nombre_liga}}</p></td>
+                      <td>{{$liga->alias}}</td>
                   		<td>
                         <span class="ico_op">
                            {!!link_to_route('ligas.edit', $title = '', $parameters = $liga->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
