@@ -59,5 +59,30 @@ class ApiPartidoCalendarioController extends Controller
          return response()->json(['datos' =>  $partidosmes],200);
     }
 
+
+    public function contsemana()
+    {
+            //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfWeek())->count();
+      
+         return response()->json(['datos' =>  $partidos],200);
+        
+    }
+
+       public function conthoy()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+         $partidoshoy=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('hora_partido','ASC')->where('fecha_partido','=',Carbon::today())->count();
+         return response()->json(['datos' =>  $partidoshoy],200);
+    }
+
+     public function contmes()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+         $partidosmes=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfMonth())->count();
+        
+         return response()->json(['datos' =>  $partidosmes],200);
+    }
+
     
 }

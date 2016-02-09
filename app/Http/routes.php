@@ -48,6 +48,10 @@ Route::post('/registro', [
      Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
      Route::get('partidoshoy', 'Api\ApiPartidoCalendarioController@indexhoy');
      Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
+
+     Route::get('partidosconsemana', 'Api\ApiPartidoCalendarioController@contsemana');
+     Route::get('partidosconhoy', 'Api\ApiPartidoCalendarioController@conthoy');
+     Route::get('partidoscontmes', 'Api\ApiPartidoCalendarioController@contmes');
 });
 
 //}); 

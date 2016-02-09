@@ -49,6 +49,7 @@ class PartidoCalendarioController extends Controller
         $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfMonth())->get();
          return view('admin.partidos.partidosmes',compact('partidos'));
     }
+ 
 
     /**
      * Show the form for creating a new resource.
