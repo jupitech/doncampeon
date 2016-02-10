@@ -59,6 +59,16 @@ class ApiPartidoCalendarioController extends Controller
          return response()->json(['datos' =>  $partidosmes],200);
     }
 
+    public function indexmessi()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+         $partidosmessi=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today()->endOfMonth())->where('fecha_partido','<=',Carbon::today()->endOfMonth()->addDays(15))->get();
+         if(!$partidosmessi){
+             return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $partidosmessi],200);
+    }
+
 
     public function contsemana()
     {
@@ -82,6 +92,16 @@ class ApiPartidoCalendarioController extends Controller
          $partidosmes=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfMonth())->count();
         
          return response()->json(['datos' =>  $partidosmes],200);
+    }
+
+     public function contmessi()
+    {
+             //Traendo partidos que no han sido terminados en este dia
+         $partidosmessi=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today()->endOfMonth())->where('fecha_partido','<=',Carbon::today()->endOfMonth()->addDays(15))->count();
+         if(!$partidosmessi){
+             return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $partidosmessi],200);
     }
 
     
