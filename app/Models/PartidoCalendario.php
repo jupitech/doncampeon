@@ -1,5 +1,4 @@
 <?php
-
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +29,7 @@ class PartidoCalendario extends Model
     protected $hidden = ['created_at','updated_at'];
 
     public function setFechaPartidoAttribute($date){
+      
         $this->attributes['fecha_partido'] = Carbon::parse($date);
     }
 

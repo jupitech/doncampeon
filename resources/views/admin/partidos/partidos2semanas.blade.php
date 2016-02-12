@@ -23,6 +23,7 @@
 		          	 	<li><a href="{{ URL::to('partidos/semana') }}">Semana</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/2semanas') }}"><strong>15 dias</strong></a></li>
 		          	 	<li><a href="{{ URL::to('partidos/mes') }}">Mes</a></li>
+		          	 	<li><a href="{{ URL::to('partidos/anteriores') }}">Anteriores</a></li>
 		          	 </ul>
 		          </div>
 						          <div class="col-sm-12">

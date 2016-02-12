@@ -62,7 +62,7 @@ class UserCampeonesController extends Controller
                   'equipo_internacional' => $request['equipo_internacional'],
                   'puntos_iniciales' => $puntoinicial->puntos_iniciales,
                   'puntos_acumulados' => $puntoinicial->puntos_iniciales,
-                  'nivel_id'=> 1,
+                  'nivel_id'=> $puntoinicial->id,
                         ]);
          $usergame->save();
 

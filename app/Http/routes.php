@@ -22,8 +22,7 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getL
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
 
-  Route::get('/equiposp', 'EquiposController@indexp');
-
+ 
 /*Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
 Route::post('/registro', [
     'as' => 'auth.register',
@@ -88,6 +87,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          Route::get('partidos/semana',['as' => 'partidos.semana', 'uses' => 'PartidoCalendarioController@indexsemana']);
          Route::get('partidos/2semanas',['as' => 'partidos.2semanas', 'uses' => 'PartidoCalendarioController@index2semanas']);
          Route::get('partidos/mes',['as' => 'partidos.mes', 'uses' => 'PartidoCalendarioController@indexmes']);
+         Route::get('partidos/anteriores',['as' => 'partidos.anteriores', 'uses' => 'PartidoCalendarioController@indexanteriores']);
+
          Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
          Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
          Route::delete('partidos/destroy/{id}',['as' => 'partidos.destroy', 'uses' => 'PartidoCalendarioController@destroy']);
@@ -106,8 +107,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
             });
 
       Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
-       Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
-        Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
+      Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
+      Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
 
       //Opciones
       Route::get('/opciones', function () {
@@ -146,17 +147,17 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
 
       //Juego
-       Route::get('juego',['as' => 'juego', 'uses' => 'JuegoParametrosController@index']);
-       Route::get('nivelgame',['as' => 'nivelgame', 'uses' => 'GameNivelController@index']);
-       Route::put('juego/updatepuntosiniciales/{id}',['as' => 'updatepuntosiniciales', 'uses' => 'JuegoParametrosController@updatepuntosiniciales']);
-       Route::put('juego/updateminimoretos/{id}',['as' => 'updateminimoretos', 'uses' => 'JuegoParametrosController@updateminimoretos']);
-       Route::put('juego/updatepuntosrecompensa/{id}',['as' => 'updatepuntosrecompensa', 'uses' => 'JuegoParametrosController@updatepuntosrecompensa']);
-       Route::put('juego/updaterecompensanojuegos/{id}',['as' => 'updaterecompensanojuegos', 'uses' => 'JuegoParametrosController@updaterecompensanojuegos']);
-       Route::put('juego/updaterecompensapjuegos/{id}',['as' => 'updaterecompensapjuegos', 'uses' => 'JuegoParametrosController@updaterecompensapjuegos']);
-      
-       //Niveles
-         Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
-         Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
-        Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
+      Route::get('juego',['as' => 'juego', 'uses' => 'JuegoParametrosController@index']);
+      Route::get('nivelgame',['as' => 'nivelgame', 'uses' => 'GameNivelController@index']);
+      Route::put('juego/updatepuntosiniciales/{id}',['as' => 'updatepuntosiniciales', 'uses' => 'JuegoParametrosController@updatepuntosiniciales']);
+      Route::put('juego/updateminimoretos/{id}',['as' => 'updateminimoretos', 'uses' => 'JuegoParametrosController@updateminimoretos']);
+      Route::put('juego/updatepuntosrecompensa/{id}',['as' => 'updatepuntosrecompensa', 'uses' => 'JuegoParametrosController@updatepuntosrecompensa']);
+      Route::put('juego/updaterecompensanojuegos/{id}',['as' => 'updaterecompensanojuegos', 'uses' => 'JuegoParametrosController@updaterecompensanojuegos']);
+      Route::put('juego/updaterecompensapjuegos/{id}',['as' => 'updaterecompensapjuegos', 'uses' => 'JuegoParametrosController@updaterecompensapjuegos']);
+
+      //Niveles
+      Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
+      Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
+      Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
 
 });

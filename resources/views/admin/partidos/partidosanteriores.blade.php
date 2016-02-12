@@ -9,7 +9,7 @@
 		<div class="col-sm-12">
       			<h1 class="page-header">
       			 <div class="col-sm-6 spi spd">
-		                  Partidos-Hoy
+		                  Partidos-Anteriores
 		             </div>
 		            <div class="col-sm-6 spi spd">
 		               @include('admin.partidos.section.areanuevo')
@@ -19,11 +19,11 @@
 		          <div class="caja_submenu">
 		          	 <ul>
 		          	 	<li><a href="{{ URL::to('partidos') }}">Calendario</a></li>
-		          	 	<li><a href="{{ URL::to('partidos/hoy') }}"><strong>Hoy</strong></a></li>
+		          	 	<li><a href="{{ URL::to('partidos/hoy') }}">Hoy</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/semana') }}">Semana</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/2semanas') }}">15 dias</a></li>
 		          	 	<li><a href="{{ URL::to('partidos/mes') }}">Mes</a></li>
-		          	 	<li><a href="{{ URL::to('partidos/anteriores') }}">Anteriores</a></li>
+		          	 	<li><a href="{{ URL::to('partidos/anteriores') }}"><strong>Anteriores</strong></a></li>
 		          	 </ul>
 		          </div>
 						          <div class="col-sm-12">

@@ -49,7 +49,14 @@ class PartidoCalendarioController extends Controller
         $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfMonth())->get();
          return view('admin.partidos.partidosmes',compact('partidos'));
     }
- 
+     
+      public function indexanteriores()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::orderBy('fecha_partido','DESC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today()->subWeek(4))->where('fecha_partido','<=',Carbon::today())->get();
+         return view('admin.partidos.partidosanteriores',compact('partidos'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

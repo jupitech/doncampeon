@@ -1,16 +1,19 @@
  <?php 
+
+      \Carbon\Carbon::setLocale('es');
 $mihora=\Carbon\Carbon::now()->toDateString();	
 $midia=\Carbon\Carbon::today();	
+
   ?>
  @foreach($partidos as $partido)
 			          	     	<div class="col-lg-3 col-md-6 col-sm-6">
 			          	     		<div class="caja_section caja_partido">
 
 			          	     			  <div class="area_date">
-			          	     			  	   <div class="col-xs-6 col-sm-6 spd spi">
-			          	     			  	   <p class="f_partido">{{ $partido->fecha_partido->format('d/m/y')}}</p> 
+			          	     			  	   <div class="col-xs-7 col-sm-7 spd spi">
+			          	     			  	   <p class="f_partido">{{ $partido->fecha_partido->format('l, d/m/y')}}</p> 
 			          	     			  	   </div>
-			          	     			  	   <div class="col-xs-6 col-sm-6 spd spi">
+			          	     			  	   <div class="col-xs-5 col-sm-5 spd spi">
 			          	     			  	  		
 			          	     			  	   <p class="h_partido">{{ $partido->hora_partido}}</p> 
 			          	     			  	   </div>
