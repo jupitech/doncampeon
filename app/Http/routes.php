@@ -60,16 +60,20 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 {
 
   //Mail Ejemplo
-  /* Route::get('/email', function () {
+   Route::get('/email', function () {
 
-          Mail::send('emails.test',['name'=>'Carlos'], function($message){
-          
-              $message->to('carlos.ruano@crweb.net')->subject('Hola Don Campeon!');
-          });
+          $beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
+    $beautymail->send('emails.test', [], function($message)
+    {
+        $message
+            ->from('hola@doncampeon.com')
+            ->to('carlos.ruano@crweb.net', 'Carlos Ruano')
+            ->subject('Hola!');
+         });
 
 
         });
-        */
+        
 
          //Escritorio
       Route::get('/escritorio', function () {

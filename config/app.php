@@ -151,7 +151,8 @@ return [
         Bican\Roles\RolesServiceProvider::class,
            /*Debugbar*/
         Barryvdh\Debugbar\ServiceProvider::class,
-       
+        /*Mail*/
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
 
     ],
 

@@ -13,7 +13,8 @@
         "mews/captcha": "~2.0.",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "nesbot/carbon": "~1.18",
-        "barryvdh/laravel-debugbar": "^2.1"
+        "barryvdh/laravel-debugbar": "^2.1",
+        "snowfire/beautymail": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
