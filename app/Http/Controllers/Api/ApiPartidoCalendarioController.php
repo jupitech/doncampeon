@@ -104,5 +104,16 @@ class ApiPartidoCalendarioController extends Controller
          return response()->json(['datos' =>  $partidosmessi],200);
     }
 
+      public function indexpartido($id)
+    {
+          //Traendo partidos que no han sido terminados en este dia
+         $partido=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('hora_partido','ASC')->where('id',$id)->get();
+         if(!$partido){
+             return response()->json(['mensaje' =>  'No se encuentran partido actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $partido],200);
+    }
+
+
     
 }

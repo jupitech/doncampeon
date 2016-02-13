@@ -43,6 +43,8 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
      Route::get('partidosconhoy', 'Api\ApiPartidoCalendarioController@conthoy');
      Route::get('partidosconmes', 'Api\ApiPartidoCalendarioController@contmes');
       Route::get('partidosconmessi', 'Api\ApiPartidoCalendarioController@contmessi');
+
+      Route::get('partido/{id}', 'Api\ApiPartidoCalendarioController@indexpartido');
 });
 
 //}); 
