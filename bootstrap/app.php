@@ -41,6 +41,7 @@ $app->singleton(
     Doncampeon\Exceptions\Handler::class
 );
 
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

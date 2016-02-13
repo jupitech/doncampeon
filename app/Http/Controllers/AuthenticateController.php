@@ -10,7 +10,12 @@ use JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Doncampeon\User;
+use Doncampeon\Models\RoleUser;
+use Doncampeon\Models\UserProfile;
+use Doncampeon\Models\UserGame;
+use Doncampeon\Models\Juego;
 use Doncampeon\Models\PartidoCalendario;
+use Illuminate\Support\Facades\Mail;
 
 class AuthenticateController extends Controller
 {
@@ -20,7 +25,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate','register']]);
    }
 
     public function index()
@@ -76,13 +81,54 @@ class AuthenticateController extends Controller
     }
 
      public function register(Request $request){
- 
-        $newuser= $request->all();
-        $password=Hash::make($request->input('password'));
- 
-        $newuser['password'] = $password;
- 
-        return User::create($newuser);
+
+     $user=User::create([
+                  'username' => $request['username'],
+                  'email' => $request['email'],
+                  'password' => bcrypt($request['password'])
+                        ]);
+          $user->save();
+
+         $userprofile=UserProfile::create([
+                  'user_id' => $user->id,
+                   'pais' => 1,
+                        ]);
+         $userprofile->save();
+
+           $roleuser=RoleUser::create([
+                'role_id' =>4,
+                'user_id' =>$user->id,
+            ]);
+          $roleuser->save();
+
+          $puntoinicial=Juego::find(1);
+
+           $usergame=UserGame::create([
+                  'user_id' => $user->id,
+                  'puntos_iniciales' => $puntoinicial->puntos_iniciales,
+                  'puntos_acumulados' => $puntoinicial->puntos_iniciales,
+                  'nivel_id'=> $puntoinicial->id,
+                        ]);
+         $usergame->save();
+
+
+
+        Mail::send('emails.bienvenida', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Don Campeon Sports')
+            ->to($user->email, $user->username)
+            ->subject('Bienvenido a Don Campeón');
+         });
+
+         Mail::send('emails.nuevousuario', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
+            ->to('carlos.ruano@crweb.net', 'Nuevo Usuario')
+            ->subject('Usuario ['.$user->username.' ] Registrado');
+         });
+
     }
 
 }

@@ -14,7 +14,7 @@ use Doncampeon\Models\UserGame;
 use Doncampeon\Models\Juego;
 use Doncampeon\Http\Requests\UsuariosCreateRequest;
 use Doncampeon\Http\Requests\UsuariosUpdateRequest;
-
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 class UserCampeonesController extends Controller
@@ -69,6 +69,24 @@ class UserCampeonesController extends Controller
 
 
         Session::flash('message','Campeón "'. $user->username .'" creado correctamente.');
+        
+
+        Mail::send('emails.bienvenida', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Don Campeon Sports')
+            ->to($user->email, $user->username)
+            ->subject('Bienvenido a Don Campeón');
+         });
+
+         Mail::send('emails.nuevousuario', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
+            ->to('carlos.ruano@crweb.net', 'Nuevo Usuario')
+            ->subject('Usuario ['.$user->username.' ] Registrado');
+         });
+
         return Redirect::to('/campeones');
       
 
