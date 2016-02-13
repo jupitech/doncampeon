@@ -49,4 +49,7 @@ class UserGame extends Model
     public function NivelGame(){
         return $this->hasOne('\Doncampeon\Models\GameNivel','id','nivel_id');
     }
+    public function NivelGamene(){
+        return $this->hasOne('\Doncampeon\Models\GameNivel','id','nivel_id');
+    }
 }

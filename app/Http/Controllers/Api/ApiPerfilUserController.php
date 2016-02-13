@@ -8,6 +8,7 @@ use Doncampeon\Http\Requests;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Models\UserProfile;
 use Doncampeon\Models\UserGame;
+use Doncampeon\Models\GameNivel;
 use Carbon\Carbon;
 use JWTAuth;
 use Illuminate\Support\Facades\Hash;
@@ -40,13 +41,28 @@ class ApiPerfilUserController extends Controller
      public function perfilgame($id)
     {
                //Traendo perfil del usuario
+         
         $perfilusuario=UserGame::with("InfoUsuario","PerfilUsuario","EquipoNacional","EquipoInternacional","NivelGame")->orderBy('user_id','DESC')->where('user_id',$id)->get();
         if(!$perfilusuario){
              return response()->json(['mensaje' =>  'No se encuentran datos actualmente','codigo'=>404],404);
         }
-         return response()->json(['datos' =>  $perfilusuario],200);
+        $minivel=$perfilusuario->first()->nivel_id+1;
+        if($minivel>5){
+            $sinivel=$perfilusuario->first()->nivel_id;
+        }else{
+             $sinivel=$perfilusuario->first()->nivel_id+1;
+        }
+        $gamenivel=GameNivel::orderBy('id','DESC')->where('id',$sinivel)->get();
+         return response()->json(['datos' =>  $perfilusuario,'niveles' =>   $gamenivel],200);
     }
-
+    
+      public function gamenivel($id){
+           
+        if(!$gamenivel){
+             return response()->json(['mensaje' =>  'No se encuentran datos actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $gamenivel],200);
+      }
     /**
      * Show the form for creating a new resource.
      *

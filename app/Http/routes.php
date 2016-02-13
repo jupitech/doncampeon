@@ -22,18 +22,7 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getL
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
 
- 
-/*Route::resource('/autorizar', 'Api\AutorizarController', ['only' => ['index']]);
-Route::post('/registro', [
-    'as' => 'auth.register',
-    'uses' => 'Api\AutorizarController@register'
-  ]);
-  Route::post('/login', [
-      'as' => 'auth.login',
-    'uses' =>  'Api\AutorizarController@login'
-  ]);*/
-
-    
+  
     //Autenticacion de Usuario
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
@@ -42,6 +31,7 @@ Route::post('/registro', [
    //Perfil del Usuario
      Route::get('perfilusuario/{id}', 'Api\ApiPerfilUserController@perfilusuario');
      Route::get('perfilgame/{id}', 'Api\ApiPerfilUserController@perfilgame');
+     Route::get('gamenivel/{id}', 'Api\ApiPerfilUserController@gamenivel');
 
     //Traendo partidos al api
      Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
