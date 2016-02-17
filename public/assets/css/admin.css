@@ -7,6 +7,7 @@ body {
   padding-top: 50px;
      font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
      background: #f1f4f5;
+         -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -38,6 +39,8 @@ h1, h2, h3, h4, h5, h6{
 }
 /************header***********/
 .logo_donc{
+  position: relative;
+  top: 1px;
   padding-left: 60px;
    width: 120px;
    float: left;
@@ -70,9 +73,8 @@ h1, h2, h3, h4, h5, h6{
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
    /* background: #fff;*/
-    background: #1ca2df url('../img/ima_donc.png') no-repeat center bottom;
+    background: #fff;
     border-right: 1px solid #eee;
-    background-size: 110px;
   }
 }
 
@@ -84,10 +86,13 @@ h1, h2, h3, h4, h5, h6{
 }
 .nav-sidebar > li > a {
   padding: 7px 20px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #333;
   /*color: #b2e0f4;*/
+}
+.nav-sidebar > li > a span{
+  margin-right: 8px;
 }
 .nav-sidebar > li > a:hover, .nav-sidebar > li > a:focus{
   background-color: #1799d1;
@@ -101,7 +106,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .navbar-inverse{
-  background: #1b3043;
+  background: #1CA2DF;
+      -webkit-box-shadow: 0 3px 4px 0 rgba(0,0,0,.08),0 3px 3px -2px rgba(0,0,0,.08),0 1px 8px 0 rgba(0,0,0,.08);
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.08),0 3px 3px -2px rgba(0,0,0,.08),0 1px 8px 0 rgba(0,0,0,.08);
 }
 .navbar-inverse .navbar-nav>li>a{
   color: #fff;
@@ -110,8 +117,8 @@ h1, h2, h3, h4, h5, h6{
 }
 .navbar-inverse .navbar-form .form-control{
     border:none !important;
-    background: #31597c;
-    color: #b2e0f4;
+    background: #179dd6;
+    color: #fff !important;
     font-size: 12px; 
         -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0);

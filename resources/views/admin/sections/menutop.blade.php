@@ -56,7 +56,7 @@
             <li><a href="#" class="ico_grande"><span class="glyphicon glyphicon-question-sign"></span></a></li>
           </ul>
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Buscar...">
+            <input type="text" class="form-control">
           </form>
         </div>
       </div>
