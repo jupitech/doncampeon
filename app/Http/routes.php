@@ -45,6 +45,9 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
       Route::get('partidosconmessi', 'Api\ApiPartidoCalendarioController@contmessi');
 
       Route::get('partido/{id}', 'Api\ApiPartidoCalendarioController@indexpartido');
+
+      //Traendo Ligas al api
+      Route::get('listadoligas', 'Api\ApiLigascontroller@indexlistado');
 });
 
 //}); 
