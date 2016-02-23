@@ -11,14 +11,15 @@
 |
 */
 /*use Mail;*/
-
 // Authentication routes...
 Route::get('/',  [ 'uses' => 'Auth\AuthController@getLogin','as' =>'login']);
 Route::post('/', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 Route::get('/redis', function(){
-  print_r(app()->make('redis'));
+$redis= Illuminate\Support\Facades\Redis::connection();
+$redis->set("key2","hola a todos");
+  print_r($redis->get("key2"));
 });
 
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
