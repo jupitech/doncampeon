@@ -21,7 +21,7 @@ class ApiPartidoCalendarioController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-    // $this->middleware('jwt.auth');
+    $this->middleware('jwt.auth');
    }
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class ApiPartidoCalendarioController extends Controller
      */
     public function indexsemana()
     {
-            //Traendo partidos que no han sido terminados en este dia
+            //Traendo partidos que no han sido terminados en esta semana
         $partidos=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfWeek())->get();
         if(!$partidos){
              return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
@@ -72,7 +72,7 @@ class ApiPartidoCalendarioController extends Controller
 
     public function contsemana()
     {
-            //Traendo partidos que no han sido terminados en este dia
+            //Contador de partidos de la semana
         $partidos=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()->endOfWeek())->count();
       
          return response()->json(['datos' =>  $partidos],200);
@@ -81,7 +81,7 @@ class ApiPartidoCalendarioController extends Controller
 
        public function conthoy()
     {
-          //Traendo partidos que no han sido terminados en este dia
+          //Contador de partidos de hoy
          $partidoshoy=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('hora_partido','ASC')->where('fecha_partido','=',Carbon::today())->count();
          return response()->json(['datos' =>  $partidoshoy],200);
     }

@@ -17,7 +17,9 @@ Route::get('/',  [ 'uses' => 'Auth\AuthController@getLogin','as' =>'login']);
 Route::post('/', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
-
+Route::get('/redis', function(){
+  print_r(app()->make('redis'));
+});
 
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
