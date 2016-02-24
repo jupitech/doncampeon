@@ -124,7 +124,7 @@ use Carbon\Carbon;
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
             },
-              "order": [[ 2, "desc" ]],
+              "order": [[ 0, "desc" ]],
         "info":     false,
         "searching": false
         } );
