@@ -3,7 +3,7 @@
 
         <div class="col-sm-2 col-md-2 col-lg-1  sidebar">
           <ul class="nav nav-sidebar">
-              <li><a href="#"><span class="glyphicon glyphicon-cloud"></span>Escritorio <span class="sr-only">(current)</span></a></li>
+              <li><a href="{{ URL::to('escritorio') }}"><span class="glyphicon glyphicon-cloud"></span>Escritorio <span class="sr-only">(current)</span></a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="{{ URL::to('partidos') }}"><span class="glyphicon-partidosnegro"></span>Partidos</a> </li>
