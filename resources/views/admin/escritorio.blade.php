@@ -107,8 +107,9 @@ use Carbon\Carbon;
 		      					 	  $key_login=$redis->hget($log,'login');
 		      					 	?>
 		      					 			<td class="time_log">{{$key_login}}</td>
+		      					 			<td>{{$key_username}}</td>
 											<td>{{$key_email}}</td>
-		      								<td>{{$key_username}}</td>
+		      								
 		      					 	</tr>
 		      					 	 	@endforeach	
 		      					</table>
