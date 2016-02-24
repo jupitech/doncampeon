@@ -56,6 +56,73 @@ h1, h2, h3, h4, h5, h6{
   display: none;
 }
 
+/****************Escritorio**********************/
+.caja_escritorio{
+      padding: 0 !important;
+    margin-bottom: 15px;
+    min-height: 300px;
+
+}
+.tit_cescri{
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  padding:10px 15px;
+   letter-spacing: 0.03em;
+   border-left: 3px solid  #8dca3d;
+   background: #fff;
+}
+.caja_escrilogue{
+   padding: 0 !important;
+    margin-bottom: 15px;
+  background: #333 !important;
+   min-height: 300px;
+}
+.ul_log{
+  float: left;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  list-style:none;
+      font-family: "consolas", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      border: none !important;
+}
+.ul_log tr, .ul_log tr:hover{
+  background: none !important;
+}
+.ul_log tr th{
+  color: #8dca3d !important;
+  background: #262626 !important;
+  border-bottom: none !important;
+}
+.ul_log td{
+      border-bottom: 1px solid #3d3d3d !important;
+  color: #fff !important;
+}
+.caja_escrilogue .dataTables_paginate{
+  margin-bottom: 5px;
+}
+.caja_escrilogue .dataTables_wrapper .dataTables_paginate .paginate_button{
+  background: none !important;
+  border: none !important;
+  color: #ccc;
+}
+.caja_escrilogue .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+  color:  #8dca3d !important;
+  font-weight: bold;
+}
+
+.caja_escrilogue .dataTables_wrapper .dataTables_length{
+  margin:5px 0;
+}
+.caja_escrilogue .dataTables_length select{
+  background: #555;
+  border:none;
+  color: #fff;
+}
 
 @media (min-width: 768px) and (max-width: 991px){
 
@@ -442,7 +509,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   padding: 12px 8px !important;
   color: #777;
     font-size: 11px;
-    border-bottom: 1px solid #eee !important;
+    border-bottom: 1px solid #eee;
     border-top: none !important;
     letter-spacing: 0.02em;
         -webkit-font-smoothing: antialiased;
@@ -451,8 +518,8 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 
 .caja_section thead th{
    font-size: 13px !important;
-  color: #1B3043 !important;
-  border-bottom: 2px solid #8dca3d !important;
+  color: #1B3043;
+  border-bottom: 2px solid #8dca3d ;
 }
 /*
  * Placeholder dashboard ideas
@@ -662,7 +729,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       font-size: 12px;
      }
      table.dataTable.no-footer{
-          border-bottom: 2px solid #ccc !important;
+          border-bottom: 2px solid #ccc;
           margin-top: 15px;
      }
      .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,

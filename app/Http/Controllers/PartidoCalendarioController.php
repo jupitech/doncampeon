@@ -10,6 +10,8 @@ use Doncampeon\Http\Requests\PartidosCreateRequest;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Models\PartidoCalendario;
 use Carbon\Carbon;
+use Cache;
+use Illuminate\Support\Facades\Redis;
 
 class PartidoCalendarioController extends Controller
 {
@@ -126,6 +128,11 @@ class PartidoCalendarioController extends Controller
         $partidos->fill($request->all());
         $partidos->save();
         Session::flash('message','Partido del "'.$partidos->fecha_partido->format('d/m/y').'" a las "'.$partidos->hora_partido.'" editado correctamente.');
+        
+        if(!Cache::has('editar_calendario')){
+              Cache::put('editar_calendario','Partido del "'.$partidos->fecha_partido->format('d/m/y').'" a las "'.$partidos->hora_partido.'" fue editado.',1 );
+        }
+      
         return Redirect::to('/partidos');
     }
 

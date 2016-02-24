@@ -16,6 +16,9 @@ use Doncampeon\Models\UserGame;
 use Doncampeon\Models\Juego;
 use Doncampeon\Models\PartidoCalendario;
 use Illuminate\Support\Facades\Mail;
+use Cache;
+use Illuminate\Support\Facades\Redis;
+use Carbon\Carbon;
 
 class AuthenticateController extends Controller
 {
@@ -49,7 +52,16 @@ class AuthenticateController extends Controller
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
+        //Llamando Información del usuario por email
+         $user=User::where('email',$credentials['email'])->first();
+         //Conexión Redis
+         $enRedis=Redis::connection();
+         $hoy=Carbon::now();
+         $elkey='log_login:'.$user->id.':'.$hoy->timestamp;
+        
+         $enRedis->hset($elkey,'email',$user->email);
+         $enRedis->hset($elkey,'username',$user->username);
+         $enRedis->hset($elkey,'login',$hoy);
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }
@@ -75,7 +87,7 @@ class AuthenticateController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
  
         }
- 
+         
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
     }
@@ -111,6 +123,15 @@ class AuthenticateController extends Controller
                         ]);
          $usergame->save();
 
+         
+         //Conexión Redis para Logs
+         $enRedis=Redis::connection();
+         $hoy=Carbon::now();
+         $elkey='log_registro:'.$user->id;
+        
+         $enRedis->hset($elkey,'email',$user->email);
+         $enRedis->hset($elkey,'username',$user->username);
+         $enRedis->hset($elkey,'login',$hoy);
 
 
         Mail::send('emails.bienvenida', ['user'=>$user], function($message) use ($user)
