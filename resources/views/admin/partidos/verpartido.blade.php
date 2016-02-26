@@ -4,6 +4,15 @@
   @include('admin.sections.menuequipos')
       <div class="col-sm-12">
             <h1 class="page-header">Partido {{$partidos->EquipoCasa->nombre_equipo}}-{{$partidos->EquipoVisita->nombre_equipo}}</h1>
+              @if(Session::has('message'))
+                    <div class="col-sm-12">
+                      <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{Session::get('message')}}
+                      </div>
+                    </div>
+                              
+                  @endif
             @include('admin.sections.errors')
              <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0 spi">
              	 <div class="caja_section caja_partido">
@@ -36,36 +45,70 @@
                                    </div>
                     </div>
                     <div class="area_equipos">
-                     {!! Form::model($partidos,['route'=>['partidos.update',$partidos->id],'method'=>'PUT']) !!}
-                                  <div class="col-xs-3 col-sm-3 spd spi">
-                                    <h3 class="n_equipo">{{ $partidos->EquipoCasa->nombre_equipo}}</h3>
-                                    <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoCasa->alias}}.svg') no-repeat center;"></span>
-                                    <p>Casa</p>
-                                  </div>
-                                   <div class="col-xs-3 col-sm-3 spd spi">
-                                   <div class="col-xs-12 col-sm-12 col-md-12">
-                                           <div class="form-group">
-                                          {!! Form::number('marcador_casa', null, ['class'=> 'form-control input_marca']) !!}
-                                      </div>
-                                   </div>
-                                    
-                                   </div>
-                                   <div class="col-xs-3 col-sm-3 spd spi">
-                                   <div class="col-xs-12 col-sm-12 col-md-12">
-                                       <div class="form-group">
-                                            {!! Form::number('marcador_visita', null, ['class'=> 'form-control input_marca']) !!}
-                                        </div>
-                                    </div>
-                                   </div>
-                                  <div class="col-xs-3 col-sm-3 spd spi">
-                                    <h3 class="n_equipo">{{ $partidos->EquipoVisita->nombre_equipo}}</h3>
-                                    <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoVisita->alias}}.svg') no-repeat center;"></span>
-                                    <p>Visita</p>
-                                  </div>
-                                  <div class="col-md-6 col-md-offset-3 dtable">
-                                    {!! Form::submit('Aplicar Marcador',['class' => 'btn btn-marcador']) !!}
-                                  </div>
-                      {!! Form::close() !!}          
+                    @if($partidos->partido_ter==0)
+                    {{-- Si no ha terminado el partido --}}
+                               {!! Form::open(['route'=>'partido.amarcador','method'=>'POST']) !!}
+                                            <div class="col-xs-3 col-sm-3 spd spi">
+                                              <h3 class="n_equipo">{{ $partidos->EquipoCasa->nombre_equipo}}</h3>
+                                              <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoCasa->alias}}.svg') no-repeat center;"></span>
+                                              <p>Casa</p>
+                                            </div>
+                                             <div class="col-xs-3 col-sm-3 spd spi">
+                                             <div class="col-xs-12 col-sm-12 col-md-12">
+                                                     <div class="form-group">
+                                                    {!! Form::number('marcador_casa', null, ['class'=> 'form-control input_marca']) !!}
+                                                </div>
+                                             </div>
+                                              
+                                             </div>
+                                             <div class="col-xs-3 col-sm-3 spd spi">
+                                             <div class="col-xs-12 col-sm-12 col-md-12">
+                                                 <div class="form-group">
+                                                      {!! Form::number('marcador_visita', null, ['class'=> 'form-control input_marca']) !!}
+                                                  </div>
+                                              </div>
+                                             </div>
+                                            <div class="col-xs-3 col-sm-3 spd spi">
+                                              <h3 class="n_equipo">{{ $partidos->EquipoVisita->nombre_equipo}}</h3>
+                                              <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoVisita->alias}}.svg') no-repeat center;"></span>
+                                              <p>Visita</p>
+                                            </div>
+                                            <div class="col-md-6 col-md-offset-3 dtable">
+                                              {!! Form::hidden('partido_id', $partidos->id,  ['class'=> 'form-control']) !!}
+                                              {!! Form::submit('Aplicar Marcador',['class' => 'btn btn-marcador']) !!}
+                                            </div>
+                                {!! Form::close() !!} 
+                    @else
+                          {{-- Si termino el partido --}}
+                                            <div class="col-xs-3 col-sm-3 spd spi">
+                                              <h3 class="n_equipo">{{ $partidos->EquipoCasa->nombre_equipo}}</h3>
+                                              <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoCasa->alias}}.svg') no-repeat center;"></span>
+                                              <p>Casa</p>
+                                            </div>
+                                            <?php
+                                                $resultado=\Doncampeon\Models\PartidoResultado::where('partido_id',$partidos->id)->first();
+                                                  
+                                            ?>
+                                             <div class="col-xs-3 col-sm-3 spd spi">
+                                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                                      <h2 class="h2_resul">{{$resultado->marcador_casa}}</h2>
+                                                 </div>
+                                              
+                                             </div>
+                                             <div class="col-xs-3 col-sm-3 spd spi">
+                                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <h2 class="h2_resul">{{$resultado->marcador_visita}}</h2>     
+                                                  </div>
+                                             </div>
+                                            <div class="col-xs-3 col-sm-3 spd spi">
+                                              <h3 class="n_equipo">{{ $partidos->EquipoVisita->nombre_equipo}}</h3>
+                                              <span class="ima_equipo vequi" style="background: url('../../assets/img/{{ $partidos->EquipoVisita->alias}}.svg') no-repeat center;"></span>
+                                              <p>Visita</p>
+                                            </div>
+                                            <div class="col-md-6 col-md-offset-3 dtable">
+                                            </div>
+                                   
+                    @endif         
                     </div>
                     <div class="area_ligas">
                                    <div class="col-sm-6 spd spi">

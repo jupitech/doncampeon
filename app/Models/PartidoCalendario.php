@@ -18,7 +18,7 @@ class PartidoCalendario extends Model
      *
      * @var array
      */
-    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido','editor_id'];
+    protected $fillable = ['equipo_casa','equipo_visita','liga','estadio','descripcion','fecha_partido','hora_partido','editor_id','partido_ter'];
     protected $dates =['fecha_partido'];
 
     /**

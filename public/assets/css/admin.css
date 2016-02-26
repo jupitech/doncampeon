@@ -567,6 +567,14 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
 .dtable{
   display: table;
 }
+.h2_resul{
+  text-align: center;
+  float: left;
+  width: 100%;
+  font-size: 60px;
+  margin-top: 45px;
+  font-weight: bold;
+}
 .caja_section .alert{
   font-size: 13px !important;
   border: none;
