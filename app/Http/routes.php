@@ -51,6 +51,11 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 
       //Traendo Ligas al api
       Route::get('listadoligas', 'Api\ApiLigascontroller@indexlistado');
+
+      //Agregando partidos como favorito
+       Route::post('partidofav/act', 'Api\ApiPartidoFavoritoController@store');
+        Route::get('partidofav/ver/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@show');
+        Route::put('partidofav/nact/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@update');
 });
 
 //}); 
@@ -93,6 +98,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
          Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
          Route::delete('partidos/destroy/{id}',['as' => 'partidos.destroy', 'uses' => 'PartidoCalendarioController@destroy']);
+          Route::get('partidos/show/{id}',['as' => 'partidos.ver', 'uses' => 'PartidoCalendarioController@show']);
          Route::get('partidos/edit/{id}',['as' => 'partidos.edit', 'uses' => 'PartidoCalendarioController@edit']);
          Route::put('partidos/update/{id}',['as' => 'partidos.update', 'uses' => 'PartidoCalendarioController@update']);
 

@@ -105,11 +105,15 @@ use Carbon\Carbon;
 		      					 	  $key_email=$redis->hget($log,'email');
 		      					 	  $key_username=$redis->hget($log,'username');
 		      					 	  $key_login=$redis->hget($log,'login');
+		      					 	  if($key_login2>$imes and $key_login2<$fmes){
 		      					 	?>
 		      					 			<td class="time_log">{{$key_login}}</td>
 		      					 			<td>{{$key_username}}</td>
 											<td>{{$key_email}}</td>
-		      								
+
+									<?php	
+									    }	
+		      							?>	
 		      					 	</tr>
 		      					 	 	@endforeach	
 		      					</table>

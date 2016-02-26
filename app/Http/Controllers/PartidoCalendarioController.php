@@ -100,7 +100,8 @@ class PartidoCalendarioController extends Controller
      */
     public function show($id)
     {
-        //
+         $partidos=PartidoCalendario::find($id);
+         return view('admin.partidos.verpartido',['partidos'=>$partidos]);
     }
 
     /**

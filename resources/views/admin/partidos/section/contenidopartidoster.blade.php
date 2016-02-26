@@ -6,7 +6,7 @@ $midia=\Carbon\Carbon::today();
 
   ?>
  @foreach($partidos as $partido)
- 	 @if($partido->partido_ter==0)
+ 	 @if($partido->partido_ter==1)
 			          	     	<div class="col-lg-3 col-md-6 col-sm-6">
 			          	     		<div class="caja_section caja_partido">
 
@@ -31,6 +31,7 @@ $midia=\Carbon\Carbon::today();
 				                                   ,{{ $partido->fecha_partido->format('d/m/y')}}
 
 				                                   </p> 
+
 			          	     			  	   </div>
 			          	     			  	   <div class="col-xs-5 col-sm-5 spd spi">
 			          	     			  	  		
@@ -40,12 +41,12 @@ $midia=\Carbon\Carbon::today();
 			          	     			  <div class="area_equipos">
 			          	     			  	  <div class="col-xs-6 col-sm-6 spd spi">
 				          	     			  	  <h3 class="n_equipo">{{ $partido->EquipoCasa->nombre_equipo}}</h3>
-				          	     			  	  <span class="ima_equipo" style="background: url('../../assets/img/{{ $partido->EquipoCasa->alias}}.svg') no-repeat center;"></span>
+				          	     			  	  <span class="ima_equipo" style="background: url('../assets/img/{{ $partido->EquipoCasa->alias}}.svg') no-repeat center;"></span>
 				          	     			  	  <p>Casa</p>
 			          	     			  	  </div>
 			          	     			  	  <div class="col-xs-6 col-sm-6 spd spi">
 				          	     			  	  <h3 class="n_equipo">{{ $partido->EquipoVisita->nombre_equipo}}</h3>
-				          	     			  	  <span class="ima_equipo" style="background: url('../../assets/img/{{ $partido->EquipoVisita->alias}}.svg') no-repeat center;"></span>
+				          	     			  	  <span class="ima_equipo" style="background: url('../assets/img/{{ $partido->EquipoVisita->alias}}.svg') no-repeat center;"></span>
 				          	     			  	  <p>Visita</p>
 			          	     			  	  </div>
 			          	     			  </div>
@@ -106,7 +107,6 @@ $midia=\Carbon\Carbon::today();
 															@endif	
 						          	     			  </div>
 						          	     			  <div class="col-sm-6 spd spi">
-
 						          	     			  	  <span class="ico_op dropdown">
 								                                    <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
 								                                  <ul class="dropdown-menu dropdown-menu-op">
@@ -124,9 +124,6 @@ $midia=\Carbon\Carbon::today();
 							          	     			  	    <span class="ico_op">
 									                                   {!!link_to_route('partidos.edit', $title = '', $parameters = $partido->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
 									                              </span>
-									                               <span class="ico_op">
-								          	     			     {!!link_to_route('partidos.ver', $title = '', $parameters = $partido->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-eye-open'])!!}
-								          	     			   </span>
 						          	     			  </div>
 			          	     			
 			          	     			  </div>

@@ -3,7 +3,7 @@
 @section('content')
   @include('admin.sections.menuequipos')
       <div class="col-sm-12">
-          <h1 class="page-header">Nuevo Equipo</h1>
+          <h1 class="page-header">Editar Partido {{$partidos->EquipoCasa->nombre_equipo}}-{{$partidos->EquipoVisita->nombre_equipo}}</h1>
              <div class="col-sm-6 spi">
              	 <div class="caja_section">
                <div class="col-sm-12">

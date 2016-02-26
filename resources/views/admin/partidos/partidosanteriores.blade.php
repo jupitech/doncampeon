@@ -40,7 +40,7 @@
 						          </div>
 
 			          <div class="col-sm-12 spd spi">
-			          	     @include('admin.partidos.section.contenidopartidos')
+			          	     @include('admin.partidos.section.contenidopartidoster')
 			          </div>
 		          </div>
           </div>
