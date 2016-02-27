@@ -56,6 +56,9 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
        Route::post('partidofav/act', 'Api\ApiPartidoFavoritoController@store');
         Route::get('partidofav/ver/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@show');
         Route::put('partidofav/nact/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@update');
+
+        //Agregando retos puntos por usuario
+        Route::post('partidoreto/puntos', 'Api\ApiRetoPuntosController@store');
 });
 
 //}); 
