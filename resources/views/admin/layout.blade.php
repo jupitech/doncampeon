@@ -30,6 +30,7 @@
       {!! Html::script('assets/js/moment-timezone.js') !!}
      {!! Html::script('assets/js/jquery.countdown.js') !!}
      {!! Html::script('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
+       {!! Html::script('assets/js/charts/Chart.js') !!}
      <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

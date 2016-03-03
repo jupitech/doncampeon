@@ -124,10 +124,181 @@
                             
                            	 </div>
                        </div>
+                        <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-7 col-lg-offset-0 spi">
+                          <div class="caja_section caja_partido">
+                          
+                                 <div class="area_chart">
+                                        <div class="col-sm-12">
+                                        
+                                            <h4>Retos Hoy</h4>
+                                            <canvas class="can_hoy" id="LineChart" height="200"></canvas>
+                                        </div>
+                                         <div class="col-sm-6">
+                                           <h4>Retos Semana</h4>
+                                           <canvas id="LineChartse"></canvas>
+
+                                         </div>
+                                         <div class="col-sm-6">
+                                            <h4>Retos Mes</h4>
+                                             <canvas id="LineChartm"></canvas>
+                                         </div>
+                                  </div>        
+                                    
+
+                                      <?php
+                                      use Carbon\Carbon;
+                                        $hoy=Carbon::today();
+                                       $ayer=Carbon::today()->subDay(1);
+                                       $mañana=Carbon::today()->addDay(1);
+                                       $semana=Carbon::today()->startOfWeek();
+                                       $imes=Carbon::today()->startOfMonth();
+                                       $fmes=Carbon::today()->endOfMonth();
+                                        
+                                       $rpuntos_hoy_hora = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%H") as mihora'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $hoy)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%H")'))
+                                                 ->lists(DB::raw('DATE_FORMAT(created_at, "%H") as mihora'));
+
+                                      $rpuntos_hoy_retos = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%H") as mihora'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $hoy)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%H")'))
+                                                 ->lists('contaretos');
+
+
+                                      $rpuntos_semana_dia = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%W") as midia'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $semana)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%W")'))
+                                                 ->orderBy('midia','ASC')
+                                                 ->lists(DB::raw('DATE_FORMAT(created_at, "%W") as midia'));
+
+                                      $rpuntos_semana_retos = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%W") as midia'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $semana)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%W")'))
+                                                 ->orderBy('contaretos','ASC')
+                                                 ->lists('contaretos');  
+
+                                      $rpuntos_mes_dia = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%d") as midia'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $imes)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%d")'))
+                                                 ->orderBy('midia','ASC')
+                                                 ->lists(DB::raw('DATE_FORMAT(created_at, "%d") as midia'));
+
+                                      $rpuntos_mes_retos = DB::table('partido_retopuntos')
+                                                 ->select(DB::raw('count(*) as contaretos, id'),DB::raw('DATE_FORMAT(created_at, "%d") as midia'),DB::raw('DATE_FORMAT(created_at, "%T") as mitiempo'))
+                                                 ->where('partido_id','=',$partidos->id)
+                                                 ->where('created_at','>=', $imes)
+                                                 ->groupBy(DB::raw('DATE_FORMAT(created_at, "%d")'))
+                                                 ->orderBy('contaretos','ASC')
+                                                 ->lists('contaretos');                 
+                                
+                                      ?>
+
+                                     <script>
+                                            (function() {
+                                                 var ctx = document.getElementById('LineChart').getContext('2d');
+                                                 var options = {
+                                                 responsive: true,
+                                                  maintainAspectRatio: false,
+                                                  showTooltip: true,
+                                                 tooltipTemplate: "<%= value %>",
+                                                 bezierCurve: true,
+                                                 bezierCurveTension : 0.3,
+                                                  pointHitDetectionRadius : 20,
+                                                 }
+                                                 var chart = {
+                                                    labels: {!! json_encode( $rpuntos_hoy_hora) !!},
+                                                    datasets: [{
+                                                        data: {{ json_encode( $rpuntos_hoy_retos ) }},
+                                                        fillColor : "rgba(28, 162, 223,0.3)",
+                                                        strokeColor : "rgba(28, 162, 223,0.5)",
+                                                        pointColor : "rgb(141, 202, 61)",
+                                                         pointStrokeColor: "#fff",
+                                                         pointHighlightFill: "#fff",
+                                                         pointHighlightStroke: "rgba(220,220,220,1)",
+
+                                                    }]
+                                                 };
+
+                                                 new Chart(ctx).Line(chart,options);
+                                            })();
+                                        </script>
+
+                                        <script>
+                                            (function() {
+                                                 var ctxse = document.getElementById('LineChartse').getContext('2d');
+                                                 var optionsse = {
+                                                 responsive: true,
+                                                  maintainAspectRatio: false,
+                                                  showTooltip: true,
+                                                 tooltipTemplate: "<%= value %>",
+                                                 bezierCurve: true,
+                                                 bezierCurveTension : 0.4,
+                                                 }
+                                                 var chartse = {
+                                                    labels: {!! json_encode($rpuntos_semana_dia) !!},
+                                                    datasets: [{
+                                                        data: {{ json_encode( $rpuntos_semana_retos ) }},
+                                                        fillColor : "rgba(28, 162, 223,0.3)",
+                                                        strokeColor : "rgba(28, 162, 223,0.5)",
+                                                        pointColor : "rgb(141, 202, 61)",
+                                                         pointStrokeColor: "#fff",
+                                                         pointHighlightFill: "#fff",
+                                                         pointHighlightStroke: "rgba(220,220,220,1)",
+                                                    }]
+                                                 };
+
+                                                 new Chart(ctxse).Line(chartse,optionsse);
+                                            })();
+                                        </script>
+
+                                         <script>
+                                            (function() {
+                                                 var ctxm = document.getElementById('LineChartm').getContext('2d');
+                                                 var optionsm = {
+                                                 responsive: true,
+                                                  maintainAspectRatio: false,
+                                                  showTooltip: true,
+                                                 tooltipTemplate: "<%= value %>",
+                                                 bezierCurve: true,
+                                                 bezierCurveTension : 0.4,
+                                                 }
+                                                 var chartm = {
+                                                    labels: {!! json_encode($rpuntos_mes_dia) !!},
+                                                    datasets: [{
+                                                        data: {{ json_encode( $rpuntos_mes_retos ) }},
+                                                        fillColor : "rgba(28, 162, 223,0.3)",
+                                                        strokeColor : "rgba(28, 162, 223,0.5)",
+                                                        pointColor : "rgb(141, 202, 61)",
+                                                         pointStrokeColor: "#fff",
+                                                         pointHighlightFill: "#fff",
+                                                         pointHighlightStroke: "rgba(220,220,220,1)",
+                                                    }]
+                                                 };
+
+                                                 new Chart(ctxm).Line(chartm,optionsm);
+                                            })();
+                                        </script>
+
+
+                                 </div>
+                          
+
+                          </div>
+                        
              </div>
 
             <div class="col-sm-12 spi spd">
-                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0 spi">
+                <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-6 col-lg-offset-0 spi">
                          <div class="caja_section caja_partido">
                                <div class="caja_header">
                                  <span class="ico_puntos"></span>
@@ -136,15 +307,16 @@
                                <div class="col-sm-12 spd spi ptable">
                                  <?php
                                  $retopuntos=\Doncampeon\Models\PartidoRetoPuntos::with('PerfilUsuario')->orderBy('created_at', 'ASC')->where('partido_id',$partidos->id)->get();
-
+                                  $probabilidades=\Doncampeon\Models\ProbabilidadesLigas::orderBy('created_at', 'ASC')->where('ligas_id',$partidos->liga)->get();
                                   ?>
                                   <table id="tabledonc" class="table dataTable" cellspacing="0" width="100%">
                                     <thead>
                                           <tr>
                                           <th>Campeón</th>
-                                           <th>C</th>
-                                            <th>V</th>
-                                            <th>Puntos</th>
+                                           <th class="nume">C</th>
+                                            <th class="nume">V</th>
+                                            <th class="nume">Puntos</th>
+                                            <th>Probabilidad</th>
                                             <th>Fecha y Hora</th>
                                             <th>Estado</th>
                                           </tr>
@@ -153,9 +325,18 @@
                                       @foreach($retopuntos as $retopunto)
                                            <tr>
                                               <td>{{$retopunto->PerfilUsuario->username}}</td>
-                                             <td>{{$retopunto->marcador_casa}}</td>
-                                             <td>{{$retopunto->marcador_visita}}</td>
-                                             <td>{{$retopunto->cantidad_reto}}</td>
+                                             <td class="nume">{{$retopunto->marcador_casa}}</td>
+                                             <td class="nume">{{$retopunto->marcador_visita}}</td>
+                                             <td class="nume encele"><strong>{{$retopunto->cantidad_reto}}</strong></td>
+                                             <td>
+                                               @foreach($probabilidades as $probabilidad)
+                                                @if($probabilidad->marcador_casa==$retopunto->marcador_casa and $probabilidad->marcador_visita==$retopunto->marcador_visita)
+                                                   
+                                                 X {{$probabilidad->duplicador}} = <strong>{{$retopunto->cantidad_reto*$probabilidad->duplicador}}</strong>
+                                                    
+                                                @endif
+                                               @endforeach
+                                             </td>
                                              <td>{{$retopunto->created_at->format('d/m/y h:i:s A' )}}</td>
                                              <td></td>
                                            </tr>
@@ -174,7 +355,7 @@
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
             },
-               "order": [[ 4, "desc" ]],
+               "order": [[ 5, "desc" ]],
               "info":     false
         } );
 } );

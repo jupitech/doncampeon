@@ -154,6 +154,8 @@ return [
         /*Mail*/
         Snowfire\Beautymail\BeautymailServiceProvider::class,
 
+        Fx3costa\Laravelchartjs\Providers\ChartjsServiceProvider::class,
+
     ],
 
     /*

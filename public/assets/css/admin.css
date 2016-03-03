@@ -1186,6 +1186,21 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       .ptable table.dataTable.no-footer{
          border-bottom: 1px solid #ccc !important;
       }
+      .ptable .nume{
+        text-align: center !important;
+      }
+      .encele{
+        color: #1CA2DF !important;
+      }
+       .area_chart{
+        position: relative;
+        float: left;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+       }
+
+      
       .f_partido{
         float: left;
         width: 100%;
