@@ -46,7 +46,7 @@ class ApiPartidoFavoritoController extends Controller
                  //Traendo partidos que no han sido terminados en esta semana
         $partidofav=PartidoFavorito::where('user_id',$user_id)->where('partido_id',$partido_id)->first();
         if(!$partidofav){
-             return response()->json(['mensaje' =>  'No se encuentran partidos favoritos actualmente','codigo'=>404],404);
+             return response()->json(['error' =>  '0'],400);
         }
          return response()->json(['datos' =>  $partidofav],200);
     }

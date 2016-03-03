@@ -39,6 +39,8 @@ class ApiPartidoCalendarioController extends Controller
         
     }
 
+    
+
        public function indexhoy()
     {
           //Traendo partidos que no han sido terminados en este dia
