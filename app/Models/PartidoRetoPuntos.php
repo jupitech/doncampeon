@@ -26,4 +26,8 @@ class PartidoRetoPuntos extends Model
      * @var array
      */
     protected $hidden = ['created_at','updated_at'];
+
+     public function PerfilUsuario(){
+        return $this->hasOne('\Doncampeon\User','id','user_id');
+    }
 }

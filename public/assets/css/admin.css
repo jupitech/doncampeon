@@ -1154,6 +1154,38 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         width: 100%;
         border-bottom: 1px solid #eee;
       }
+      .caja_header{
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+      .caja_header h3{
+        float: left;
+        padding:15px 10px 15px 0;
+        font-size: 14px;
+        color: #1CA2DF;
+        font-weight: bold;
+        letter-spacing: 0.03em;
+        margin:0;
+      }
+      .ico_puntos{
+        float: left;
+        width: 45px;
+        height: 45px;
+        padding: 5px;
+        background: url('../img/Puntos.svg') no-repeat center;
+        background-size: 25px;
+      }
+      .ptable{
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .ptable table.dataTable thead th, .ptable table.dataTable thead td{
+        border-bottom: 1px solid #ccc !important;
+      }
+      .ptable table.dataTable.no-footer{
+         border-bottom: 1px solid #ccc !important;
+      }
       .f_partido{
         float: left;
         width: 100%;
