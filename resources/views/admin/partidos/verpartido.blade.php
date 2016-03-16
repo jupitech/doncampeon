@@ -16,7 +16,8 @@
             @include('admin.sections.errors')
               <div class="col-sm-12 spd spi">
                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-5 col-lg-offset-0 spi">
-                     
+                   {{-- Area de partido para aplicar marcador --}}
+                     <div class="col-sm-12 spd spi">
                            	 <div class="caja_section caja_partido">
                              
                                  <div class="area_date">
@@ -123,7 +124,91 @@
                             
                             
                            	 </div>
-                       </div>
+                        </div>
+                        {{-- Area de Total de retos realizados para el partido --}}
+                        <div class="col-sm-12 spd spi">
+                          <div class="caja_section caja_partido">
+                               <div class="col-sm-6 spd spi">  
+                                        <div class="col-sm-6 spd spi">
+                                             <div class="retos_totales">
+                                               <div class="img_rpuntos"></div>
+                                               <?php
+                                                     $count_rpuntos=\Doncampeon\Models\PartidoRetoPuntos::where('partido_id',$partidos->id)->count();  
+                                                     $suma_rpuntos=\Doncampeon\Models\PartidoRetoPuntos::where('partido_id',$partidos->id)->sum('cantidad_reto');  
+                                                     
+                                                     $count_mcasa=DB::table('partido_retopuntos')
+                                                                   ->where('partido_id','=',$partidos->id)
+                                                                   ->whereRaw('marcador_casa > marcador_visita')
+                                                                   ->count();
+                                                     $count_mvisita=DB::table('partido_retopuntos')
+                                                                   ->where('partido_id','=',$partidos->id)
+                                                                   ->whereRaw('marcador_visita > marcador_casa')
+                                                                   ->count();
+                                                     $count_empate=DB::table('partido_retopuntos')
+                                                                   ->where('partido_id','=',$partidos->id)
+                                                                   ->whereRaw('marcador_casa = marcador_visita')
+                                                                   ->count();
+                                                ?>
+                                                <h5>{{$count_rpuntos}}</h5>
+                                                <h3>{{$suma_rpuntos}}</h3>
+                                             </div>
+                                        </div>
+                                        <div class="col-sm-6  spd spi">
+                                             <div class="retos_totales">
+                                                 <div class="img_rtukis"></div>
+                                             </div>
+                                        </div>
+                              </div>
+                              <div class="col-sm-6 spd spi">
+                                <div class="caja_header">
+                                  <h3> Comparar marcadores</h3>
+                                </div>
+                                 <div class="graf_retocir">
+                                  <canvas class="can_hoy" id="PieChart" height="180"></canvas>
+                                     <script>
+                                            (function() {
+                                                 var ctx = document.getElementById('PieChart').getContext('2d');
+                                                 var options = {
+                                                            segmentShowStroke : true,
+                                                            segmentStrokeColor : "#fff",
+                                                            segmentStrokeWidth : 2,
+                                                            percentageInnerCutout : 50,
+                                                            animationSteps : 100,
+                                                            animationEasing : "easeOutBounce",
+                                                            animateRotate : true,
+                                                            animateScale : false,
+                                                            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+                                                 }
+                                                 var chart = [
+                                                    {
+                                                            value: {{$count_mcasa}},
+                                                            color:"#F7464A",
+                                                            highlight: "#FF5A5E",
+                                                            label: "Casa {{ $partidos->EquipoCasa->nombre_equipo}}"
+                                                        },
+                                                        {
+                                                            value: {{$count_mvisita}},
+                                                            color: "#46BFBD",
+                                                            highlight: "#5AD3D1",
+                                                            label: "Visita {{ $partidos->EquipoVisita->nombre_equipo}}"
+                                                        },
+                                                        {
+                                                            value: {{$count_empate}},
+                                                            color: "#ccc",
+                                                            highlight: "#bbb",
+                                                            label: "Empate"
+                                                        }
+                                                 ];
+
+                                                 new Chart(ctx).Pie(chart,options);
+                                            })();
+                                        </script>
+                                 </div>
+                              </div>
+                          </div>
+                        </div>
+                   </div>
                         <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-7 col-lg-offset-0 spi">
                           <div class="caja_section caja_partido">
                           
@@ -147,7 +232,7 @@
 
                                       <?php
                                       use Carbon\Carbon;
-                                        $hoy=Carbon::today();
+                                       $hoy=Carbon::today();
                                        $ayer=Carbon::today()->subDay(1);
                                        $mañana=Carbon::today()->addDay(1);
                                        $semana=Carbon::today()->startOfWeek();
@@ -174,7 +259,7 @@
                                                  ->where('partido_id','=',$partidos->id)
                                                  ->where('created_at','>=', $semana)
                                                  ->groupBy(DB::raw('DATE_FORMAT(created_at, "%W")'))
-                                                 ->orderBy('midia','ASC')
+                                                 ->orderBy('created_at','ASC')
                                                  ->lists(DB::raw('DATE_FORMAT(created_at, "%W") as midia'));
 
                                       $rpuntos_semana_retos = DB::table('partido_retopuntos')
@@ -182,7 +267,7 @@
                                                  ->where('partido_id','=',$partidos->id)
                                                  ->where('created_at','>=', $semana)
                                                  ->groupBy(DB::raw('DATE_FORMAT(created_at, "%W")'))
-                                                 ->orderBy('contaretos','ASC')
+                                                 ->orderBy('created_at','ASC')
                                                  ->lists('contaretos');  
 
                                       $rpuntos_mes_dia = DB::table('partido_retopuntos')
@@ -198,7 +283,7 @@
                                                  ->where('partido_id','=',$partidos->id)
                                                  ->where('created_at','>=', $imes)
                                                  ->groupBy(DB::raw('DATE_FORMAT(created_at, "%d")'))
-                                                 ->orderBy('contaretos','ASC')
+                                                   ->orderBy('created_at','ASC')
                                                  ->lists('contaretos');                 
                                 
                                       ?>
@@ -298,7 +383,25 @@
              </div>
 
             <div class="col-sm-12 spi spd">
+             <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 spi">
+             {{-- Top Retos --}}
+                         <div class="caja_section caja_partido">
+                            <ul class="area_eltop">
+                                    <?php
+                                          $top_rpuntos=\Doncampeon\Models\PartidoRetoPuntos::orderBy('cantidad_reto','DESC')->where('partido_id',$partidos->id)->limit(7)->get(); 
+                                    ?>
+                                    @foreach($top_rpuntos as $top_rpunto)
+                                       <li>
+                                         <p>{{$top_rpunto->PerfilUsuario->username}}</p>
+                                         <p class="nume encele"><strong>{{$top_rpunto->cantidad_reto}}</strong></p>
+                                       </li>
+                                        @endforeach
+                            </ul>
+                         </div>
+
+             </div>
                 <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-6 col-lg-offset-0 spi">
+                         
                          <div class="caja_section caja_partido">
                                <div class="caja_header">
                                  <span class="ico_puntos"></span>
@@ -341,6 +444,47 @@
                                              <td></td>
                                            </tr>
                                        @endforeach
+                                    </tbody>
+                                  </table>
+                               </div>
+                         </div>
+                </div>
+
+                   <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-6 col-lg-offset-0 spi">
+                         <div class="caja_section caja_partido">
+                               <div class="caja_header">
+                                 <span class="ico_tukis"></span>
+                                 <h3>Retos en Tukis</h3>
+                               </div>
+                               <div class="col-sm-12 spd spi ptable">
+                                 <?php
+                                
+                                  ?>
+                                  <table id="tabledonc" class="table dataTable" cellspacing="0" width="100%">
+                                    <thead>
+                                          <tr>
+                                          <th>Campeón</th>
+                                           <th class="nume">C</th>
+                                            <th class="nume">V</th>
+                                            <th class="nume">Puntos</th>
+                                            <th>Probabilidad</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Estado</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                    
+                                           <tr>
+                                              <td></td>
+                                             <td class="nume"></td>
+                                             <td class="nume"></td>
+                                             <td class="nume encele"><strong></strong></td>
+                                             <td>
+                                             </td>
+                                             <td></td>
+                                             <td></td>
+                                           </tr>
+                                     
                                     </tbody>
                                   </table>
                                </div>

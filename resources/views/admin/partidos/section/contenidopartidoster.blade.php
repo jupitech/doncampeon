@@ -6,7 +6,7 @@ $midia=\Carbon\Carbon::today();
 
   ?>
  @foreach($partidos as $partido)
- 	 @if($partido->partido_ter==1)
+ 	 @if($partido->partido_ter==0)
 			          	     	<div class="col-lg-3 col-md-6 col-sm-6">
 			          	     		<div class="caja_section caja_partido">
 

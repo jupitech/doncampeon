@@ -156,6 +156,8 @@ return [
 
         Fx3costa\Laravelchartjs\Providers\ChartjsServiceProvider::class,
 
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
+
     ],
 
     /*

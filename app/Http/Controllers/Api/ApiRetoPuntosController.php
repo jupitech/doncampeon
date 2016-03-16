@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use Doncampeon\Models\PartidoCalendario;
 use Doncampeon\Models\PartidoRetoPuntos;
+use Doncampeon\Models\UserGame;
 
 class ApiRetoPuntosController extends Controller
 {
@@ -45,7 +46,18 @@ class ApiRetoPuntosController extends Controller
                 'marcador_visita' =>$request['marcador_visita'],
                 'cantidad_reto' =>$request['cantidad_reto'],
             ]);
-            $retopuntos->save();
+        $retopuntos->save();
+        $usergame=UserGame::where('user_id',$retopuntos->user_id)->first();
+        $puntos=$usergame->puntos_acumulados;
+
+        $restar_puntos=$puntos-$request['cantidad_reto'];
+
+
+        $usergame->fill([
+                'puntos_acumulados' => $restar_puntos,
+            ]);
+        $usergame->save();
+
     }
 
     /**

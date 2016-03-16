@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f8e48caee94f811370cdaa6308b4410d",
-    "content-hash": "01e00cd16c23d826c001f8cc34ca1f09",
+    "hash": "354787476a614c41b8d16e8aee804ad6",
+    "content-hash": "f291bd2223adcbcb707da37b89cdacdd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -49,6 +49,128 @@
                 "stack"
             ],
             "time": "2014-07-28 07:22:35"
+        },
+        {
+            "name": "backup-manager/backup-manager",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/backup-manager.git",
+                "reference": "e793277e6f6efae6a31c7abbd8028cae7e151201"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/backup-manager/zipball/e793277e6f6efae6a31c7abbd8028cae7e151201",
+                "reference": "e793277e6f6efae6a31c7abbd8028cae7e151201",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "~1.0",
+                "php": ">=5.5.9",
+                "symfony/process": "~2.1||~3.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "~3.0",
+                "dropbox/dropbox-sdk": "~1.1",
+                "league/flysystem-aws-s3-v3": "~1.0",
+                "league/flysystem-dropbox": "~1.0",
+                "league/flysystem-rackspace": "~1.0",
+                "league/flysystem-sftp": "~1.0",
+                "mockery/mockery": "~0.9",
+                "phpspec/phpspec": "~2.1",
+                "satooshi/php-coveralls": "~0.6"
+            },
+            "suggest": {
+                "league/flysystem-aws-s3-v3": "AwsS3 and GoogleCS adapter support.",
+                "league/flysystem-dropbox": "Dropbox adapter support.",
+                "league/flysystem-rackspace": "Rackspace adapter support.",
+                "league/flysystem-sftp": "Sftp adapter support."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "http://heybigname.com/"
+                },
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl",
+                    "homepage": "http://heybigname.com/"
+                }
+            ],
+            "description": "A framework agnostic database backup manager with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more with drivers for popular frameworks.",
+            "time": "2016-02-05 10:01:19"
+        },
+        {
+            "name": "backup-manager/laravel",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/laravel.git",
+                "reference": "d7e6d12d24b8a27f58cf5eccb1ac943104c09856"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/d7e6d12d24b8a27f58cf5eccb1ac943104c09856",
+                "reference": "d7e6d12d24b8a27f58cf5eccb1ac943104c09856",
+                "shasum": ""
+            },
+            "require": {
+                "backup-manager/backup-manager": "^1.0",
+                "illuminate/console": "^4.0||^5.0",
+                "illuminate/container": "^4.0||^5.0",
+                "illuminate/support": "^4.0||^5.0",
+                "php": ">=5.5.0",
+                "symfony/process": "^2.0||^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "satooshi/php-coveralls": "~0.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "http://heybigname.com/"
+                },
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl",
+                    "homepage": "http://heybigname.com/"
+                }
+            ],
+            "description": "Database backup manager seamlessly integrated with Laravel 4 or 5 with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more.",
+            "time": "2016-02-22 10:52:12"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -407,6 +529,45 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "dropbox/dropbox-sdk",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dropbox/dropbox-sdk-php.git",
+                "reference": "6901f8122458e0ce7e391468c0cf6cca465bd0ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dropbox/dropbox-sdk-php/zipball/6901f8122458e0ce7e391468c0cf6cca465bd0ee",
+                "reference": "6901f8122458e0ce7e391468c0cf6cca465bd0ee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">= 5.3"
+            },
+            "require-dev": {
+                "apigen/apigen": "2.8.2",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.0.0RC3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dropbox": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Dropbox SDK for PHP",
+            "keywords": [
+                "dropbox"
+            ],
+            "time": "2015-06-29 21:47:57"
         },
         {
             "name": "fx3costa/laravelchartjs",
@@ -1041,6 +1202,52 @@
                 "storage"
             ],
             "time": "2016-02-19 15:35:38"
+        },
+        {
+            "name": "league/flysystem-dropbox",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-dropbox.git",
+                "reference": "4f35668411642e8f8513c58f4906e08dfc0a5a07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-dropbox/zipball/4f35668411642e8f8513c58f4906e08dfc0a5a07",
+                "reference": "4f35668411642e8f8513c58f4906e08dfc0a5a07",
+                "shasum": ""
+            },
+            "require": {
+                "dropbox/dropbox-sdk": "~1.1",
+                "league/flysystem": "~1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\Dropbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Flysystem adapter for Dropbox",
+            "time": "2015-12-19 13:50:27"
         },
         {
             "name": "maximebf/debugbar",
@@ -1856,7 +2063,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Snowfire/Beautymail/zipball/c2d49af498bda74393b8eee7585870f81df9ef48",
+                "url": "https://api.github.com/repos/Snowfire/Beautymail/zipball/41ab97db9abe1d2396bee0eed633e076d963306e",
                 "reference": "c2d49af498bda74393b8eee7585870f81df9ef48",
                 "shasum": ""
             },

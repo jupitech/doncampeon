@@ -1161,12 +1161,19 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       }
       .caja_header h3{
         float: left;
-        padding:15px 10px 15px 0;
+        padding:15px 10px 15px 5px;
         font-size: 14px;
         color: #1CA2DF;
         font-weight: bold;
         letter-spacing: 0.03em;
         margin:0;
+      }
+      .table_top{
+        float: left;
+        width: 100%;
+      }
+      .table_top .table{
+        margin:0 !important;
       }
       .ico_puntos{
         float: left;
@@ -1174,6 +1181,14 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         height: 45px;
         padding: 5px;
         background: url('../img/Puntos.svg') no-repeat center;
+        background-size: 25px;
+      }
+       .ico_tukis{
+        float: left;
+        width: 45px;
+        height: 45px;
+        padding: 5px;
+        background: url('../img/Tukis.svg') no-repeat center;
         background-size: 25px;
       }
       .ptable{
@@ -1192,6 +1207,46 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       .encele{
         color: #1CA2DF !important;
       }
+
+
+      .retos_totales{
+        float: left;
+        width: 100%;
+        padding:15px 0;
+        border-right: 1px solid #eee;
+      }
+       .retos_totales h5{
+        float: left;
+        width: 100%;
+          font-size: 18px;
+          text-align: center;
+          font-weight: bold;
+          margin-bottom: 0;
+            margin-top: 0;
+       }
+       .retos_totales h3{
+        float: left;
+        width: 100%;
+          font-size: 25px;
+          text-align: center;
+          font-weight: bold;
+          color: #1CA2DF;
+          margin-top: 10px;
+       }
+        .img_rpuntos{
+          float: left;
+          width: 100%;
+          height: 150px;
+          background: url('../img/Puntos.svg') no-repeat center;
+           background-size: 100px;
+        }
+         .img_rtukis{
+          float: left;
+          width: 100%;
+          height: 150px;
+          background: url('../img/Tukis.svg') no-repeat center;
+           background-size: 100px;
+        }
        .area_chart{
         position: relative;
         float: left;
@@ -1349,6 +1404,40 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
             letter-spacing: 0.03em;
             background-size: 15px;
        }
+
+       .area_eltop{
+        float: left;
+        padding: 10px;
+        margin:0;
+        list-style: none;
+        display: table;
+        width: 100%;
+
+       }
+       .area_eltop li{
+        display: table-cell;
+        border-left: 1px solid #eee;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+       }
+       .area_eltop li:last-child{
+         border-right: 1px solid #eee;
+       }
+        .area_eltop li p{
+           padding:10px 7px;
+          float: left;
+          width: 50%;
+          text-align: left;
+          margin:0;
+        }
+         .area_eltop li p.encele{
+          text-align: right;
+         }
+         .graf_retocir{
+          float: left;
+          width: 100%;
+          margin: 7px 0;
+         }
 
        /*********probabilidades************/
        .area_probabilidades{
