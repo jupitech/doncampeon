@@ -27,7 +27,9 @@ html{
     left: 0;
     right: 0;
     height: 280px;
-}
+    overflow: hidden;
+    background: rgba(255,255,255,0.8);
+},
 .panel-body{
 	background: #fff;
 }
@@ -37,14 +39,14 @@ html{
 }
 .form-group label{
  color: #777;
- font-weight: 600;
- letter-spacing: 0.03em;
- font-size: 13px;
+ font-weight: 400;
+ letter-spacing: 0em;
+ font-size: 15px;
 }
 .form-control{
-	background: #fff;
+	background: transparent;
 	border: none; !important;
-	border-bottom: 1px solid #aeddf2 !important;
+	border-bottom: 1px solid #1CA2DF !important;
 	    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0);
     border-radius: 0 !important;
