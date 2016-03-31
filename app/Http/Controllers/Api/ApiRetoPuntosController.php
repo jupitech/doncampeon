@@ -17,20 +17,11 @@ use Carbon\Carbon;
 use Doncampeon\Models\PartidoCalendario;
 use Doncampeon\Models\PartidoRetoPuntos;
 use Doncampeon\Models\UserGame;
+use Doncampeon\Models\Juego;
 
 class ApiRetoPuntosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-   
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -39,24 +30,75 @@ class ApiRetoPuntosController extends Controller
      */
     public function store(Request $request)
     {
-        $retopuntos=PartidoRetoPuntos::create([
-                'user_id' =>$request['user_id'],
-                'partido_id' =>$request['partido_id'],
-                'marcador_casa' =>$request['marcador_casa'],
-                'marcador_visita' =>$request['marcador_visita'],
-                'cantidad_reto' =>$request['cantidad_reto'],
-            ]);
-        $retopuntos->save();
-        $usergame=UserGame::where('user_id',$retopuntos->user_id)->first();
-        $puntos=$usergame->puntos_acumulados;
-
-        $restar_puntos=$puntos-$request['cantidad_reto'];
+        /**
+        * Ingresando los puntos del usuario al partido
+        */
+        $enRedis=Redis::connection();
+        $userid=$request['user_id'];
+        $cantidadreto=$request['cantidad_reto'];
+         //++Buscando la información del usuario de sus puntos en la db
+        $game_parametro=Juego::first();
+        $usergame=UserGame::where('user_id',$userid)->first();
 
 
-        $usergame->fill([
-                'puntos_acumulados' => $restar_puntos,
-            ]);
-        $usergame->save();
+      if( $cantidadreto <= $usergame->puntos_acumulados){
+
+                $retopuntos=PartidoRetoPuntos::create([
+                        'user_id' =>$request['user_id'],
+                        'partido_id' =>$request['partido_id'],
+                        'marcador_casa' =>$request['marcador_casa'],
+                        'marcador_visita' =>$request['marcador_visita'],
+                        'cantidad_reto' =>$request['cantidad_reto'],
+                    ]);
+                $retopuntos->save();
+                  
+                //++Asignando los puntos actuales acumulados
+                $puntos=$usergame->puntos_acumulados;
+
+                //++Restando puntos según la apuesta
+                $restar_puntos=$puntos-$request['cantidad_reto'];
+                
+               if($restar_puntos<= 0){
+
+                    $puntosrecompensa= $game_parametro->puntos_recompensa;
+                     //++Agregar puntos recompensa
+                        $usergame->fill([
+                                'puntos_acumulados' =>  $puntosrecompensa,
+                            ]);
+                        $usergame->save();
+
+                } else{
+                        //++Puntos restados
+                        $usergame->fill([
+                                'puntos_acumulados' => $restar_puntos,
+                            ]);
+                        $usergame->save();
+                }
+                //Contador de retos por puntos
+                $elkey='con_tempuntos:'.$userid;
+                $existe=$enRedis->exists($elkey);
+                $puntosas=$usergame->puntos_acumulados;
+                $recompensa=$puntosas+$game_parametro->recompensa_pjuegos;
+                if($existe==1){ 
+                    //Si llega a no. retos para recompensa
+                    $enRedis->incr($elkey);
+                    if($enRedis->get($elkey)==$game_parametro->recompensa_nojuegos){
+                          //++Puntos restados
+                        $usergame->fill([
+                                'puntos_acumulados' => $recompensa,
+                            ]);
+                        $usergame->save();
+                        $enRedis->set($elkey,0);  
+                    }
+                    
+                }else{
+                    $enRedis->set($elkey,1);    
+                }    
+                
+
+         } else{
+                  return response()->json(['mensaje' =>  'No puedes agregar puntos mayores a los puntos acumulados','codigo'=>404],404);
+            }
 
     }
 
