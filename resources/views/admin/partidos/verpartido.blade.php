@@ -421,12 +421,12 @@
                                             <th class="nume">Puntos</th>
                                             <th>Probabilidad</th>
                                             <th>Fecha y Hora</th>
-                                            <th>Estado</th>
+                                            <th><center>Resultado</center></th>
                                           </tr>
                                     </thead>
                                     <tbody>
                                       @foreach($retopuntos as $retopunto)
-                                           <tr>
+                                           <tr  @if($retopunto->resultado_reto==1) class="estilo_gano" @elseif($retopunto->resultado_reto==2) class="estilo_perdio" @endif>
                                               <td>{{$retopunto->PerfilUsuario->username}}</td>
                                              <td class="nume">{{$retopunto->marcador_casa}}</td>
                                              <td class="nume">{{$retopunto->marcador_visita}}</td>
@@ -441,7 +441,15 @@
                                                @endforeach
                                              </td>
                                              <td>{{$retopunto->created_at->format('d/m/y h:i:s A' )}}</td>
-                                             <td></td>
+                                             <td>
+                                                @if($retopunto->resultado_reto==1)
+                                                    <span class="ico_gano">{{$retopunto->resultado_reto}}</span>
+                                                @elseif($retopunto->resultado_reto==2)
+                                                     <span class="ico_perdio">{{$retopunto->resultado_reto}}</span>  
+                                                @else
+                                                    <span class="ico_espera">{{$retopunto->resultado_reto}}</span>  
+                                                @endif
+                                             </td>
                                            </tr>
                                        @endforeach
                                     </tbody>

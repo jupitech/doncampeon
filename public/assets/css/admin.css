@@ -1207,6 +1207,39 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       .encele{
         color: #1CA2DF !important;
       }
+      .estilo_gano td{
+        background: #f9fff2;
+        border-color: #eaf4dc;
+      }
+      .ico_gano{
+        text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width: 100%;
+        height: 25px;
+        background: url('../img/ico_gano.svg') no-repeat center;
+        background-size: 22px;
+      }
+      .ico_perdio{
+         text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width:  100%;
+        height: 25px;
+        background: url('../img/ico_perdio.svg') no-repeat center;
+        background-size: 22px;
+      }
+
+      .ico_espera{
+         text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width:  100%;
+        height: 25px;
+        background: url('../img/ico_espera.svg') no-repeat center;
+        background-size: 22px;
+      }
+
 
 
       .retos_totales{
