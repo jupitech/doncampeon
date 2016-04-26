@@ -184,7 +184,7 @@ h1, h2, h3, h4, h5, h6{
   margin-left: -20px;
 }
 .nav-sidebar > li > a {
-  padding: 7px 20px;
+  padding: 9px 20px 9px 15px;
   font-size: 13px;
   font-weight: 600;
   color: #333;
@@ -402,6 +402,69 @@ z
             background-size: 13px;
         }
 
+         .glyphicon-resultadosnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/resultados_negro.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-resultadosnegro{
+           background: url('../img/resultados_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+        .glyphicon-resultadosblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/resultados_blanco.png') no-repeat left center;
+            background-size: 13px;
+        }
+
+         .glyphicon-notificacionesnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/notificaciones_negro.png') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-notificacionesnegro{
+           background: url('../img/notificaciones_blanco.png') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .glyphicon-notificacionesblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/notificaciones_blanco.png') no-repeat left center;
+            background-size: 14px;
+        }
+
+         .glyphicon-movimientosnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/movimientos_negro.png') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-movimientosnegro{
+           background: url('../img/movimientos_blanco.png') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .glyphicon-movimientosblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/movimientos_blanco.png') no-repeat left center;
+            background-size: 14px;
+        }
+
 
 .caja_drop .form-control{
   font-style: italic;
@@ -574,7 +637,18 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   font-size: 60px;
   margin-top: 45px;
   font-weight: bold;
+  position: relative;
 }
+  .ico_menos{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url('../img/ico_menos.svg') no-repeat right;
+    background-size: 20px;
+    top: 50%;
+    margin-top: -10px;
+    right: -25px;
+  }
 .caja_section .alert{
   font-size: 13px !important;
   border: none;
@@ -1191,6 +1265,17 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         background: url('../img/Tukis.svg') no-repeat center;
         background-size: 25px;
       }
+       .size_esca{
+        width: 30px;
+        height: 30px;
+        padding: 0 5px;
+       }
+       .tex_retos{
+        float: left;
+        padding: 5px 0;
+        padding-left: 5px;
+        margin-right: 5px;
+       }
       .ptable{
         padding-top: 10px;
         padding-bottom: 10px;
@@ -1207,6 +1292,39 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       .encele{
         color: #1CA2DF !important;
       }
+      .estilo_gano td{
+        background: #f9fff2;
+        border-color: #eaf4dc;
+      }
+      .ico_gano{
+        text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width: 100%;
+        height: 25px;
+        background: url('../img/ico_gano.svg') no-repeat center;
+        background-size: 22px;
+      }
+      .ico_perdio{
+         text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width:  100%;
+        height: 25px;
+        background: url('../img/ico_perdio.svg') no-repeat center;
+        background-size: 22px;
+      }
+
+      .ico_espera{
+         text-indent: -999999px;
+        margin: -5px 0;
+        float: left;
+        width:  100%;
+        height: 25px;
+        background: url('../img/ico_espera.svg') no-repeat center;
+        background-size: 22px;
+      }
+
 
 
       .retos_totales{
@@ -1354,7 +1472,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        }
        .area_crono{
         float: left;
-        padding:5px 5px 0px 10px;
+        padding:0px 5px 0px 10px;
        }
        .area_crono p{
         float: left;

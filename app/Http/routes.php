@@ -104,7 +104,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
           Route::get('partidos/show/{id}',['as' => 'partidos.ver', 'uses' => 'PartidoCalendarioController@show']);
          Route::get('partidos/edit/{id}',['as' => 'partidos.edit', 'uses' => 'PartidoCalendarioController@edit']);
          Route::put('partidos/update/{id}',['as' => 'partidos.update', 'uses' => 'PartidoCalendarioController@update']);
-
+         //Resultados Panel
+           Route::get('resultados',['as' => 'resultados', 'uses' => 'ResultadosPanelController@index']);
          //Resultados
           Route::post('partidos/resultadostore',['as' => 'partido.amarcador', 'uses' => 'PartidoResultadoController@store']);  
 
