@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
       Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
       Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
-
+      
       //Opciones
       Route::get('/opciones', function () {
           return view('admin/opciones');
@@ -173,5 +173,9 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
       Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
       Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
+
+      //Tukis
+       Route::get('tukis/paquetes',['as' => 'tukispaquetes', 'uses' => 'PaqueteTukisController@index']);
+       Route::post('tukis/paquetes/store',['as' => 'paquetes.store', 'uses' => 'PaqueteTukisController@store']);
 
 });
