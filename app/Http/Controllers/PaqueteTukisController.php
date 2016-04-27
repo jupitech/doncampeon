@@ -3,7 +3,8 @@
 namespace Doncampeon\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Redirect;
 use Doncampeon\Http\Requests;
 use Doncampeon\Http\Controllers\Controller;
 use Doncampeon\Models\PaqueteTukis;
@@ -41,10 +42,10 @@ class PaqueteTukisController extends Controller
     {
         $monto_dolar= $request['monto_dolar'];
         $monto_quetzal= $request['monto_quetzal'];
-        $fee_paquete_dolar= $monto_dolar*$request['fee_porcentaje'];
-        $fee_paquete_quetzal= $monto_quetzal*$request['fee_porcentaje'];
+        $fee_paquete_dolar= ($monto_dolar*$request['fee_porcentaje'])/100;
+        $fee_paquete_quetzal= ($monto_quetzal*$request['fee_porcentaje'])/100;
         $neto_dolar=$monto_dolar-$fee_paquete_dolar;
-        $neto_quetzal=$monto_dolar-$fee_paquete_quetzal;
+        $neto_quetzal=$monto_quetzal-$fee_paquete_quetzal;
 
 
          PaqueteTukis::create([
@@ -96,8 +97,8 @@ class PaqueteTukisController extends Controller
     {
         $monto_dolar= $request['monto_dolar'];
         $monto_quetzal= $request['monto_quetzal'];
-        $fee_paquete_dolar= $monto_dolar*$request['fee_porcentaje'];
-        $fee_paquete_quetzal= $monto_quetzal*$request['fee_porcentaje'];
+        $fee_paquete_dolar= ($monto_dolar*$request['fee_porcentaje'])/100;
+        $fee_paquete_quetzal= ($monto_quetzal*$request['fee_porcentaje'])/100;
         $neto_dolar=$monto_dolar-$fee_paquete_dolar;
         $neto_quetzal=$monto_dolar-$fee_paquete_quetzal;
 

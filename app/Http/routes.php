@@ -176,6 +176,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
       //Tukis
        Route::get('tukis/paquetes',['as' => 'tukispaquetes', 'uses' => 'PaqueteTukisController@index']);
+       Route::get('tukis/paquetes/create',['as' => 'paquetes.create', 'uses' => 'PaqueteTukisController@create']);
        Route::post('tukis/paquetes/store',['as' => 'paquetes.store', 'uses' => 'PaqueteTukisController@store']);
 
 });
