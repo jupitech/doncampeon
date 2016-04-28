@@ -178,5 +178,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
        Route::get('tukis/paquetes',['as' => 'tukispaquetes', 'uses' => 'PaqueteTukisController@index']);
        Route::get('tukis/paquetes/create',['as' => 'paquetes.create', 'uses' => 'PaqueteTukisController@create']);
        Route::post('tukis/paquetes/store',['as' => 'paquetes.store', 'uses' => 'PaqueteTukisController@store']);
+       Route::get('tukis/paquetes/edit/{id}',['as' => 'paquetes.edit', 'uses' => 'PaqueteTukisController@edit']);
+       Route::put('tukis/paquetes/update/{id}',['as' => 'paquetes.update', 'uses' => 'PaqueteTukisController@update']);
+       Route::delete('tukis/paquetes/destroy/{id}',['as' => 'paquetes.destroy', 'uses' => 'PaqueteTukisController@destroy']);
 
 });

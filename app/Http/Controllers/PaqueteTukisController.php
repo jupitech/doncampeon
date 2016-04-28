@@ -100,7 +100,7 @@ class PaqueteTukisController extends Controller
         $fee_paquete_dolar= ($monto_dolar*$request['fee_porcentaje'])/100;
         $fee_paquete_quetzal= ($monto_quetzal*$request['fee_porcentaje'])/100;
         $neto_dolar=$monto_dolar-$fee_paquete_dolar;
-        $neto_quetzal=$monto_dolar-$fee_paquete_quetzal;
+        $neto_quetzal=$monto_quetzal-$fee_paquete_quetzal;
 
 
         $paquetetukis=PaqueteTukis::find($id);

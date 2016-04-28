@@ -780,6 +780,16 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   float: left;
   margin-right: 5px;
 }
+.op_act{
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #8DCA3D;
+    margin: 0 auto;
+    text-align: center;
+
+}
 .dropdown-menu-op{
       top: -10px;
     right: 0;

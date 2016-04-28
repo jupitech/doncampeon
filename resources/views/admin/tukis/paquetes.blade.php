@@ -34,21 +34,27 @@
 									@endif
 						           <table id="tabledonc" class="table dataTable" cellspacing="0" width="100%">
 								                  	<thead>
-								                  	<tr></th>
+								                  	<tr>
+								                  		<th><span class="glyphicon glyphicon-ok"></span></th>
 								                  		<th>Nombre</th>
 								                      	<th>Tukis</th>
-								                  		<th>Cantidad Max</th>
-								                  		<th>Monto $</th>
-								                  		<th>Monto Q</th>
+								                  		<th>Max</th>
+								                  		<th>Monto$</th>
+								                  		<th>MontoQ</th>
 								                  		<th>% Fee</th>
-								                  		<th>Neto $</th>
-								                  		<th>Neto Q</th>
-								                  		<th>Activado</th>
+								                  		<th>Neto$</th>
+								                  		<th>NetoQ</th>
+								                  		<th><span class="glyphicon glyphicon-th-large"></span></th>
 								                  	</tr>
 								                  	</thead>
 								                  	<tbody>
 								                  	@foreach($paquetetukis as $paquetetuki)
 								                  	<tr>
+								                  	   <td>
+								                  	  @if($paquetetuki->paquete_activado)
+								                  	  	<span class="op_act"></span>
+								                  	  @endif
+								                  	  </td>	
 								                      <td>{{$paquetetuki->nombre_paquete}}</td>
 								                  	  <td>{{$paquetetuki->tukis_paquete}}</td>
 								                  	  <td>{{$paquetetuki->cantidad_max}}</td>
@@ -57,7 +63,26 @@
 								                  	  <td>{{$paquetetuki->fee_paquete}}</td>
 								                  	  <td>${{$paquetetuki->neto_dolar}}</td>
 								                  	  <td>Q{{$paquetetuki->neto_quetzal}}</td>	
-								                  	  <td></td>	
+								                  	 
+								                  	  <td>
+								                  	  	 <span class="ico_op">
+								                                   {!!link_to_route('paquetes.edit', $title = '', $parameters = $paquetetuki->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+								                              </span>
+								                              <span class="ico_op dropdown">
+								                                    <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
+								                                  <ul class="dropdown-menu dropdown-menu-op">
+								                                          <li>
+								                                          <p>
+								                                                  {!! Form::open(['route'=>['paquetes.destroy',$paquetetuki->id],'method'=>'DELETE']) !!}
+								                                                        {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
+								                                                  {!! Form::close() !!}
+								                                              </p>
+								                                           <p> {{$paquetetuki->nombre_paquete}}</p>
+								                                          </li>
+								                                      </ul>
+
+								                              </span>
+								                  	  </td>
 								                  	</tr>
 								                  	@endforeach	
 								                  	</tbody>
