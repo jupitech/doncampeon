@@ -83,7 +83,7 @@ class PaqueteTukisController extends Controller
     public function edit($id)
     {
          $paquetetukis=PaqueteTukis::find($id);
-        return view('admin.tukis.paquetes.editar',['paquetetukis'=>$paquetetukis]);
+        return view('admin.tukis.editarpaquete',['paquetetukis'=>$paquetetukis]);
     }
 
     /**
