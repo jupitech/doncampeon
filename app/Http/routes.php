@@ -16,11 +16,6 @@ Route::get('/',  [ 'uses' => 'Auth\AuthController@getLogin','as' =>'login']);
 Route::post('/', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
-Route::get('/redis', function(){
-$redis= Illuminate\Support\Facades\Redis::connection();
-$redis->set("key2","hola a todos");
-  print_r($redis->get("key2"));
-});
 
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
@@ -31,12 +26,12 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::post('registro', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
-   //Perfil del Usuario
+     //Perfil del Usuario
      Route::get('perfilusuario/{id}', 'Api\ApiPerfilUserController@perfilusuario');
      Route::get('perfilgame/{id}', 'Api\ApiPerfilUserController@perfilgame');
      Route::get('gamenivel/{id}', 'Api\ApiPerfilUserController@gamenivel');
 
-    //Traendo partidos al api
+     //Traendo partidos al api
      Route::get('partidossemana', 'Api\ApiPartidoCalendarioController@indexsemana');
      Route::get('partidoshoy', 'Api\ApiPartidoCalendarioController@indexhoy');
      Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
@@ -45,17 +40,18 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
      Route::get('partidosconsemana', 'Api\ApiPartidoCalendarioController@contsemana');
      Route::get('partidosconhoy', 'Api\ApiPartidoCalendarioController@conthoy');
      Route::get('partidosconmes', 'Api\ApiPartidoCalendarioController@contmes');
-      Route::get('partidosconmessi', 'Api\ApiPartidoCalendarioController@contmessi');
+     Route::get('partidosconmessi', 'Api\ApiPartidoCalendarioController@contmessi');
 
-      Route::get('partido/{id}', 'Api\ApiPartidoCalendarioController@indexpartido');
-
+     Route::get('partido/{id}', 'Api\ApiPartidoCalendarioController@indexpartido');
+     
+     Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
       //Traendo Ligas al api
-      Route::get('listadoligas', 'Api\ApiLigascontroller@indexlistado');
+      Route::get('partidoliga/{idliga}', 'Api\ApiPartidoCalendarioController@partidoliga');
 
       //Agregando partidos como favorito
        Route::post('partidofav/act', 'Api\ApiPartidoFavoritoController@store');
-        Route::get('partidofav/ver/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@show');
-        Route::put('partidofav/nact/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@update');
+       Route::get('partidofav/ver/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@show');
+       Route::put('partidofav/nact/{user_id}/{partido_id}', 'Api\ApiPartidoFavoritoController@update');
 
         //Agregando retos puntos por usuario
         Route::post('partidoreto/puntos', 'Api\ApiRetoPuntosController@store');
@@ -65,22 +61,7 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 Route::group(['middleware' => ['auth','role:admin|editor']], function()
 {
 
-  //Mail Ejemplo
-   Route::get('/email', function () {
-
-          Mail::send('emails.bienvenida', ['name'=>'Carlos Ruano'], function($message)
-    {
-        $message
-            ->from('hola@doncampeon.com','Don Campeon Sports')
-            ->to('carlos.ruano@crweb.net', 'Carlos Ruano')
-            ->subject('Hola!');
-         });
-
-
-        });
-        
-
-         //Escritorio
+     //Escritorio
       Route::get('/escritorio', function () {
 
           return view('admin/escritorio');
@@ -101,13 +82,13 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          Route::get('partidos/create',['as' => 'partidos.create', 'uses' => 'PartidoCalendarioController@create']);
          Route::post('partidos/store',['as' => 'partidos.store', 'uses' => 'PartidoCalendarioController@store']);  
          Route::delete('partidos/destroy/{id}',['as' => 'partidos.destroy', 'uses' => 'PartidoCalendarioController@destroy']);
-          Route::get('partidos/show/{id}',['as' => 'partidos.ver', 'uses' => 'PartidoCalendarioController@show']);
+         Route::get('partidos/show/{id}',['as' => 'partidos.ver', 'uses' => 'PartidoCalendarioController@show']);
          Route::get('partidos/edit/{id}',['as' => 'partidos.edit', 'uses' => 'PartidoCalendarioController@edit']);
          Route::put('partidos/update/{id}',['as' => 'partidos.update', 'uses' => 'PartidoCalendarioController@update']);
          //Resultados Panel
-           Route::get('resultados',['as' => 'resultados', 'uses' => 'ResultadosPanelController@index']);
+         Route::get('resultados',['as' => 'resultados', 'uses' => 'ResultadosPanelController@index']);
          //Resultados
-          Route::post('partidos/resultadostore',['as' => 'partido.amarcador', 'uses' => 'PartidoResultadoController@store']);  
+         Route::post('partidos/resultadostore',['as' => 'partido.amarcador', 'uses' => 'PartidoResultadoController@store']);  
 
          //Probabilidades
          Route::get('probabilidades',['as' => 'probabilidades', 'uses' => 'ProbabilidadesLigasController@index']);
@@ -120,26 +101,24 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
               return view('admin/campeones/campeones');
             });
 
-      Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
-      Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
-      Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
+          Route::post('campeones/store',['as' => 'campeones.store', 'uses' => 'UserCampeonesController@store']);
+          Route::get('campeones/edit/{id}',['as' => 'campeones.edit', 'uses' => 'UserCampeonesController@edit']);
+          Route::put('campeones/update/{id}',['as' => 'campeones.update', 'uses' => 'UserCampeonesController@update']);
       
-      //Opciones
-      Route::get('/opciones', function () {
-          return view('admin/opciones');
-        });
+          //Opciones
+          Route::get('/opciones', function () {
+              return view('admin/opciones');
+            });
 
-      // Registration routes...
-      Route::get('/register', 'Auth\AuthController@getRegister');
-      Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
+          // Registration routes...
+          Route::get('/register', 'Auth\AuthController@getRegister');
+          Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
 
 
-       //Usuarios Sistema
-    
-      
-      Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
-      Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
-      Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
+           //Usuarios Sistema
+          Route::post('usuarios/store',['as' => 'usuarios.store', 'uses' => 'UserController@store']);
+          Route::get('usuarios/edit/{id}',['as' => 'usuarios.edit', 'uses' => 'UserController@edit']);
+          Route::put('usuarios/update/{id}',['as' => 'usuarios.update', 'uses' => 'UserController@update']);
 
 
 
@@ -174,7 +153,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
       Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
 
-      //Tukis
+      //Tukis Paquetes
        Route::get('tukis/paquetes',['as' => 'tukispaquetes', 'uses' => 'PaqueteTukisController@index']);
        Route::get('tukis/paquetes/create',['as' => 'paquetes.create', 'uses' => 'PaqueteTukisController@create']);
        Route::post('tukis/paquetes/store',['as' => 'paquetes.store', 'uses' => 'PaqueteTukisController@store']);

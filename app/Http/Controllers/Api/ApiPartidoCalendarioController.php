@@ -115,6 +115,16 @@ class ApiPartidoCalendarioController extends Controller
         }
          return response()->json(['datos' =>  $partido],200);
     }
+   
+    public function partidoliga($idliga)
+    {
+          //Traendo partidos que no han sido terminados en este dia
+         $partidoliga=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->where('liga',$idliga)->where('fecha_partido','<=',Carbon::today()->endOfMonth())->get();
+         if(!$partidoliga){
+             return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $partidoliga],200);
+    }
 
 
     
