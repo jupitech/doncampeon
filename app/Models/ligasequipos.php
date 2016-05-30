@@ -4,7 +4,7 @@ namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ligasequipos extends Model
+class LigasEquipos extends Model
 {
    //  use SoftDeletes;
     /**
@@ -26,7 +26,7 @@ class Ligasequipos extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = ['created_at','updated_at'];
 
     public function Nombreliga(){
         return $this->hasOne('\Doncampeon\Models\Ligas','id','ligas_id');

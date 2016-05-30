@@ -46,6 +46,7 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
      
      Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
       //Traendo Ligas al api
+     Route::get('listadoligas', 'Api\ApiLigascontroller@indexlistado');
       Route::get('partidoliga/{idliga}', 'Api\ApiPartidoCalendarioController@partidoliga');
 
       //Agregando partidos como favorito

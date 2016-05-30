@@ -56,12 +56,14 @@
                   	</thead>
                   	<tbody>
                   	@foreach($equipos as $equipo)
+
                   	<tr>
                        <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/{{$equipo->alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
                   		<td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
                   		<td>{{$equipo->alias}}</td>
                   		<td>{{$equipo->getPaisNombre()}}</td>
                       <td>
+                  
                            @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
                                 | {{$ligaequipo->Nombreliga->nombre_liga}}
                            @endforeach

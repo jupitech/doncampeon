@@ -3,6 +3,8 @@
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Doncampeon\Models\Equipos;
+use Doncampeon\Models\Ligasequipos;
 
 class Equipos extends Model{
    
@@ -32,7 +34,7 @@ class Equipos extends Model{
     }
 
     public function getLigasEquipo($id){
-        $equipoliga= \Doncampeon\Models\Ligasequipos::where('equipos_id',$id)->get();
+        $equipoliga= \Doncampeon\Models\LigasEquipos::where('equipos_id',$id)->get();
         return $equipoliga;
     }
     
