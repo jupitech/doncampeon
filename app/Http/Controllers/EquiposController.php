@@ -11,7 +11,7 @@ use Doncampeon\Http\Requests\EquiposCreateRequest;
 use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
-use Doncampeon\Models\Ligasequipos;
+use Doncampeon\Models\LigasEquipos;
 use JWTAuth;
 
 class EquiposController extends Controller
