@@ -468,6 +468,27 @@ z
             background-size: 14px;
         }
 
+         .glyphicon-tukisnegro{
+            float: left;
+            width: 15px;
+            height: 16px;
+            background: url('../img/tukis_negro.svg') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-tukisnegro{
+           background: url('../img/tukis_blanco.svg') no-repeat left center;
+            background-size: 14px;
+        }
+
+        .glyphicon-tukisblanco{
+            float: left;
+            width: 20px;
+            height: 16px;
+            background: url('../img/tukis_blanco.svg') no-repeat left center;
+            background-size: 14px;
+        }
+
 
 .caja_drop .form-control{
   font-style: italic;

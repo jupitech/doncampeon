@@ -4,7 +4,7 @@ namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Doncampeon\Models\Equipos;
-use Doncampeon\Models\Ligasequipos;
+use Doncampeon\Models\LigasEquipos;
 
 class Equipos extends Model{
    

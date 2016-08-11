@@ -17,6 +17,7 @@ Route::post('/', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 
+
 Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 {
 
@@ -26,6 +27,14 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::post('registro', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+    //Reset Password
+    Route::get('password/email','Auth\PasswordController@getEmail');
+    Route::post('password/email','Auth\PasswordController@postEmail');
+
+    Route::get('password/reset/{token}','Auth\PasswordController@getReset');
+    Route::post('password/reset','Auth\PasswordController@postReset');
+
      //Perfil del Usuario
      Route::get('perfilusuario/{id}', 'Api\ApiPerfilUserController@perfilusuario');
      Route::get('perfilgame/{id}', 'Api\ApiPerfilUserController@perfilgame');
@@ -56,6 +65,12 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 
         //Agregando retos puntos por usuario
         Route::post('partidoreto/puntos', 'Api\ApiRetoPuntosController@store');
+
+        //Paquete Tukis
+       Route::get('tukis/paquetes', 'Api\ApiPaqueteTukisController@index');
+
+
+
 });
 
 //}); 
@@ -66,7 +81,6 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::get('/escritorio', function () {
 
           return view('admin/escritorio');
-
 
       	});
 
@@ -153,6 +167,13 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
       Route::post('juego/store',['as' => 'juego.store', 'uses' => 'GameNivelController@store']);
       Route::get('juego/create',['as' => 'juego.create', 'uses' => 'GameNivelController@create']);
       Route::put('nivelgame/update/{id}',['as' => 'nivelgame.update', 'uses' => 'GameNivelController@update']);
+     //Tukis
+           //Escritorio
+      Route::get('/tukis', function () {
+
+          return view('admin/tukis/tukis');
+
+        });
 
       //Tukis Paquetes
        Route::get('tukis/paquetes',['as' => 'tukispaquetes', 'uses' => 'PaqueteTukisController@index']);

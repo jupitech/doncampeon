@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-
+   
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -63,6 +63,8 @@
                $('.selectpicker').selectpicker();
                   $('.selectpicker2').selectpicker();
             </script>
+            <script src="/js/vendor.js"></script>
+            <script src="/js/script.js"></script>
   </body>
 
   <script>

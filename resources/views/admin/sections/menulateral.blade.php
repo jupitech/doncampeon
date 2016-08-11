@@ -15,7 +15,7 @@
           <ul class="nav nav-sidebar">
             <li><a href="{{ URL::to('/campeones') }}"><span class="glyphicon-huevonegro"></span>Campeones</a> </li>
             <li><a href=""><span class="glyphicon-movimientosnegro"></span>Movimientos</a></li>
-            <li><a href="">Tukis</a></li>
+            <li><a href="{{ URL::to('/tukis') }}"><span class="glyphicon-tukisnegro"></span>Tukis</a></li>
             <li><a href="">News</a></li>
           </ul>
           <ul class="nav nav-sidebar ">

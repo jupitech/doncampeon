@@ -3,24 +3,22 @@
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RoleUser extends Model
+class UserTukis extends Model
 {
-     //  use SoftDeletes;
-    /**
+         /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'role_user';
+    protected $table = 'user_tukis';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['role_id','user_id'];
+    protected $fillable = ['user_id','token_grupo','cantidad_tukis','tipo_tukis','tukis_usados','fecha_usados','created_at'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -28,7 +26,4 @@ class RoleUser extends Model
      * @var array
      */
     protected $hidden = ['created_at','updated_at'];
-        protected $dates = ['deleted_at'];
-
-      
 }
