@@ -20,7 +20,7 @@ class Equipos extends Model{
      *
      * @var array
      */
-    protected $fillable = ['nombre_equipo', 'alias', 'pais_equipo'];
+    protected $fillable = ['id','nombre_equipo', 'alias', 'pais_equipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
