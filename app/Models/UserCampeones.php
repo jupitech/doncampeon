@@ -27,7 +27,7 @@ class UserCampeones extends Model implements AuthenticatableContract, CanResetPa
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password'];
+    protected $fillable = ['username', 'email', 'password','api_token'];
 
     /**
      * The attributes excluded from the model's JSON form.
