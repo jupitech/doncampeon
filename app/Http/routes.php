@@ -69,6 +69,10 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
         //Paquete Tukis
        Route::get('tukis/paquetes', 'Api\ApiPaqueteTukisController@index');
 
+        //Checkin
+       Route::get('checkin/{token}', 'Api\CheckInController@indexuser');
+       Route::get('checkin/paquete/{paquete}', 'Api\CheckInController@indexpaquetes');
+
 
 
 });

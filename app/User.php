@@ -57,5 +57,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
      
 
+       public function InfoUsuario(){
+        return $this->hasOne('\Doncampeon\Models\UserProfile','user_id','id');
+    }
+
 
 }
