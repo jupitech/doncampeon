@@ -31,10 +31,10 @@ class UserProfile extends Model
      protected $dates = ['deleted_at'];
 
      public function getPaisNombre(){
-        return \Doncampeon\Models\Pais::where('id',$this->pais)->first()->nombre;
+        return \Doncampeon\Models\Pais::where('id',$this->pais)->first();
     }
       public function PaisNomUsuario(){
-         return $this->hasOne('\Doncampeon\Models\Pais','id','pais');
+         return $this->hasOne('\Doncampeon\Models\Pais','nombre','pais');
     }
 
        public function InfoUsuario(){
