@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return \Doncampeon\Models\Roles::where('id',$this->RolUsuario->role_id)->first()->level;
     }
        public function getUserProfile(){
-        return \Doncampeon\Models\UserProfile::with("PaisNomUsuario")->where('user_id',$this->id)->first();
+        return \Doncampeon\Models\UserProfile::where('user_id',$this->id)->first();
     }
 
          public function getUserGame(){

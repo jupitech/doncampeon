@@ -33,10 +33,6 @@ class UserProfile extends Model
      public function getPaisNombre(){
         return \Doncampeon\Models\Pais::where('id',$this->pais)->first();
     }
-      public function PaisNomUsuario(){
-         return $this->hasOne('\Doncampeon\Models\Pais','nombre','pais');
-    }
-
        public function InfoUsuario(){
         return $this->hasOne('\Doncampeon\User','id','user_id');
     }

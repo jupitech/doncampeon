@@ -104,7 +104,6 @@ class AuthenticateController extends Controller
 
          $userprofile=UserProfile::create([
                   'user_id' => $user->id,
-                   'pais' => 1,
                         ]);
          $userprofile->save();
 
