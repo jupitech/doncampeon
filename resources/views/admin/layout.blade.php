@@ -17,6 +17,7 @@
      {!! Html::style('assets/css/bootstrap.min.css') !!}
      {!! Html::style('assets/css/admin.css') !!}
      {!! Html::style('assets/css/bootstrap-select.css') !!}
+      {!! Html::style('assets/css/nya-bs-select.css') !!}
      {!! Html::style('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
@@ -40,7 +41,7 @@
     <![endif]-->
   </head>
  
-  <body>
+  <body  id="app-layout" ng-app="dApp">
    @yield('menutop')
 
     <div class="container-fluid">
@@ -58,19 +59,27 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
 
-     
+    
             <script>
                $('.selectpicker').selectpicker();
                   $('.selectpicker2').selectpicker();
             </script>
+        
             <script src="/js/vendor.js"></script>
-            <script src="/js/script.js"></script>
+            <script src="/js/ngPrint.js"></script>
+            <script src="/js/angular-button-spinner.min.js"></script>
+            <script src="/js/ng-infinite-scroll.min.js"></script>
+            <script src="https://code.highcharts.com/highcharts.src.js"></script>
+             <script type="text/javascript" src="{{asset('js/dropzone.js')}}"></script>
+             @stack('scripts')
   </body>
 
-  <script>
+      <script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover(); 
 });
 </script>
+
+        
 
 </html>

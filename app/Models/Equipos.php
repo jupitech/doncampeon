@@ -46,7 +46,11 @@ class Equipos extends Model{
      
 
     public function LigasEquipo(){
-        return $this->hasOne('\Doncampeon\Models\Ligasequipos','equipos_id','id');
+        return $this->hasOne('\Doncampeon\Models\LigasEquipos','equipos_id','id');
+    } 
+
+    public function NombrePais(){
+        return $this->hasOne('\Doncampeon\Models\Pais','id','pais_equipo');
     } 
 
 

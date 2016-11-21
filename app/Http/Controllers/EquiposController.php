@@ -12,6 +12,8 @@ use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
 use Doncampeon\Models\LigasEquipos;
+use Doncampeon\Models\PorGanador;
+use Doncampeon\Models\MultiGanador;
 use JWTAuth;
 
 class EquiposController extends Controller
@@ -27,11 +29,47 @@ class EquiposController extends Controller
      */
     public function index()
     {
-        $equipos=Equipos::All();
-         return view('admin.partidos.equipos',compact('equipos'));
+         return view('admin.partidos.equipos');
 
 
     }
+
+
+
+     public function indexequipos()
+    {
+        $equipos=Equipos::with("NombrePais")->get();
+           if(!$equipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $equipos],200);
+
+
+    }
+
+
+     public function indexligasasig($id)
+    {
+        $ligasequipos=LigasEquipos::with("Nombreliga")->where("equipos_id",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
+      public function indexligasganador($id)
+    {
+        $ligasequipos=PorGanador::with("Nombreliga")->where("id_equipo",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
 
 
 
@@ -93,6 +131,26 @@ private function transform($equiposp){
             ]);
        Session::flash('message','Equipo asignado correctamente.');
         return Redirect::to('/equipos');
+    }
+
+    public function storeligaganador(Request $request)
+    {
+
+        $idliga=$request['id_liga'];
+        $idequipo=$request['id_equipo'];
+        
+        $porganador=PorGanador::where('id_liga',$idliga)->where('id_equipo',$idequipo)->first();
+
+        if(!$porganador){
+            PorGanador::create([
+                'id_liga' =>$idliga,
+                'id_equipo'   =>$idequipo,
+                'estado_ganador'   =>1,
+            ]);
+        }else{
+              return response()->json(['idporganador' =>  $porganador->id],404);
+        }
+        
     }
 
     /**

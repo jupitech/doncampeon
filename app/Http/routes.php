@@ -187,4 +187,21 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
        Route::put('tukis/paquetes/update/{id}',['as' => 'paquetes.update', 'uses' => 'PaqueteTukisController@update']);
        Route::delete('tukis/paquetes/destroy/{id}',['as' => 'paquetes.destroy', 'uses' => 'PaqueteTukisController@destroy']);
 
+       //Integraciones
+      Route::get('integraciones',['as' => 'integraciones', 'uses' => 'IntegracionesController@index']);
+      Route::get('pasarelas',['as' => 'pasarelas', 'uses' => 'KeyPasarelaController@index']);
+
+
+
+      Route::group(['prefix' => 'js/'], function()
+      {
+
+            //Equipos
+            Route::get('equipos','EquiposController@indexequipos');
+            Route::get('ligasasig/{id}','EquiposController@indexligasasig');
+             Route::get('ligaganador/{id}','EquiposController@indexligasganador');
+            Route::post('ligaganador/create','EquiposController@storeligaganador');
+
+        });
+
 });
