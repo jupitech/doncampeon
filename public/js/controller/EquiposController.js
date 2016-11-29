@@ -74,7 +74,7 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                $scope.acti_nuevaliga=false;
                $scope.agregarliga=function(){
                  $scope.acti_nuevaliga = !$scope.acti_nuevaliga;
-
+                 $scope.acti_multi=false;
                  //Ligas asignadas
                       $http.get('/js/ligasasig/'+$scope.miid).success(
 
@@ -124,6 +124,26 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                                    $scope.acti_nuevaliga = !$scope.acti_nuevaliga;
 
                     
+               };
+
+               //Agregar multiplicador
+               $scope.acti_multi=false;
+               $scope.agregarmulti=function(liga){
+                 $scope.acti_multi = !$scope.acti_multi;
+                 $scope.acti_nuevaliga=false;
+                 //Ligas asignadas
+                      $http.get('/js/ligasasig/'+$scope.miid).success(
+
+                              function(ligasa) {
+                                        $scope.ligasa = ligasa.datos;
+                                        //console.log($scope.ligasa);
+                            }).error(function(error) {
+                                 $scope.error = error;
+                            }); 
+
+                            
+
+
                };
 
                        

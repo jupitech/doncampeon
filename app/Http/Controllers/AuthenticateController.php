@@ -93,9 +93,14 @@ class AuthenticateController extends Controller
     }
 
      public function register(Request $request){
-
+     
+     $email=$request['email'];
+     $exemail= substr($email, 0,4);
+     $randem=str_random(5);
+     $miuser=$exemail.$randem;
+     
      $user=User::create([
-                  'username' => $request['username'],
+                  'username' => $miuser,
                   'email' => $request['email'],
                   'password' => bcrypt($request['password']),
                   'api_token' => str_random(60),
@@ -104,6 +109,8 @@ class AuthenticateController extends Controller
 
          $userprofile=UserProfile::create([
                   'user_id' => $user->id,
+                  'pais' => $request['pais'],
+                  'telefono' => $request['telefono'],
                         ]);
          $userprofile->save();
 
@@ -146,7 +153,7 @@ class AuthenticateController extends Controller
          {
         $message
             ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
-            ->to('carlos.ruano@crweb.net', 'Nuevo Usuario')
+            ->to('carlos.ruano@creationgt.com', 'Nuevo Usuario')
             ->subject('Usuario ['.$user->username.' ] Registrado');
          });
 

@@ -20,7 +20,7 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','first_name','last_name','edad','pais','direccion','facebook','twitter'];
+    protected $fillable = ['user_id','first_name','last_name','edad','pais','telefono','direccion','facebook','twitter'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -35,5 +35,9 @@ class UserProfile extends Model
     }
        public function InfoUsuario(){
         return $this->hasOne('\Doncampeon\User','id','user_id');
+    }
+
+    public function PaisNomUsuario(){
+        return $this->hasOne('\Doncampeon\Models\Pais','nombre','pais');
     }
 }

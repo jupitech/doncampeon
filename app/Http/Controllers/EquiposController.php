@@ -70,6 +70,17 @@ class EquiposController extends Controller
 
     }
 
+      public function indexligasequipos($id)
+    {
+        $ligasequipos=LigasEquipos::with("NombreEquipo")->where("ligas_id",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
 
 
 
@@ -149,6 +160,35 @@ private function transform($equiposp){
             ]);
         }else{
               return response()->json(['idporganador' =>  $porganador->id],404);
+        }
+        
+    }
+
+     public function storemultiganador(Request $request)
+    {
+
+        $visitaequipo=$request['visita_equipo'];
+        $idganador=$request['id_porganador'];
+        
+        $multiganador=MultiGanador::where('id_porganador',$idganador)->where('visita_equipo',$visitaequipo)->first();
+
+        if(!$multiganador){
+            MultiGanador::create([
+                'visita_equipo' =>$visitaequipo,
+                'id_porganador'   =>$idganador,
+                'resultado_casa'   =>$request['resultado_casa'],
+                'resultado_empate'   =>$request['resultado_empate'],
+                'resultado_visita'   =>$request['resultado_visita'],
+                'probabilidad_casa'   =>$request['probabilidad_casa'],
+                'probabilidad_empate'   =>$request['probabilidad_empate'],
+                'probabilidad_visita'   =>$request['probabilidad_visita'],
+                'multi_casa'   =>$request['multi_casa'],
+                'multi_empate'   =>$request['multi_empate'],
+                'multi_visita'   =>$request['multi_visita'],
+                'estado_multi'   =>1
+            ]);
+        }else{
+              return response()->json(['idmulti_ganador' =>  $multiganador->id],404);
         }
         
     }

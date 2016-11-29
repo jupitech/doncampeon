@@ -27,7 +27,7 @@
              <div class="conte_nuevo">
                   <div class="tab_porliga col-sm-12">
                     <ul>
-                      <li ng-repeat="ligag in ligaganador"><a href="">@{{ ligag.nombreliga.nombre_liga}}</a></li>
+                      <li ng-repeat="ligag in ligaganador"><a ng-click="agregarmulti(ligag.nombreliga.id)">@{{ ligag.nombreliga.nombre_liga}}</a></li>
                     </ul>
                      <span class="ico_op">
                                 <a class="btn btn-donc-editar" ng-click="agregarliga()">Agregar Liga</a>
@@ -48,7 +48,7 @@
                                                           </li>
                                                         </ol>
                                                     </div>
-                                         <div class="col-sm-3 spi">
+                                         <div class="col-sm-3 spi ">
                                                     <button type="submit" class="btn btn-primary btn_add" ng-disabled="frm.$invalid">
                                                       <span class="glyphicon glyphicon-plus"></span>
                                                     </button>
@@ -57,6 +57,96 @@
                               </div>
                         </form>
                   </div>
+
+
+                  {{-- Agregando multiplicador --}}
+                   <div class="nuevo_multi" ng-if="acti_multi">
+                        <form class="form-horizontal" name="frm" role="form" ng-submit="guardarGanador()" >
+                              <div class="col-sm-12 col-md-12 col-lg-12">
+                                          <div class="col-sm-12 spd spi">
+                                          <label for="">Equipo Visita</label>
+                                                        <ol class="nya-bs-select" ng-model="ganador.liga_id" data-live-search="true"  title="Agregar Equipo..." required  data-size="10">
+                                                          <li nya-bs-option="liga in ligasa" data-value="liga.ligas_id">
+                                                            <a>
+                                                             <span>
+                                                                  @{{ liga.nombreliga.nombre_liga}}
+                                                                </span>
+                                                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                            </a>
+                                                          </li>
+                                                        </ol>
+                                                    </div>
+                                           <div class="col-sm-11 spi">
+                                                       <div class="col-sm-4 spd spi">
+
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Resultado</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="rec" class="label_multif cla_azul">Casa</label>
+                                                                  <input id="rec" type="text" class="form-control" name="rec" ng-model="multi.rec" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="" class="label_multif cla_azul">X</label>
+                                                                 <input id="rex" type="text" class="form-control" name="rec" ng-model="multi.rex" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="" class="label_multif cla_azul">Visita</label>
+                                                                 <input id="rev" type="text" class="form-control" name="rev" ng-model="multi.rev" required>
+                                                              </div>
+                                                       </div>
+
+                                                       <div class="col-sm-4 spd spi">
+                                                       
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Probabilidad</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="prc" class="label_multif cla_ama">Casa</label>
+                                                                  <input id="prc" type="text" class="form-control" name="prc" ng-model="multi.prc" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="prx" class="label_multif cla_ama">X</label>
+                                                                 <input id="prx" type="text" class="form-control" name="prx" ng-model="multi.prx" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="prv" class="label_multif cla_ama">Visita</label>
+                                                                 <input id="prv" type="text" class="form-control" name="prv" ng-model="multi.prv" required>
+                                                              </div>
+                                                       </div>
+
+
+                                                       <div class="col-sm-4 spd spi">
+                                                       
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Multiplicador</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="muc" class="label_multif cla_ver">Casa</label>
+                                                                  <input id="muc" type="text" class="form-control" name="muc" ng-model="multi.muc" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="mux" class="label_multif cla_ver">X</label>
+                                                                 <input id="mux" type="text" class="form-control" name="mux" ng-model="multi.mux" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="muv" class="label_multif cla_ver">Visita</label>
+                                                                 <input id="muv" type="text" class="form-control" name="muv" ng-model="multi.muv" required>
+                                                              </div>
+                                                       </div>
+                                                       
+                                            </div>          
+                                             <div class="col-sm-1 spi spd">
+                                                        <button type="submit" class="btn btn-primary btn_add topbtn" ng-disabled="frm.$invalid">
+                                                          <span class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                    </div>           
+                                                       
+                              </div>
+                        </form>
+                  </div>
+
+
              </div>
 
       </div>

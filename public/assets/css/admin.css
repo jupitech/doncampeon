@@ -1858,4 +1858,66 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   background: #1399D3;
   color: #fff;
   border: 1px solid #1693c9;
+  width: 100%;
 }
+  .topbtn{
+    margin-top: 65px;
+  }
+
+.nuevo_multi{
+  float: left;
+  width: 100%;
+  background: #f2f2f2;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+.nuevo_multi ol{
+  float: left !important;
+  width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+.nuevo_multi ol .btn-default{
+  float: left;
+  width: 100%;
+      border: none;
+    border-bottom: 2px solid #84cded;
+    border-radius: 0 !important;
+}
+.nuevo_multi ol .dropdown-menu{
+  width: 100%;
+}
+
+.nuevo_multi label{
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.nuevo_multi .form-control {
+      border: none;
+    border-bottom: 2px solid #84cded;
+    border-radius: 0 !important;
+}
+
+.label_multi{
+  margin-top: 10px !important;
+}
+.label_multif{
+  float: left;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+      font-size: 10px !important;
+    border-radius: 3px;
+    opacity: 0.8;
+}
+    .cla_azul{
+      background: #cde9f4;
+    }
+    .cla_ama{
+      background: #f7f9bb;
+    }
+    .cla_ver{
+      background: #9fef4f;
+    }
