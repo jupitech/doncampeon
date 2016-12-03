@@ -38,7 +38,7 @@ class EquiposController extends Controller
 
      public function indexequipos()
     {
-        $equipos=Equipos::with("NombrePais")->get();
+        $equipos=Equipos::with("NombrePais","LigasEquipo")->get();
            if(!$equipos){
                 return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
              }

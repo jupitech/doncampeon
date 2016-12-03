@@ -168,13 +168,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="equipo in equipos" ng-init="ligasig(equipo)">
+                    <tr ng-repeat="equipo in equipos">
                       <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/@{{equipo.alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
                       <td>@{{equipo.nombre_equipo}}</td>
                       <td>@{{equipo.alias}}</td>
                       <td>@{{equipo.nombre_pais.nombre}}</td>
                       <td> 
-                      <span class="spanli" ng-repeat="liga in equipo.ligas">@{{liga.nombreliga.nombre_liga}} </span>
+                      <span class="spanli" ng-repeat="liga in equipo.ligas_equipo">@{{liga.nombreliga.nombre_liga}} </span>
                       <span class="ico_opli">
                                 <a class="btn btn-donc-add glyphicon glyphicon-plus"></a>
                           </span>
