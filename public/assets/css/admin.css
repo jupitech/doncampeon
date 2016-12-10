@@ -1811,6 +1811,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   font-size: 13px;
   color: #555;
   font-weight: bold;
+  cursor: pointer;
 }
 .tab_porliga li a:hover{
   text-decoration: none;

@@ -128,9 +128,12 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
 
                //Agregar multiplicador
                $scope.acti_multi=false;
-               $scope.agregarmulti=function(liga){
+               $scope.agregarmulti=function(liga,idganador){
                  $scope.acti_multi = !$scope.acti_multi;
                  $scope.acti_nuevaliga=false;
+                 $scope.idliga=liga;
+                 $scope.idganador=idganador;
+                 console.log('Liga:', liga, '| Id Ganador: ', idganador);
                  //Ligas asignadas
                       $http.get('/js/ligasasig/'+$scope.miid).success(
 
@@ -140,11 +143,66 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                             }).error(function(error) {
                                  $scope.error = error;
                             }); 
+                 //Ligas asignadas
+                      $http.get('/js/ligasequipos/'+$scope.idliga).success(
 
-                            
+                              function(visitas) {
+                                        $scope.visitas = visitas.datos;
+                                        //console.log($scope.ligasa);
+                            }).error(function(error) {
+                                 $scope.error = error;
+                            }); 
+
+                 //Listado de Multiplicadores 
+                   $http.get('/js/multiganador/'+$scope.idganador).success(
+
+                              function(multiganador) {
+                                        $scope.multiganador = multiganador.datos;
+                                        //console.log($scope.ligasa);
+                            }).error(function(error) {
+                                 $scope.error = error;
+                            });                  
+
+                 //Guardar multiplicador
+                 $scope.multi={};
+                 $scope.guardarMulti=function(){
+                    
+                      var datamulti = {
+                            visita_equipo: $scope.multi.visita_equipo,
+                            id_porganador: $scope.idganador,
+                            resultado_casa:$scope.multi.rec,
+                            resultado_empate:$scope.multi.rex,
+                            resultado_visita:$scope.multi.rev,
+                            probabilidad_casa:$scope.multi.prc,
+                            probabilidad_empate:$scope.multi.prx,
+                            probabilidad_visita:$scope.multi.prv,
+                            multi_casa:$scope.multi.muc,
+                            multi_empate:$scope.multi.mux,
+                            multi_visita:$scope.multi.muv
+                          };
+
+                           $http.post('/js/multiganador/create', datamulti)
+                                .success(function (data, status, headers) {
+
+                                          //Listado de Multiplicadores 
+                                             $http.get('/js/multiganador/'+$scope.idganador).success(
+
+                                                        function(multiganador) {
+                                                                  $scope.multiganador = multiganador.datos;
+                                                                  //console.log($scope.ligasa);
+                                                      }).error(function(error) {
+                                                           $scope.error = error;
+                                                      });     
+                                   })
+                                .error(function (data, status, header, config) {
+                                    console.log("Parece que la liga ya existe");
+                                 //   $timeout(function () { $scope.alertaExiste = true; }, 100);
+                                 //   $timeout(function () { $scope.alertaExiste = false; }, 5000);
+                                });
+                 };           
 
 
-               };
+           };
 
                        
 

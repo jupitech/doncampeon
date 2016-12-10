@@ -11,7 +11,7 @@ class MultiGanador extends Model
      *
      * @var string
      */
-    protected $table = 'por_ganador';
+    protected $table = 'multi_ganador';
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +26,8 @@ class MultiGanador extends Model
      * @var array
      */
     protected $hidden = ['created_at','updated_at'];
+
+      public function EquipoVisita(){
+        return $this->hasOne('\Doncampeon\Models\Equipos','id','visita_equipo');
+    }
 }

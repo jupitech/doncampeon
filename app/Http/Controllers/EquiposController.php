@@ -82,6 +82,20 @@ class EquiposController extends Controller
     }
 
 
+      public function indexmultiganador($id)
+    {
+
+
+        $multiganador=MultiGanador::with("EquipoVisita")->where("id_porganador",$id)->get();
+           if(!$multiganador){
+                return response()->json(['mensaje' =>  'No se encuentran multiplicadores actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $multiganador],200);
+
+
+    }
+
+
 
 
 private function transformEquipos($equiposp){
@@ -172,7 +186,7 @@ private function transform($equiposp){
         
         $multiganador=MultiGanador::where('id_porganador',$idganador)->where('visita_equipo',$visitaequipo)->first();
 
-        if(!$multiganador){
+        if($multiganador==null){
             MultiGanador::create([
                 'visita_equipo' =>$visitaequipo,
                 'id_porganador'   =>$idganador,
@@ -185,7 +199,7 @@ private function transform($equiposp){
                 'multi_casa'   =>$request['multi_casa'],
                 'multi_empate'   =>$request['multi_empate'],
                 'multi_visita'   =>$request['multi_visita'],
-                'estado_multi'   =>1
+                'estado_multi'   =>1,
             ]);
         }else{
               return response()->json(['idmulti_ganador' =>  $multiganador->id],404);
