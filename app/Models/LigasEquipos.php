@@ -35,7 +35,5 @@ class LigasEquipos extends Model
     public function NombreEquipo(){
         return $this->hasOne('\Doncampeon\Models\Equipos','id','equipos_id');
     }
-      public function NombresEquipo(){
-        return $this->hasOne('\Doncampeon\Models\Equipos','id','equipos_id');
-    }
+     
 }
