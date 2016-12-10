@@ -192,7 +192,8 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                                                                   //console.log($scope.ligasa);
                                                       }).error(function(error) {
                                                            $scope.error = error;
-                                                      });     
+                                                      }); 
+                                                       $scope.multi={};    
                                    })
                                 .error(function (data, status, header, config) {
                                     console.log("Parece que la liga ya existe");
