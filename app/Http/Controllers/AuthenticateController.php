@@ -87,9 +87,11 @@ class AuthenticateController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
  
         }
-         
+
+
+        $usuario=User::with("InfoUsuario")->where('id',$user->id)->first();
         // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        return response()->json(compact('usuario'));
     }
 
      public function register(Request $request){
@@ -111,6 +113,7 @@ class AuthenticateController extends Controller
                   'user_id' => $user->id,
                   'pais' => $request['pais'],
                   'telefono' => $request['telefono'],
+                  'estado_profile' => 1,
                         ]);
          $userprofile->save();
 

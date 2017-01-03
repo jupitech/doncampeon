@@ -1,5 +1,5 @@
 //************************************Pasarelas**********************************************//
-dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
+dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$location,$window,moment){
 
    $scope.status = {
     isopen: false
@@ -12,7 +12,6 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
   };
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-
 
    $scope.nuevo_obj = false;
    $scope.editar_obj = false;
@@ -43,6 +42,18 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                  $scope.error = error;
             });
 
+       //Todos las ligas
+       
+ 
+      $http.get('/js/ligas').success(
+
+              function(ligasen) {
+                        $scope.ligasen = ligasen.datos;
+            }).error(function(error) {
+                 $scope.error = error;
+            });       
+
+     
 
      $scope.ligas = [];
 	   $scope.ligasig = function(equipo)
@@ -52,10 +63,22 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
 
 		              function(ligas) {
 		                        equipo.ligas = ligas.datos;
+
 		            }).error(function(error) {
 		                 equipo.error = error;
 		            });
 	    }; 
+      
+      $scope.mili=[];
+      $scope.agregarliga=function(liga,equipo){
+              var dataliga={
+                ligas_id:liga,
+                equipos_id:equipo
+              }
+              console.log(dataliga);
+              
+
+      };
 
 
 	        //Abrir X ganador
@@ -129,7 +152,7 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                //Agregar multiplicador
                $scope.acti_multi=false;
                $scope.agregarmulti=function(liga,idganador){
-                 $scope.acti_multi = !$scope.acti_multi;
+                 $scope.acti_multi = true;
                  $scope.acti_nuevaliga=false;
                  $scope.idliga=liga;
                  $scope.idganador=idganador;
@@ -166,6 +189,7 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal){
                  //Guardar multiplicador
                  $scope.multi={};
                  $scope.guardarMulti=function(){
+                  
                     
                       var datamulti = {
                             visita_equipo: $scope.multi.visita_equipo,

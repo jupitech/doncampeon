@@ -12,6 +12,7 @@ use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
 use Doncampeon\Models\LigasEquipos;
+use Doncampeon\Models\Ligas;
 use Doncampeon\Models\PorGanador;
 use Doncampeon\Models\MultiGanador;
 use JWTAuth;
@@ -22,6 +23,8 @@ class EquiposController extends Controller
     public function __contruct(){
        $this->middleware('auth.basic');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +46,17 @@ class EquiposController extends Controller
                 return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
              }
          return response()->json(['datos' =>  $equipos],200);
+
+
+    }
+
+    public function indexligas()
+    {
+        $ligas=Ligas::all();
+           if(!$ligas){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligas],200);
 
 
     }
@@ -180,7 +194,7 @@ private function transform($equiposp){
 
      public function storemultiganador(Request $request)
     {
-
+        
         $visitaequipo=$request['visita_equipo'];
         $idganador=$request['id_porganador'];
         
@@ -207,17 +221,7 @@ private function transform($equiposp){
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *

@@ -198,6 +198,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
             //Equipos
             Route::get('equipos','EquiposController@indexequipos');
+             Route::get('ligas','EquiposController@indexligas');
             Route::get('ligasasig/{id}','EquiposController@indexligasasig');
             Route::get('ligasequipos/{id}','EquiposController@indexligasequipos');
             Route::get('ligaganador/{id}','EquiposController@indexligasganador');

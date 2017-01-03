@@ -9,13 +9,14 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+
 
     <title>Don Campeon</title>
 
     <!-- Bootstrap core CSS -->
      {!! Html::style('assets/css/bootstrap.min.css') !!}
      {!! Html::style('assets/css/admin.css') !!}
+     {!! Html::style('assets/css/responsive.css') !!}
      {!! Html::style('assets/css/bootstrap-select.css') !!}
       {!! Html::style('assets/css/nya-bs-select.css') !!}
      {!! Html::style('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}

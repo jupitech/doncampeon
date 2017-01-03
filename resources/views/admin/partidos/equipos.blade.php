@@ -155,23 +155,24 @@
                                     <th colspan="3">Resultado</th>
                                     <th colspan="3">Probabilidad</th>
                                     <th colspan="3">Multiplicador</th>
+                                     <th rowspan="2"></th>
                                   </tr>
-                                  <tr>
+                                  <tr class="th_small">
                                     <th>C</th>
                                     <th>X</th>
-                                    <th>E</th>
+                                    <th>V</th>
                                     <th>C</th>
                                     <th>X</th>
-                                    <th>E</th>
+                                    <th>V</th>
                                     <th>C</th>
                                     <th>X</th>
-                                    <th>E</th>
+                                    <th>V</th>
                                   </tr>
 
                                 </thead>
                                 <tbody>
                                   <tr ng-repeat="multiga in multiganador">
-                                    <td>@{{multiga.equipo_visita.nombre_equipo}}</td>
+                                    <td class="td_resal">@{{multiga.equipo_visita.nombre_equipo}}</td>
                                     <td>@{{multiga.resultado_casa}}</td>
                                     <td>@{{multiga.resultado_empate}}</td>
                                     <td>@{{multiga.resultado_visita}}</td>
@@ -181,6 +182,11 @@
                                     <td>@{{multiga.multi_casa | number:2}}</td>
                                     <td>@{{multiga.multi_empate | number:2}}</td>
                                     <td>@{{multiga.multi_visita | number:2}}</td>
+                                    <td>
+                                       <span class="ico_op">
+                                              <a class="btn btn-donc-editar glyphicon glyphicon-pencil"></a>
+                                        </span>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -213,8 +219,27 @@
                           <td>@{{equipo.nombre_pais.nombre}}</td>
                           <td> 
                           <span class="spanli" ng-repeat="liga in equipo.ligas_equipo">@{{liga.nombreliga.nombre_liga}} </span>
-                          <span class="ico_opli">
-                                    <a class="btn btn-donc-add glyphicon glyphicon-plus"></a>
+                          <span class="ico_opli ed_drop"  uib-dropdown>
+                                    <a class="btn btn-donc-add glyphicon glyphicon-plus" id="simple-dropdown" uib-dropdown-toggle></a>
+                                     <div class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                                        <form class="form-horizontal" name="frmed" role="form"  >
+                                               <div class="col-sm-9 ">
+                                                    <ol class="nya-bs-select" ng-model="idliga"  title="Agregar Liga..." required  data-size="10">
+                                                          <li nya-bs-option="liga in ligasen" data-value="liga.id">
+                                                            <a>
+                                                             <span>
+                                                                  @{{ liga.nombre_liga}}
+                                                                </span>
+                                                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                            </a>
+                                                          </li>
+                                                        </ol>
+                                               </div>
+                                               <div class="col-sm-3 spd spi">
+                                                <button type="submit" class="btn_g btn_cambiar glyphicon glyphicon-plus" ng-disabled="frmed.$invalid" ng-click="agregarliga(idliga, equipo.id)"></button>
+                                               </div>
+                                        </form>
+                                        </div>
                               </span>
                           </td>
                           <td>
