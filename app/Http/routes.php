@@ -26,7 +26,10 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::post('registro', 'AuthenticateController@register');
+    Route::put('completar1/{id}', 'AuthenticateController@completar1');
+    Route::put('completar2/{id}', 'AuthenticateController@completar2');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+    Route::get('authenticate/equipos', 'AuthenticateController@equipos');
 
     //Reset Password
     Route::get('password/email','Auth\PasswordController@getEmail');

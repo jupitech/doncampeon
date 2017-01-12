@@ -23,6 +23,10 @@ return [
         'secret' => '',
     ],
 
+    'sparkpost' => [
+        'secret' =>  env('SPARKPOST_SECRET'),
+    ],
+
     'ses' => [
         'key'    => '',
         'secret' => '',
