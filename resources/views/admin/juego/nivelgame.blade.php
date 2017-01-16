@@ -92,6 +92,18 @@
 						                                                                        		     {!! Form::number('nivel_bonus', $game_niveles->nivel_bonus, ['class'=> 'form-control']) !!}
 					                                                                        		     </div>
 					                                                                        	</div>
+					                                                                        	<div class="col-sm-12">
+				                                                                        			    <div class="form-group">
+						                                                                        			 <label>Imagen</label>
+						                                                                        		     {!! Form::text('imagen_nivel', $game_niveles->imagen_nivel, ['class'=> 'form-control']) !!}
+					                                                                        		     </div>
+					                                                                        	</div>
+					                                                                        	<div class="col-sm-12">
+				                                                                        			    <div class="form-group">
+						                                                                        			 <label>Imagen 300x300</label>
+						                                                                        		     {!! Form::text('thumb_nivel', $game_niveles->thumb_nivel, ['class'=> 'form-control']) !!}
+					                                                                        		     </div>
+					                                                                        	</div>
 					                                                                        	<div class="col-md-offset-8 col-sm-4">
 					                                                                        		  {!! Form::submit('Editar',['class' => 'btn_ni btn_opcio btn btn-donc-enlaces']) !!}
 					                                                                        	</div>

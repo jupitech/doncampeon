@@ -1096,6 +1096,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
           .area_opciones .dropdown-menu-op{
             top: -12px;
             right: 3px;
+            width: 300px !important;
           }
              .btn_opcio{
               margin-top: 3px !important;
