@@ -1027,7 +1027,15 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       font-size: 15px;
       margin:15px 0;
      }
-
+   
+   .ico_favorito{
+      float: left;
+      width: 25px;
+      height: 25px;
+      background: url('../img/ico_favorito.svg') no-repeat center;
+      background-size: 25px;
+      margin-left: 10px;
+   }
   
     .bs-callout {
     padding: 10px;

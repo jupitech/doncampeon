@@ -30,7 +30,7 @@ class ApiLigascontroller extends Controller
     public function indexlistado()
     {
            //Traendo partidos que no han sido terminados en este dia
-         $ligas=Ligas::orderBy('id','ASC')->get();
+         $ligas=Ligas::where('favorito',1)->orderBy('id','ASC')->get();
          if(!$ligas){
              return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
         }

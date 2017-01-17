@@ -10,17 +10,29 @@
                  	  @include('admin.sections.errors')
                             {!! Form::model($ligas,['route'=>['ligas.update',$ligas->id],'method'=>'PUT']) !!}
 
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    {!! Form::text('nombre_liga', null, ['class'=> 'form-control','placeholder'=>'Ingresa nombre de la Liga']) !!}
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        {!! Form::text('nombre_liga', null, ['class'=> 'form-control','placeholder'=>'Ingresa nombre de la Liga']) !!}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Alias</label>
+                                        {!! Form::text('alias', null, ['class'=> 'form-control','placeholder'=>'Ingresa el alias']) !!}
+                                    </div>
                                 </div>
-                                 <div class="form-group">
-                                    <label>Alias</label>
-                                    {!! Form::text('alias', null, ['class'=> 'form-control','placeholder'=>'Ingresa el alias']) !!}
+                                <div class="col-sm-6">
+                                   <div class="form-group">
+                                      <label for="">Favorito</label>
+                                      <select name="favorito" class="form-control selectpicker">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                      </select>
+                                    </div>
                                 </div>
-
-                                <div>
-                                    {!! Form::submit('Editar',['class' => 'btn btn-primary']) !!}
+                                 <div class="col-sm-12">        
+                                        <div>
+                                            {!! Form::submit('Editar',['class' => 'btn btn-primary']) !!}
+                                        </div>
                                 </div>
                             {!! Form::close() !!}
                      

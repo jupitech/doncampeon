@@ -20,7 +20,7 @@ class Ligas extends Model{
      *
      * @var array
      */
-    protected $fillable = ['nombre_liga','alias'];
+    protected $fillable = ['nombre_liga','alias','favorito'];
 
     /**
      * The attributes excluded from the model's JSON form.
