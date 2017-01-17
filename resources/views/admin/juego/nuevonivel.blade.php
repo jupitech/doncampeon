@@ -41,7 +41,18 @@
                                         {!! Form::number('nivel_bonus', null, ['class'=> 'form-control']) !!}
                                     </div>
                                 </div>
-                                
+                                <div class="col-sm-12">
+                                       <div class="form-group">
+                                        <label>Imagen 400x500</label>
+                                        {!! Form::text('imagen_nivel', null, ['class'=> 'form-control','placeholder'=>'Ingresa imagen 400x500']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                       <div class="form-group">
+                                        <label>Imagen 300x300</label>
+                                        {!! Form::text('thumb_nivel', null, ['class'=> 'form-control','placeholder'=>'Ingresa imagen 300x300']) !!}
+                                    </div>
+                                </div>
 
                                 <div>
                                     {!! Form::submit('Guardar',['class' => 'btn btn-primary']) !!}
