@@ -53,7 +53,7 @@
 															  	    <div class="caja_small">
 															  	       <h3>{{$game_niveles->nivel_nombre}}</h3>
 															  	        <div class="imagen_nivel">
-																	  		<span class="imagen" style="background:url('../assets/img/niveles/{{$game_niveles->nivel_alias}}.svg') no-repeat center bottom !important;">
+																	  		<span class="imagen" style="background:url('{{$game_niveles->imagen_nivel}}') no-repeat center bottom !important;">
 																	  			
 																	  		</span>
 																			<div class="area_opciones">
