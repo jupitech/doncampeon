@@ -49,6 +49,8 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
      Route::get('partidosmes', 'Api\ApiPartidoCalendarioController@indexmes');
      Route::get('partidosmessi', 'Api\ApiPartidoCalendarioController@indexmessi');
 
+      Route::get('partidossemana/{id}', 'Api\ApiPartidoCalendarioController@indexsemanaid');
+
      Route::get('partidosconsemana', 'Api\ApiPartidoCalendarioController@contsemana');
      Route::get('partidosconhoy', 'Api\ApiPartidoCalendarioController@conthoy');
      Route::get('partidosconmes', 'Api\ApiPartidoCalendarioController@contmes');
@@ -156,7 +158,7 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
       //Equipos
       Route::resource('equipos','EquiposController');
-      Route::post('equipos/storeligas',['as' => 'storeligas', 'uses' => 'EquiposController@storeligas']);
+      
       Route::delete('equipos/destroyliga/{id}',['as' => 'destroyliga', 'uses' => 'EquiposController@destroyliga']);
       Route::resource('ligas','LigasController');
       Route::resource('pais','PaisController');
@@ -208,7 +210,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
             Route::get('ligaganador/{id}','EquiposController@indexligasganador');
             Route::post('ligaganador/create','EquiposController@storeligaganador');
             Route::post('multiganador/create','EquiposController@storemultiganador');
-             Route::get('multiganador/{id}','EquiposController@indexmultiganador');
+             Route::get('multiganador/{id}','EquiposContsroller@indexmultiganador');
+             Route::post('equipos/storeligas','EquiposController@storeligas');
 
         });
 

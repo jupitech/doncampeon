@@ -44,11 +44,11 @@ class ApiPartidoFavoritoController extends Controller
     public function show($user_id,$partido_id)
     {
                  //Traendo partidos que no han sido terminados en esta semana
-        $partidofav=PartidoFavorito::where('user_id',$user_id)->where('partido_id',$partido_id)->first();
+        $partidofav=PartidoFavorito::where('user_id',$user_id)->where('partido_id',$partido_id)->where('partido_act',1)->first();
         if(!$partidofav){
-             return response()->json(['error' =>  '0'],400);
+             return response()->json(['datos' =>  '0'],200);
         }
-         return response()->json(['datos' =>  $partidofav],200);
+         return response()->json(['datos' =>  '1'],200);
     }
 
 

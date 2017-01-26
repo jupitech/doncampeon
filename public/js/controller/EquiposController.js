@@ -76,6 +76,25 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$
                 equipos_id:equipo
               }
               console.log(dataliga);
+                $http.post('/js/equipos/storeligas', dataliga)
+                                .success(function (data, status, headers) {
+                                         //Todos los equipos
+                                              $http.get('/js/equipos').success(
+
+                                                      function(equipos) {
+                                                                $scope.equipos = equipos.datos;
+                                                    }).error(function(error) {
+                                                         $scope.error = error;
+                                                    });
+
+                                               console.log("Liga agregada al ganador");
+                                   })
+                                .error(function (data, status, header, config) {
+                                    console.log("Parece que la liga ya existe");
+                                 //   $timeout(function () { $scope.alertaExiste = true; }, 100);
+                                 //   $timeout(function () { $scope.alertaExiste = false; }, 5000);
+                                });
+
               
 
       };
@@ -148,6 +167,11 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$
 
                     
                };
+
+
+              
+              
+
 
                //Agregar multiplicador
                $scope.acti_multi=false;

@@ -21,7 +21,7 @@ class ApiPartidoCalendarioController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-    $this->middleware('jwt.auth');
+    //$this->middleware('jwt.auth');
    }
     /**
      * Display a listing of the resource.
@@ -38,6 +38,27 @@ class ApiPartidoCalendarioController extends Controller
          return response()->json(['datos' =>  $partidos],200);
         
     }
+
+
+    /*Semana ID*/
+     public function indexsemanaid($id)
+    {
+            //Traendo partidos que no han sido terminados en esta semana
+        $partidos=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga","PartidoFavorito")
+        ->orderBy('fecha_partido','ASC')
+        ->orderBy('hora_partido','ASC')
+        ->WhereHas('PartidoFavorito', function($q)  use ($id) {$q->where('user_id', $id);})
+        ->where('fecha_partido','>=',Carbon::today())->where('fecha_partido','<=',Carbon::today()
+        ->endOfWeek())
+        ->get();
+        if(!$partidos){
+             return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
+        }
+         return response()->json(['datos' =>  $partidos],200);
+        
+    }
+
+
 
     
 
@@ -109,7 +130,7 @@ class ApiPartidoCalendarioController extends Controller
       public function indexpartido($id)
     {
           //Traendo partidos que no han sido terminados en este dia
-         $partido=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga")->orderBy('hora_partido','ASC')->where('id',$id)->get();
+         $partido=PartidoCalendario::with("EquipoCasaNombre","EquipoVisitaNombre","NombreLiga","ProbabilidadLiga")->orderBy('hora_partido','ASC')->where('id',$id)->get();
          if(!$partido){
              return response()->json(['mensaje' =>  'No se encuentran partido actualmente','codigo'=>404],404);
         }
