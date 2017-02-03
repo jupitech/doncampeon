@@ -211,7 +211,7 @@
                       <th>Opciones</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody infinite-scroll="masequipos()">
                     <tr ng-repeat="equipo in equipos">
                           <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/@{{equipo.alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
                           <td>@{{equipo.nombre_equipo}}</td>

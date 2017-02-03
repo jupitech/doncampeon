@@ -37,7 +37,10 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$
       $http.get('/js/equipos').success(
 
               function(equipos) {
-                        $scope.equipos = equipos.datos;
+                        $scope.equipos = equipos.datos.slice(0, 15);
+                          $scope.masequipos = function () {
+                                  $scope.equipos = equipos.datos.slice(0, $scope.equipos.length + 15);
+                              }
             }).error(function(error) {
                  $scope.error = error;
             });
@@ -82,7 +85,10 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$
                                               $http.get('/js/equipos').success(
 
                                                       function(equipos) {
-                                                                $scope.equipos = equipos.datos;
+                                                                 $scope.equipos = equipos.datos.slice(0, 15);
+                                                                  $scope.masequipos = function () {
+                                                                          $scope.equipos = equipos.datos.slice(0, $scope.equipos.length + 15);
+                                                                      }
                                                     }).error(function(error) {
                                                          $scope.error = error;
                                                     });

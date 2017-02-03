@@ -113,7 +113,9 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
          //Resultados Panel
          Route::get('resultados',['as' => 'resultados', 'uses' => 'ResultadosPanelController@index']);
          //Resultados
-         Route::post('partidos/resultadostore',['as' => 'partido.amarcador', 'uses' => 'PartidoResultadoController@store']);  
+         Route::post('partidos/resultadostore',['as' => 'partido.amarcador', 'uses' => 'PartidoResultadoController@store']);
+
+         Route::get('partidosjs','PartidoCalendarioController@indexjs');  
 
          //Probabilidades
          Route::get('probabilidades',['as' => 'probabilidades', 'uses' => 'ProbabilidadesLigasController@index']);
@@ -213,6 +215,8 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
              Route::get('multiganador/{id}','EquiposContsroller@indexmultiganador');
              Route::post('equipos/storeligas','EquiposController@storeligas');
 
+             //Partidos
+             Route::get('partidos/calendario','PartidoCalendarioController@indexcalendario');
         });
 
 });
