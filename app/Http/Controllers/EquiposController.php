@@ -50,6 +50,18 @@ class EquiposController extends Controller
 
     }
 
+    public function indexequiposse($search)
+    {
+        $equipos=Equipos::with("NombrePais","LigasEquipo")->where(function($q) use ($search) {
+    $q->where('nombre_equipo', 'LIKE',  '%'.$search.'%');})->get();
+           if(!$equipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $equipos],200);
+
+
+    }
+
     public function indexligas()
     {
         $ligas=Ligas::all();

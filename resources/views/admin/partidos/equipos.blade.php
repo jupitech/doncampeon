@@ -195,7 +195,21 @@
 
       </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12 spi spd">
-
+          <div class="col-sm-12 spd spi">
+             <div class="busqueda_texto col-sm-4 spd spi">
+                 <form class="form-horizontal" name="frm" role="form" ng-submit="busquedaequi()">
+                 <div class="col-sm-8 spi">
+                    <input type="text"  class="form-control" id="busqueda" ng-model="busqueda.texto"  placeholder="Busqueda de equipos.." />
+                 </div>
+                 <div class="col-sm-4 spd">
+                   <button type="submit" class="btn btn-primary btn_add" ng-disabled="frm.$invalid">Buscar</button>
+                 </div>
+                   
+                    
+                 </form>
+           
+             </div>
+        </div>
          	 <div class="caja_section">
 
            {{-- Listado de equipos --}}

@@ -206,13 +206,14 @@ Route::group(['middleware' => ['auth','role:admin|editor']], function()
 
             //Equipos
             Route::get('equipos','EquiposController@indexequipos');
+             Route::get('equiposbus/{search}','EquiposController@indexequiposse');
              Route::get('ligas','EquiposController@indexligas');
             Route::get('ligasasig/{id}','EquiposController@indexligasasig');
             Route::get('ligasequipos/{id}','EquiposController@indexligasequipos');
             Route::get('ligaganador/{id}','EquiposController@indexligasganador');
             Route::post('ligaganador/create','EquiposController@storeligaganador');
             Route::post('multiganador/create','EquiposController@storemultiganador');
-             Route::get('multiganador/{id}','EquiposContsroller@indexmultiganador');
+             Route::get('multiganador/{id}','EquiposController@indexmultiganador');
              Route::post('equipos/storeligas','EquiposController@storeligas');
 
              //Partidos

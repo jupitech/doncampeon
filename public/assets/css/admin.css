@@ -784,6 +784,12 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   float: left;
   margin-right: 5px;
 }
+
+.busqueda_texto{
+  margin:10px 0;
+}
+
+
 .op_act{
     display: block;
     width: 15px;

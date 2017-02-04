@@ -45,6 +45,22 @@ dApp.controller('EquiposCtrl',function($scope, $http, $timeout, $log,$uibModal,$
                  $scope.error = error;
             });
 
+            $scope.busqueda={};
+            $scope.busquedaequi= function(){
+
+                $http.get('/js/equiposbus/'+$scope.busqueda.texto).success(
+
+                      function(equipos) {
+                                $scope.equipos = equipos.datos.slice(0, 15);
+                                  $scope.masequipos = function () {
+                                          $scope.equipos = equipos.datos.slice(0, $scope.equipos.length + 15);
+                                      }
+                    }).error(function(error) {
+                         $scope.error = error;
+                    });   
+            }
+  
+
        //Todos las ligas
        
  
