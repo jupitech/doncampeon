@@ -1,5 +1,13 @@
 //************************************Partidos**********************************************//
 dApp.controller('PartidosCtrl',function($scope, $http, $timeout, $log,$uibModal,$location,$window,moment){
+  	moment.locale('es');
+
+  	moment.updateLocale('en', {
+        weekdays  : [
+            "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
+        ]
+    });
+
 
 	  $scope.status = {
 	    isopen: false
@@ -13,7 +21,7 @@ dApp.controller('PartidosCtrl',function($scope, $http, $timeout, $log,$uibModal,
 
 	  $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 
-	       $scope.nuevo_obj = false;
+       $scope.nuevo_obj = false;
 		   $scope.editar_obj = false;
 		   $scope.mas_obj= false;
 		   $scope.abmas_obj= false;
@@ -22,13 +30,20 @@ dApp.controller('PartidosCtrl',function($scope, $http, $timeout, $log,$uibModal,
 
     $scope.btn_nuevo = function() {
         $scope.nuevo_obj = !$scope.nuevo_obj;
-       $scope.sucursal={};
+       $scope.partido={};
    };
 
   //Quitar filtro   
   $scope.deselec=function(){
     $scope.busfiltro='';
   }
+
+
+    $scope.toDay = function(date) {
+      
+        	$scope.midate=moment(date);
+      		  return $scope.midate.format('dddd');
+      };
 
   		 //Todos los partidos
       $http.get('/js/partidos/calendario').success(
@@ -44,4 +59,6 @@ dApp.controller('PartidosCtrl',function($scope, $http, $timeout, $log,$uibModal,
 
 
 
-});	
+
+
+});

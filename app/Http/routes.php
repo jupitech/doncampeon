@@ -30,7 +30,7 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
     Route::put('completar2/{id}', 'AuthenticateController@completar2');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
     Route::get('authenticate/equipos', 'AuthenticateController@equipos');
-
+   // Route::get('pmail', 'AuthenticateController@pmail');
     //Reset Password
     Route::get('password/email','Auth\PasswordController@getEmail');
     Route::post('password/email','Auth\PasswordController@postEmail');

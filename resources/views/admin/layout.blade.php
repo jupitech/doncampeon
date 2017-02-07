@@ -29,6 +29,7 @@
      {!! Html::script('assets/js/bootstrap-select.js') !!}
      {!! Html::script('assets/js/bootstrap.min.js') !!}
      {!! Html::script('assets/js/bower_components/moment/moment.js') !!}
+       {!! Html::script('js/moment-with-locales.js') !!}
       {!! Html::script('assets/js/moment-timezone.js') !!}
      {!! Html::script('assets/js/jquery.countdown.js') !!}
      {!! Html::script('assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}

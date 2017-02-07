@@ -30,7 +30,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate','register','completar1','completar2']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate','register','completar1','completar2','pmail']]);
    }
 
     public function index()
@@ -163,6 +163,25 @@ class AuthenticateController extends Controller
          });
 
     }
+
+   /* public function pmail(){
+      $user=User::where('id',16)->first();
+      Mail::send('emails.bienvenida', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Don Campeon Sports')
+            ->to($user->email, $user->username)
+            ->subject('Bienvenido a Don Campeón');
+         });
+
+         Mail::send('emails.nuevousuario', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
+            ->to('hola@doncampeon.com', 'Nuevo Usuario')
+            ->subject('Usuario ['.$user->username.' ] Registrado');
+         });
+    }*/
 
 
     public function completar1(Request $request,$id){

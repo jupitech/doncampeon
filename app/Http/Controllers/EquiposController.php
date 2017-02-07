@@ -49,7 +49,8 @@ class EquiposController extends Controller
 
 
     }
-
+    
+    //Busqueda de equipos por texto
     public function indexequiposse($search)
     {
         $equipos=Equipos::with("NombrePais","LigasEquipo")->where(function($q) use ($search) {
@@ -58,7 +59,6 @@ class EquiposController extends Controller
                 return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
              }
          return response()->json(['datos' =>  $equipos],200);
-
 
     }
 

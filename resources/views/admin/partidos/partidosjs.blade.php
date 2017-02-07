@@ -5,10 +5,33 @@
 
 		<div class="col-sm-12" ng-controller="PartidosCtrl">
       			<h1 class="page-header">
-      			 <div class="col-sm-6 spi spd">
+      				 <div class="col-sm-6 spi spd">
 		                  Partidos
 		             </div>
+		              <div class="col-sm-6 spi spd">
+			               <div class="lbotones">
+			                  <a  type="button" class="btn btn-donc-nuevo" aria-label="Left Align" ng-click="btn_nuevo()"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>  Nuevo Partido</a>
+
+			               </div>
+             		  </div>
       			</h1>
+				{{-- Nuevo partido --}}
+      			  <div id="area_nuevo" ng-if="nuevo_obj">
+						 <div class="header_nuevo">
+		                        <div class="col-sm-12">
+		                              <h1><span>Nuevo</span>Partido</h1>
+		                              <a class="btn_cerrar" ng-click="btn_nuevo()"></a>
+		                        </div>
+      					  </div>
+      					   <div class="conte_nuevo">
+
+      					   </div>
+
+      			  </div>
+
+
+
+      			  {{-- Opciones por calendario --}}
       			<div class="col-sm-12">
       				
       			</div>
@@ -32,7 +55,7 @@
 			          	  		    {{-- Fecha y hora --}}
 			          	  			<div class="area_date">
 			          	  				<div class="col-xs-7 col-sm-7 spd spi">
-			          	  				<p class="f_partido"> </p>
+			          	  				<p class="f_partido" >@{{ toDay(partido.fecha_partido)}},@{{partido.fecha_partido | amDateFormat: 'DD/MM/YYYY'}}</p>
 			          	  				</div>
 			          	  				 <div class="col-xs-5 col-sm-5 spd spi">
 			          	  				  <p class="h_partido">@{{partido.hora_partido}}</p> 

@@ -37,7 +37,7 @@ class PartidoCalendarioController extends Controller
        public function indexcalendario()
     {
           //Traendo partidos que no han sido terminados en este dia
-        $partidos=PartidoCalendario::with("NombreLiga","EquipoCasa","EquipoVisita")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->get();
+        $partidos=PartidoCalendario::with("NombreLiga","EquipoCasa","EquipoVisita")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','DESC')->where('fecha_partido','>=',Carbon::today())->get();
 
 
              if(!$partidos){
