@@ -20,7 +20,7 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','first_name','last_name','edad','pais','telefono','direccion','facebook','twitter','estado_profile','ciudad','noid'];
+    protected $fillable = ['user_id','first_name','last_name','edad','pais','telefono','direccion','facebook','twitter','estado_profile','ciudad','noid','alias'];
 
     /**
      * The attributes excluded from the model's JSON form.

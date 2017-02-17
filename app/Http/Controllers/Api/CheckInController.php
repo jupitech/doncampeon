@@ -11,6 +11,9 @@ use Doncampeon\Models\UserProfile;
 use Doncampeon\Models\UserGame;
 use Doncampeon\Models\GameNivel;
 use Doncampeon\Models\PaqueteTukis;
+use Doncampeon\Models\TukisComprados;
+use Doncampeon\Models\UserTukis;
+use Doncampeon\Models\MovimientoTransacciones;
 use Carbon\Carbon;
 
 class CheckInController extends Controller
@@ -40,15 +43,7 @@ class CheckInController extends Controller
          return response()->json(['datos' =>  $paquete],200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +53,77 @@ class CheckInController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $secret=env('DONC_SECRET');
+        $trsecret= $request['secret'];
+        if($secret==$trsecret){
+
+            $ahora=Carbon::now();
+            $dia=$ahora->day;
+            $hora=$ahora->hour;
+            $minuto=$ahora->minute;
+            $segundo=$ahora->second;
+            
+            $codigo='CO_'.$dia.$hora.$minuto.$segundo;
+
+            //Tukis Comprados
+            $comprados=TukisComprados::create([
+                'codigo' =>$codigo,
+                'transaccion'   =>$request['transaccion'],
+                'respuesta'   =>$request['respuesta'],
+                'user_id'   =>$request['user_id'],
+                'id_paquete'   =>$request['id_paquete'],
+                'cantidad'   =>$request['cantidad'],
+            ]);
+            $comprados->save();
+
+            //Tukis a usuarios
+            $usuario=UserTukis::create([
+                'user_id' =>$request['user_id'],
+                'token_grupo'   =>$comprados->codigo,
+                'cantidad_tukis'   =>$request['cantidad'],
+                'tipo_tukis'   =>1,
+            ]);
+            $usuario->save();
+
+           //Movimiento transacciones
+            $movimiento=MovimientoTransacciones::create([
+                'user_id' =>$request['user_id'],
+                 'respuesta'   =>$request['respuesta'],
+                'id_paquete'   =>$request['id_paquete'],
+                 'transaccion'   =>$request['transaccion'],
+            ]);
+            $movimiento->save();
+
+
+
+             return response()->json(['datos' =>  'Paquete de Tukis comprados exitosamente.'],200);
+        }else{
+             return response()->json(['datos' =>  'API SECRET no es correto, intenta de nuevo'],400);
+        }
+    }
+
+      public function fail(Request $request)
+    {
+        $secret=env('DONC_SECRET');
+        $trsecret= $request['secret'];
+        if($secret==$trsecret){
+
+         
+           //Movimiento transacciones
+            $movimiento=MovimientoTransacciones::create([
+                'user_id' =>$request['user_id'],
+                 'respuesta'   =>$request['respuesta'],
+                'id_paquete'   =>$request['id_paquete'],
+                 'transaccion'   =>$request['transaccion'],
+            ]);
+            $movimiento->save();
+
+
+
+             return response()->json(['datos' =>  'Status de Transaccion erronea.'],200);
+        }else{
+             return response()->json(['datos' =>  'API SECRET no es correto, intenta de nuevo'],400);
+        }
     }
 
     /**

@@ -186,14 +186,14 @@ class AuthenticateController extends Controller
 
     public function completar1(Request $request,$id){
      
-             $firstname=$request['first_name'];
+             $alias=$request['alias'];
 
            
             
              $userprofile=UserProfile::where('user_id',$id)->first();
 
              $userprofile->fill([
-                'first_name' => $firstname,
+                'alias' => $alias,
               ]);
               $userprofile->save();
 

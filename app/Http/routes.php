@@ -77,6 +77,9 @@ Route::group(['middleware' => 'cors','prefix' => 'api/v1'], function()
 
         //Checkin
        Route::get('checkin/{token}', 'Api\CheckInController@indexuser');
+         Route::post('checkin/create', 'Api\CheckInController@store');
+         Route::post('checkin/fail', 'Api\CheckInController@fail');
+
        Route::get('checkin/paquete/{paquete}', 'Api\CheckInController@indexpaquetes');
 
 
