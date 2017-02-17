@@ -20,7 +20,7 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','first_name','last_name','edad','pais','direccion','facebook','twitter'];
+    protected $fillable = ['user_id','first_name','last_name','edad','pais','telefono','direccion','facebook','twitter','estado_profile','ciudad','noid','alias'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -31,13 +31,13 @@ class UserProfile extends Model
      protected $dates = ['deleted_at'];
 
      public function getPaisNombre(){
-        return \Doncampeon\Models\Pais::where('id',$this->pais)->first()->nombre;
+        return \Doncampeon\Models\Pais::where('id',$this->pais)->first();
     }
-      public function PaisNomUsuario(){
-         return $this->hasOne('\Doncampeon\Models\Pais','id','pais');
-    }
-
        public function InfoUsuario(){
         return $this->hasOne('\Doncampeon\User','id','user_id');
+    }
+
+    public function PaisNomUsuario(){
+        return $this->hasOne('\Doncampeon\Models\Pais','nombre','pais');
     }
 }

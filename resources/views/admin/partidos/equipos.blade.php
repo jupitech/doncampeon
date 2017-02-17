@@ -2,8 +2,8 @@
 
 @section('content')
      @include('admin.sections.menuequipos')
-      <div class="col-sm-12">
-      <h1 class="page-header">
+      <div class="col-sm-12" ng-controller="EquiposCtrl">
+      <div class="page-header">
             <div class="col-sm-6 spi spd">
                   Equipos
              </div>
@@ -14,442 +14,278 @@
                </div>
                </div>
 
-      </h1>
-        <div class="col-lg-8 col-md-12 col-sm-12 col-sx-12 spi spd">
+      </div>
+      {{-- Area por ganador de equipos --}}
+      <div id="area_mas" ng-if="mas_obj">
+           <div class="header_nuevo">
 
-         	 <div class="caja_section">
-          @if(Session::has('message'))
-                      <div class="col-sm-12">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          {{Session::get('message')}}
+                        <div class="col-sm-12">
+                              <h1><span>Ganador</span>Equipo @{{exisGanador.nombre_equipo}}</h1>
+                              <a class="btn_cerrar" ng-click="btn_cerrarc()"></a>
                         </div>
-                      </div>
-                    @endif
-              <?php
-                    $laliga=\Doncampeon\Models\Ligas::orderBy('id','ASC')->lists('nombre_liga','id');
-                    $equiposnacionales=\Doncampeon\Models\Equipos::where('pais_equipo','1')->get();
-                    $equiposinternacionales=\Doncampeon\Models\Equipos::where('pais_equipo','>','1')->get();
-                    ?>
-
-           <!-- Nav tabs -->
-          <ul class="tab_donc nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#todos" aria-controls="todos" role="tab" data-toggle="tab">Todos</a></li>
-            <li role="presentation"><a href="#nacionales" aria-controls="nacionales" role="tab" data-toggle="tab">Nacionales</a></li>
-            <li role="presentation"><a href="#internacionales" aria-controls="internacionales" role="tab" data-toggle="tab">Internacionales</a></li>
-          </ul>
-
-
-           <div class="tab-content">
-               <div role="tabpanel" class="tab-pane active" id="todos">
-
-                  <table id="tabledonc" class="table dataTable" cellspacing="0" width="100%">
-                  	<thead>
-                  	<tr>
-                     <th>Camisola</th>
-                  		<th>Equipo</th>
-                  		<th>Alias</th>
-                  		<th>Pais</th>
-                      <th>Ligas asignadas</th>
-                  		<th>Opciones</th>
-                  	</tr>
-                  	</thead>
-                  	<tbody>
-                  	@foreach($equipos as $equipo)
-                  	<tr>
-                       <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/{{$equipo->alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
-                  		<td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
-                  		<td>{{$equipo->alias}}</td>
-                  		<td>{{$equipo->getPaisNombre()}}</td>
-                      <td>
-                           @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                                | {{$ligaequipo->Nombreliga->nombre_liga}}
-                           @endforeach
-                      </td>
-                  		<td>
-                              <span class="ico_op">
-                                <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal-{{$equipo->id}}">Ligas</a>
-                                 {{-- Asignar Ligas --}}
-                                <div class="modal fade modal-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="gridSystemModalLabel">Equipo {{$equipo->nombre_equipo}}</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                            {!! Form::open(['route'=>'storeligas','method'=>'POST']) !!}
-
-                                                                  <div class="form-group">
-                                                                  <div class="col-sm-2">
-                                                                     <label class="label-modal">Liga</label>
-                                                                  </div>
-                                                                  <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
-                                                                       {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
-                                                                  </div>
-                                                                  </div>
-
-
-                                                                  <div>
-                                                                      {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
-                                                                  </div>
-                                                              {!! Form::close() !!}
+            </div>
+             <div class="conte_nuevo">
+                  <div class="tab_porliga col-sm-12">
+                    <ul>
+                      <li ng-repeat="ligag in ligaganador"><a ng-click="agregarmulti(ligag.nombreliga.id,ligag.id)">@{{ ligag.nombreliga.nombre_liga}}</a></li>
+                    </ul>
+                     <span class="ico_op">
+                                <a class="btn btn-donc-editar" ng-click="agregarliga()">Agregar Liga</a>
+                          </span>
+                  </div>
+                  <div class="nueva_ligapro" ng-if="acti_nuevaliga">
+                        <form class="form-horizontal" name="frm" role="form" ng-submit="guardarGanador()" >
+                              <div class="col-sm-10 col-md-10 col-lg-11">
+                                          <div class="col-sm-8 spi">
+                                                        <ol class="nya-bs-select" ng-model="ganador.liga_id" data-live-search="true"  title="Agregar Liga..." required  data-size="10">
+                                                          <li nya-bs-option="liga in ligasa" data-value="liga.ligas_id">
+                                                            <a>
+                                                             <span>
+                                                                  @{{ liga.nombreliga.nombre_liga}}
+                                                                </span>
+                                                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                            </a>
+                                                          </li>
+                                                        </ol>
                                                     </div>
-                                                    <div class="col-sm-12">
-                                                       <table class="table">
-                                                       <thead>
-                                                         <tr>
-                                                             <th>Ligas asignadas</th>
-                                                             <th></th>
-                                                         </tr>
-                                                       </thead>
-                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                                                         <tr>
-                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
-                                                           <td>
-                                                             <span class="ico_op dropdown">
-                                                                  <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-resize-full" data-toggle="dropdown"></a>
-                                                                <ul class="dropdown-menu dropdown-menu-op">
-                                                                        <li>
-                                                                        <p>
-                                                                                {!! Form::open(['route'=>['destroyliga',$ligaequipo->id],'method'=>'DELETE']) !!}
-                                                                                      {!! Form::submit('Desasignar',['class' => 'btn btn-donc-danger']) !!}
-                                                                                {!! Form::close() !!}
-                                                                            </p>
-                                                                         <p> {{$ligaequipo->Nombreliga->nombre_liga}}</p>
-                                                                        </li>
-                                                                    </ul>
+                                         <div class="col-sm-3 spi ">
+                                                    <button type="submit" class="btn btn-primary btn_add" ng-disabled="frm.$invalid">
+                                                      <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                </div>           
+                                                       
+                              </div>
+                        </form>
+                  </div>
+         
 
-                                                            </span>
-                                                           </td>
-                                                         </tr>
-                                                          @endforeach
-                                                       </table>
-
+                  {{-- Agregando multiplicador --}}
+                   <div class="nuevo_multi" ng-if="acti_multi">
+                        <form class="form-horizontal" name="frm" role="form" ng-submit="guardarMulti()" >
+                              <div class="col-sm-12 col-md-12 col-lg-12">
+                                          <div class="col-sm-12 spd spi">
+                                          <label for="">Equipo Visita</label>
+                                                        <ol class="nya-bs-select" ng-model="multi.visita_equipo
+                                                        " data-live-search="true"  title="Agregar Equipo..." required  data-size="10">
+                                                          <li nya-bs-option="visita in visitas" data-value="visita.equipos_id">
+                                                            <a>
+                                                             <span>
+                                                                  @{{ visita.nombre_equipo.nombre_equipo}}
+                                                                </span>
+                                                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                            </a>
+                                                          </li>
+                                                        </ol>
                                                     </div>
-                                                </div>
-                                              </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                           <div class="col-sm-11 spi">
+                                                       <div class="col-sm-4 spd spi">
+
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Resultado</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="rec" class="label_multif cla_azul">Casa</label>
+                                                                  <input id="rec" type="text" class="form-control" name="rec" ng-model="multi.rec" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="" class="label_multif cla_azul">X</label>
+                                                                 <input id="rex" type="text" class="form-control" name="rec" ng-model="multi.rex" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="" class="label_multif cla_azul">Visita</label>
+                                                                 <input id="rev" type="text" class="form-control" name="rev" ng-model="multi.rev" required>
+                                                              </div>
+                                                       </div>
+
+                                                       <div class="col-sm-4 spd spi">
+                                                       
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Probabilidad</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="prc" class="label_multif cla_ama">Casa</label>
+                                                                  <input id="prc" type="text" class="form-control" name="prc" ng-model="multi.prc" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="prx" class="label_multif cla_ama">X</label>
+                                                                 <input id="prx" type="text" class="form-control" name="prx" ng-model="multi.prx" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="prv" class="label_multif cla_ama">Visita</label>
+                                                                 <input id="prv" type="text" class="form-control" name="prv" ng-model="multi.prv" required>
+                                                              </div>
+                                                       </div>
 
 
-                              </span>
-                              <span class="ico_op">
-                                   {!!link_to_route('equipos.edit', $title = '', $parameters = $equipo->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-                              </span>
-                              <span class="ico_op dropdown">
-                                    <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
-                                  <ul class="dropdown-menu dropdown-menu-op">
-                                          <li>
-                                          <p>
-                                                  {!! Form::open(['route'=>['equipos.destroy',$equipo->id],'method'=>'DELETE']) !!}
-                                                        {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
-                                                  {!! Form::close() !!}
-                                              </p>
-                                           <p> {{$equipo->nombre_equipo}}</p>
-                                          </li>
-                                      </ul>
+                                                       <div class="col-sm-4 spd spi">
+                                                       
+                                                             <div class="col-sm-12 spd spi">
+                                                                  <label for="" class="label_multi">Multiplicador</label>
+                                                             </div>
+                                                               <div class="col-sm-4">
+                                                                <label for="muc" class="label_multif cla_ver">Casa</label>
+                                                                  <input id="muc" type="text" class="form-control" name="muc" ng-model="multi.muc" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="mux" class="label_multif cla_ver">X</label>
+                                                                 <input id="mux" type="text" class="form-control" name="mux" ng-model="multi.mux" required>
+                                                              </div>
+                                                              <div class="col-sm-4">
+                                                                <label for="muv" class="label_multif cla_ver">Visita</label>
+                                                                 <input id="muv" type="text" class="form-control" name="muv" ng-model="multi.muv" required>
+                                                              </div>
+                                                       </div>
+                                                       
+                                            </div>          
+                                             <div class="col-sm-1 spi spd">
+                                                        <button type="submit" class="btn btn-primary btn_add topbtn" ng-disabled="frm.$invalid">
+                                                          <span class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                    </div>           
+                                                       
+                              </div>
+                        </form>
+                  </div>
+                  {{-- Listado de Multiplicador por liga asignada --}}
+                 <div class="lis_multi" ng-if="acti_multi">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th rowspan="2">Visita</th>
+                                    <th colspan="3">Resultado</th>
+                                    <th colspan="3">Probabilidad</th>
+                                    <th colspan="3">Multiplicador</th>
+                                     <th rowspan="2"></th>
+                                  </tr>
+                                  <tr class="th_small">
+                                    <th>C</th>
+                                    <th>X</th>
+                                    <th>V</th>
+                                    <th>C</th>
+                                    <th>X</th>
+                                    <th>V</th>
+                                    <th>C</th>
+                                    <th>X</th>
+                                    <th>V</th>
+                                  </tr>
 
-                              </span>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="multiga in multiganador">
+                                    <td class="td_resal">@{{multiga.equipo_visita.nombre_equipo}}</td>
+                                    <td>@{{multiga.resultado_casa}}</td>
+                                    <td>@{{multiga.resultado_empate}}</td>
+                                    <td>@{{multiga.resultado_visita}}</td>
+                                    <td>@{{multiga.probabilidad_casa | number:2}}%</td>
+                                    <td>@{{multiga.probabilidad_empate | number:2}}%</td>
+                                    <td>@{{multiga.probabilidad_visita | number:2}}%</td>
+                                    <td>@{{multiga.multi_casa | number:2}}</td>
+                                    <td>@{{multiga.multi_empate | number:2}}</td>
+                                    <td>@{{multiga.multi_visita | number:2}}</td>
+                                    <td>
+                                       <span class="ico_op">
+                                              <a class="btn btn-donc-editar glyphicon glyphicon-pencil"></a>
+                                        </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                  </div>
+             </div>
 
-                      </td>
-                  	</tr>
-                  	@endforeach
-                  	</tbody>
-                  </table>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="nacionales">
-                    <table id="tabledonc2" class="table dataTable" cellspacing="0" width="100%">
-                    <thead>
+      </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12 spi spd">
+          <div class="col-sm-12 spd spi">
+             <div class="busqueda_texto col-sm-4 spd spi">
+                 <form class="form-horizontal" name="frm" role="form" ng-submit="busquedaequi()">
+                 <div class="col-sm-8 spi">
+                    <input type="text"  class="form-control" id="busqueda" ng-model="busqueda.texto"  placeholder="Busqueda de equipos.." />
+                 </div>
+                 <div class="col-sm-4 spd">
+                   <button type="submit" class="btn btn-primary btn_add" ng-disabled="frm.$invalid">Buscar</button>
+                 </div>
+                   
+                    
+                 </form>
+           
+             </div>
+        </div>
+         	 <div class="caja_section">
+
+           {{-- Listado de equipos --}}
+              <table class="table">
+                  <thead>
                     <tr>
-                     <th>Camisola</th>
+                      <th>Camisola</th>
                       <th>Equipo</th>
                       <th>Alias</th>
                       <th>Pais</th>
-                      <th>Ligas asignadas</th>
+                      <th>Ligas Asignadas</th>
+                      <th>Probabilidades</th>
                       <th>Opciones</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($equiposnacionales as $equipo)
-                    <tr>
-                      <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/{{$equipo->alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
-                      <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
-                      <td>{{$equipo->alias}}</td>
-                      <td>{{$equipo->getPaisNombre()}}</td>
-                      <td>
-                         @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                            | {{$ligaequipo->Nombreliga->nombre_liga}}
-                       @endforeach
-
-                      </td>
-                      <td>
+                  </thead>
+                  <tbody infinite-scroll="masequipos()">
+                    <tr ng-repeat="equipo in equipos">
+                          <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/@{{equipo.alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
+                          <td>@{{equipo.nombre_equipo}}</td>
+                          <td>@{{equipo.alias}}</td>
+                          <td>@{{equipo.nombre_pais.nombre}}</td>
+                          <td> 
+                          <span class="spanli" ng-repeat="liga in equipo.ligas_equipo">@{{liga.nombreliga.nombre_liga}} </span>
+                          <span class="ico_opli ed_drop"  uib-dropdown>
+                                    <a class="btn btn-donc-add glyphicon glyphicon-plus" id="simple-dropdown" uib-dropdown-toggle></a>
+                                     <div class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                                        <form class="form-horizontal" name="frmed" role="form"  >
+                                               <div class="col-sm-9 ">
+                                                    <ol class="nya-bs-select" ng-model="idliga"  title="Agregar Liga..." required  data-size="10">
+                                                          <li nya-bs-option="liga in ligasen" data-value="liga.id">
+                                                            <a>
+                                                             <span>
+                                                                  @{{ liga.nombre_liga}}
+                                                                </span>
+                                                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                            </a>
+                                                          </li>
+                                                        </ol>
+                                               </div>
+                                               <div class="col-sm-3 spd spi">
+                                                <button type="submit" class="btn_g btn_cambiar glyphicon glyphicon-plus" ng-disabled="frmed.$invalid" ng-click="agregarliga(idliga, equipo.id)"></button>
+                                               </div>
+                                        </form>
+                                        </div>
+                              </span>
+                          </td>
+                          <td>
                               <span class="ico_op">
-                                <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal1-{{$equipo->id}}">Ligas</a>
-
-                                <div class="modal fade modal1-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="gridSystemModalLabel">Equipo {{$equipo->nombre_equipo}}</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                            {!! Form::open(['route'=>'storeligas','method'=>'POST']) !!}
-
-                                                                  <div class="form-group">
-                                                                  <div class="col-sm-2">
-                                                                    <label class="label-modal">Liga</label>
-                                                                  </div>
-                                                                  <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
-                                                                       {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
-                                                                  </div>
-                                                                  </div>
-
-
-                                                                  <div>
-                                                                      {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
-                                                                  </div>
-                                                              {!! Form::close() !!}
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                       <table class="table">
-                                                       <thead>
-                                                         <tr>
-                                                             <th>Ligas asignadas</th>
-                                                               <th></th>
-                                                         </tr>
-                                                       </thead>
-                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                                                         <tr>
-                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
-                                                           <td>
-                                                             <span class="ico_op dropdown">
-                                                                  <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-resize-full" data-toggle="dropdown"></a>
-                                                                <ul class="dropdown-menu dropdown-menu-op">
-                                                                        <li>
-                                                                        <p>
-                                                                                {!! Form::open(['route'=>['destroyliga',$ligaequipo->id],'method'=>'DELETE']) !!}
-                                                                                      {!! Form::submit('Desasignar',['class' => 'btn btn-donc-danger']) !!}
-                                                                                {!! Form::close() !!}
-                                                                            </p>
-                                                                         <p> {{$ligaequipo->Nombreliga->nombre_liga}}</p>
-                                                                        </li>
-                                                                    </ul>
-
-                                                            </span>
-                                                           </td>
-                                                         </tr>
-                                                          @endforeach
-                                                       </table>
-
-                                                    </div>
-                                                </div>
-                                              </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-
+                                    <a class="btn btn-donc-editar" ng-click="abrirganador(equipo)">X Ganador</a>
                               </span>
-                              <span class="ico_op">
-                                   {!!link_to_route('equipos.edit', $title = '', $parameters = $equipo->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
+                          </td>
+                          <td>
+                            
+                                 <span class="ico_op">
+                                    <a class="btn btn-donc-editar glyphicon glyphicon-pencil"></a>
                               </span>
-                              <span class="ico_op dropdown">
-                                    <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
-                                  <ul class="dropdown-menu dropdown-menu-op">
-                                          <li>
-                                          <p>
-                                                  {!! Form::open(['route'=>['equipos.destroy',$equipo->id],'method'=>'DELETE']) !!}
-                                                        {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
-                                                  {!! Form::close() !!}
-                                              </p>
-                                           <p> {{$equipo->nombre_equipo}}</p>
-                                          </li>
-                                      </ul>
-
+                                 <span class="ico_op">
+                                     <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove"></a>
                               </span>
-
-                      </td>
+                          </td>
                     </tr>
-                    @endforeach
-                    </tbody>
-                  </table>
+                  </tbody>
+              </table>
 
-
-
-
-                </div>
-                <div role="tabpanel" class="tab-pane" id="internacionales">
-                   <table id="tabledonc3" class="table dataTable" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                    <th>Camisola</th>
-                      <th>Equipo</th>
-                      <th>Alias</th>
-                      <th>Pais</th>
-                      <th>Ligas asignadas</th>
-                      <th>Opciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($equiposinternacionales as $equipo)
-                    <tr>
-                      <td class="area_camisola"><p class="img-camisola" style="background: #eee url('../assets/img/{{$equipo->alias}}.svg') no-repeat center bottom !important; background-size: 40px;"></p></td>
-                      <td><p class="prin_td">{{$equipo->nombre_equipo}}</p></td>
-                      <td>{{$equipo->alias}}</td>
-                      <td>{{$equipo->getPaisNombre()}}</td>
-                      <td>
-                         @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                            | {{$ligaequipo->Nombreliga->nombre_liga}}
-                       @endforeach
-                      </td>
-                      <td>
-                              <span class="ico_op">
-                                <a class="btn btn-donc-editar" data-toggle="modal" data-target=".modal2-{{$equipo->id}}">Ligas</a>
-
-                                <div class="modal fade modal2-{{$equipo->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="gridSystemModalLabel">Equipo {{$equipo->nombre_equipo}}</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                            {!! Form::open(['route'=>'storeligas','method'=>'POST']) !!}
-
-                                                                  <div class="form-group">
-                                                                  <div class="col-sm-2">
-                                                                     <label class="label-modal">Liga</label>
-                                                                  </div>
-                                                                  <div class="col-sm-10">
-                                                                      {!! Form::select('ligas_id',$equipo->getLigasSin(), null, ['class'=> 'form-control selectpicker','data-live-search'=>'Ingresa nombre de la liga']) !!}
-                                                                       {!! Form::hidden('equipos_id',$equipo->id, null, ['class'=> 'form-control','placeholder'=>'Ingresa alias']) !!}
-                                                                  </div>
-                                                                  </div>
-
-
-                                                                  <div>
-                                                                      {!! Form::submit('Asignar',['class' => 'btn btn-primary']) !!}
-                                                                  </div>
-                                                              {!! Form::close() !!}
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                       <table class="table">
-                                                       <thead>
-                                                         <tr>
-                                                             <th>Ligas asignadas</th>
-                                                               <th></th>
-                                                         </tr>
-                                                       </thead>
-                                                       @foreach($equipo->getLigasEquipo($equipo->id) as $ligaequipo)
-                                                         <tr>
-                                                           <td>{{$ligaequipo->Nombreliga->nombre_liga}}</td>
-                                                           <td>
-                                                             <span class="ico_op dropdown">
-                                                                  <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-resize-full" data-toggle="dropdown"></a>
-                                                                <ul class="dropdown-menu dropdown-menu-op">
-                                                                        <li>
-                                                                        <p>
-                                                                                {!! Form::open(['route'=>['destroyliga',$ligaequipo->id],'method'=>'DELETE']) !!}
-                                                                                      {!! Form::submit('Desasignar',['class' => 'btn btn-donc-danger']) !!}
-                                                                                {!! Form::close() !!}
-                                                                            </p>
-                                                                         <p> {{$ligaequipo->Nombreliga->nombre_liga}}</p>
-                                                                        </li>
-                                                                    </ul>
-
-                                                            </span>
-                                                           </td>
-                                                         </tr>
-                                                          @endforeach
-                                                       </table>
-
-                                                    </div>
-                                                </div>
-                                              </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
-
-                              </span>
-                              <span class="ico_op">
-                                   {!!link_to_route('equipos.edit', $title = '', $parameters = $equipo->id, $attributes = ['class'=>'btn btn-donc-editar glyphicon glyphicon-pencil'])!!}
-                              </span>
-                              <span class="ico_op dropdown">
-                                    <a class="btn btn-donc-eliminar glyphicon drop_delete glyphicon-remove" data-toggle="dropdown"></a>
-                                  <ul class="dropdown-menu dropdown-menu-op">
-                                          <li>
-                                          <p>
-                                                  {!! Form::open(['route'=>['equipos.destroy',$equipo->id],'method'=>'DELETE']) !!}
-                                                        {!! Form::submit('Eliminar',['class' => 'btn btn-donc-danger']) !!}
-                                                  {!! Form::close() !!}
-                                              </p>
-                                           <p> {{$equipo->nombre_equipo}}</p>
-                                          </li>
-                                      </ul>
-
-                              </span>
-
-                      </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                  </table>
-
-
-
-
-
-                </div>
-
+           
 
           </div>
 
          	 </div>
         </div>
         </div>
-<script>
-  jQuery(document).ready( function ($) {
-      $('#tabledonc').dataTable( {
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
-            },
-              "info":     false
-        } );
-} );
-</script>
 
-<script>
-  jQuery(document).ready( function ($) {
-      $('#tabledonc2').dataTable( {
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
-            },
-              "info":     false
-        } );
-} );
-</script>
 
-<script>
-  jQuery(document).ready( function ($) {
-      $('#tabledonc3').dataTable( {
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
-            },
-              "info":     false
-        } );
-} );
-</script>
+@endsection
 
-@stop
+@push('scripts')
+    <script src="/js/script.js"></script>
+    <script src="/js/controller/EquiposController.js"></script>
+@endpush

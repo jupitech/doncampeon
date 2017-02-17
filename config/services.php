@@ -23,6 +23,10 @@ return [
         'secret' => '',
     ],
 
+    'sparkpost' => [
+        'secret' =>  env('SPARKPOST_SECRET'),
+    ],
+
     'ses' => [
         'key'    => '',
         'secret' => '',
@@ -33,6 +37,12 @@ return [
         'model'  => Doncampeon\User::class,
         'key'    => '',
         'secret' => '',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('CALLBACK_URL'),
     ],
 
 ];

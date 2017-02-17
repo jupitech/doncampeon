@@ -40,7 +40,12 @@
                   	<tbody>
                   	@foreach($ligas as $liga)
                   	<tr>
-                       <td class="area_camisola"><p class="img-liga" style="background: #eee url('../assets/img/{{$liga->alias}}.png') no-repeat center bottom !important; background-size: 40px;"></p></td>
+                     <td>
+                       @if($liga->favorito==1)
+                          <span class="ico_favorito"></span>
+
+                       @endif
+                     </td>
                   		<td><p class="prin_td">{{$liga->nombre_liga}}</p></td>
                       <td>{{$liga->alias}}</td>
                   		<td>

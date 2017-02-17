@@ -53,7 +53,7 @@
 															  	    <div class="caja_small">
 															  	       <h3>{{$game_niveles->nivel_nombre}}</h3>
 															  	        <div class="imagen_nivel">
-																	  		<span class="imagen" style="background:url('../assets/img/niveles/{{$game_niveles->nivel_alias}}.svg') no-repeat center bottom !important;">
+																	  		<span class="imagen" style="background:url('{{$game_niveles->imagen_nivel}}') no-repeat center bottom !important;">
 																	  			
 																	  		</span>
 																			<div class="area_opciones">
@@ -90,6 +90,18 @@
 					                                                                        		    <div class="form-group">
 						                                                                        	         <label>Bonificación</label>
 						                                                                        		     {!! Form::number('nivel_bonus', $game_niveles->nivel_bonus, ['class'=> 'form-control']) !!}
+					                                                                        		     </div>
+					                                                                        	</div>
+					                                                                        	<div class="col-sm-12">
+				                                                                        			    <div class="form-group">
+						                                                                        			 <label>Imagen</label>
+						                                                                        		     {!! Form::text('imagen_nivel', $game_niveles->imagen_nivel, ['class'=> 'form-control']) !!}
+					                                                                        		     </div>
+					                                                                        	</div>
+					                                                                        	<div class="col-sm-12">
+				                                                                        			    <div class="form-group">
+						                                                                        			 <label>Imagen 300x300</label>
+						                                                                        		     {!! Form::text('thumb_nivel', $game_niveles->thumb_nivel, ['class'=> 'form-control']) !!}
 					                                                                        		     </div>
 					                                                                        	</div>
 					                                                                        	<div class="col-md-offset-8 col-sm-4">

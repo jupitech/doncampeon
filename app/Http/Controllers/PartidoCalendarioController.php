@@ -23,9 +23,30 @@ class PartidoCalendarioController extends Controller
     public function index()
     {
           //Traendo partidos que no han sido terminados en este dia
-        $partidos=PartidoCalendario::orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->get();
+        $partidos=PartidoCalendario::with("NombreLiga")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','ASC')->where('fecha_partido','>=',Carbon::today())->get();
          return view('admin.partidos.partidos',compact('partidos'));
     }
+
+     public function indexjs()
+    {
+          
+         return view('admin.partidos.partidosjs');
+    }
+
+
+       public function indexcalendario()
+    {
+          //Traendo partidos que no han sido terminados en este dia
+        $partidos=PartidoCalendario::with("NombreLiga","EquipoCasa","EquipoVisita")->orderBy('fecha_partido','ASC')->orderBy('hora_partido','DESC')->where('fecha_partido','>=',Carbon::today())->get();
+
+
+             if(!$partidos){
+                return response()->json(['mensaje' =>  'No se encuentran partidos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $partidos],200);
+    }
+
+
 
      public function indexhoy()
     {

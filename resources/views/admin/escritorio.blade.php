@@ -27,18 +27,20 @@ use Carbon\Carbon;
       			</h1>
       			<div class="col-sm-12 col-lg-12 spd spi">
       			<div class="col-sm-12 col-md-12 col-lg-8 spi spd">
-		      				<div class="col-sm-6">
+		      				<div class="col-sm-12 col-md-6 col-lg-6">
 		      					<div class="caja_section caja_escritorio">
 		      					<h1 class="tit_cescri">Retos Realizados</h1>
+		      					
 		      					</div>
 		      				</div>
-		      				<div class="col-sm-6">
+		      				<div class="col-sm-12 col-md-6 col-lg-6">
 		      					<div class="caja_section caja_escritorio">
 		      					<h1 class="tit_cescri">Top Partidos</h1>
 		      					</div>
 		      				</div>
+
       				</div>
-      				<div class="col-sm-6 col-md-6 col-lg-4  spd">
+      				<div class="col-sm-12 col-md-6 col-lg-4 ">
       					<div class="caja_section caja_escrilogue">
 		      					<h1 class="tit_cescri">Campeones Logueados <span>{{$ahora}}</span></h1>
 		      					<div class="area_contalog">

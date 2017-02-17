@@ -35,7 +35,8 @@ class UserCampeonesController extends Controller
          $user=User::create([
                   'username' => $request['username'],
                   'email' => $request['email'],
-                  'password' => bcrypt($request['password'])
+                  'password' => bcrypt($request['password']),
+                  'api_token' => str_random(60),
                         ]);
           $user->save();
 

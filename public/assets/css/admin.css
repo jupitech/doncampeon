@@ -10,9 +10,13 @@ body {
          -webkit-font-smoothing: antialiased;
 }
 
+
 h1, h2, h3, h4, h5, h6{
       font-weight: 100;
 }
+
+
+
 /*
  * Global add-ons
  */
@@ -63,6 +67,9 @@ h1, h2, h3, h4, h5, h6{
     min-height: 300px;
 
 }
+.td_center td{
+  text-align: center !important;
+ }
 .tit_cescri{
   float: left;
   width: 100%;
@@ -156,26 +163,9 @@ h1, h2, h3, h4, h5, h6{
   width: 100%;
   margin-bottom:15px;
 }
-@media (min-width: 768px) and (max-width: 991px){
 
-}
 
-@media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 50px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-   /* background: #fff;*/
-    background: #fff;
-    border-right: 1px solid #eee;
-  }
-}
+
 
 /* Sidebar navigation */
 .nav-sidebar {
@@ -184,7 +174,7 @@ h1, h2, h3, h4, h5, h6{
   margin-left: -20px;
 }
 .nav-sidebar > li > a {
-  padding: 7px 20px;
+  padding: 9px 20px 9px 15px;
   font-size: 13px;
   font-weight: 600;
   color: #333;
@@ -318,17 +308,17 @@ z
 .glyphicon-huevoblanco{
     float: left;
     width: 20px;
-    height: 16px;
+    height: 21px;
     background: url('../img/huevo_blanco.svg') no-repeat left center;
-    background-size: 12px;
+    background-size: 18px;
 }
 
 .glyphicon-huevonegro{
     float: left;
-    width: 15px;
-    height: 16px;
+    width: 20px;
+    height: 21px;
     background: url('../img/huevo_negro.svg') no-repeat left center;
-    background-size: 10px;
+    background-size: 18px;
 }
 
 .nav-sidebar > li > a:hover .glyphicon-huevonegro{
@@ -339,67 +329,151 @@ z
 /************iconos menu lateral**************************/
         .glyphicon-equiposnegro{
             float: left;
-            width: 15px;
-            height: 16px;
+            width: 20px;
+            height: 21px;
             background: url('../img/equipos_negro.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
         .nav-sidebar > li > a:hover .glyphicon-equiposnegro{
            background: url('../img/equipos_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size:18px;
         }
 
         .glyphicon-equiposblanco{
             float: left;
             width: 20px;
-            height: 16px;
+            height: 21px;
             background: url('../img/equipos_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
 
 
         .glyphicon-juegonegro{
             float: left;
-            width: 15px;
-            height: 16px;
+             width: 20px;
+            height: 21px;
             background: url('../img/juego_negro.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
         .nav-sidebar > li > a:hover .glyphicon-juegonegro{
            background: url('../img/juego_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
         .glyphicon-juegoblanco{
             float: left;
             width: 20px;
-            height: 16px;
+            height: 21px;
             background: url('../img/juego_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
          .glyphicon-partidosnegro{
             float: left;
-            width: 15px;
-            height: 16px;
+          width: 20px;
+            height: 21px;
             background: url('../img/partidos_negro.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
         .nav-sidebar > li > a:hover .glyphicon-partidosnegro{
            background: url('../img/partidos_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
         }
 
         .glyphicon-partidosblanco{
             float: left;
             width: 20px;
-            height: 16px;
+            height: 21px;
             background: url('../img/partidos_blanco.png') no-repeat left center;
-            background-size: 13px;
+            background-size: 18px;
+        }
+
+         .glyphicon-resultadosnegro{
+            float: left;
+             width: 20px;
+            height: 21px;
+            background: url('../img/resultados_negro.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-resultadosnegro{
+           background: url('../img/resultados_blanco.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .glyphicon-resultadosblanco{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/resultados_blanco.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+         .glyphicon-notificacionesnegro{
+            float: left;
+             width: 20px;
+            height: 21px;
+            background: url('../img/notificaciones_negro.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-notificacionesnegro{
+           background: url('../img/notificaciones_blanco.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .glyphicon-notificacionesblanco{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/notificaciones_blanco.png') no-repeat left center;
+            background-size:18px;
+        }
+
+         .glyphicon-movimientosnegro{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/movimientos_negro.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-movimientosnegro{
+           background: url('../img/movimientos_blanco.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .glyphicon-movimientosblanco{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/movimientos_blanco.png') no-repeat left center;
+            background-size: 18px;
+        }
+
+         .glyphicon-tukisnegro{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/tukis_negro.svg') no-repeat left center;
+            background-size: 18px;
+        }
+
+        .nav-sidebar > li > a:hover .glyphicon-tukisnegro{
+           background: url('../img/tukis_blanco.svg') no-repeat left center;
+            background-size:18px;
+        }
+
+        .glyphicon-tukisblanco{
+            float: left;
+            width: 20px;
+            height: 21px;
+            background: url('../img/tukis_blanco.svg') no-repeat left center;
+            background-size: 18px;
         }
 
 
@@ -443,12 +517,7 @@ z
 }
 
 
-@media (min-width: 768px) {
-  .main {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-}
+
 .main .page-header {
   margin-top: 10px;
   font-size: 26px;
@@ -574,7 +643,18 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   font-size: 60px;
   margin-top: 45px;
   font-weight: bold;
+  position: relative;
 }
+  .ico_menos{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url('../img/ico_menos.svg') no-repeat right;
+    background-size: 20px;
+    top: 50%;
+    margin-top: -10px;
+    right: -25px;
+  }
 .caja_section .alert{
   font-size: 13px !important;
   border: none;
@@ -586,9 +666,10 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   background: #f9f9f9;
 }
 .caja_section td{
+  vertical-align: middle !important;
   padding: 12px 8px !important;
   color: #777;
-    font-size: 11px;
+    font-size: 12px;
     border-bottom: 1px solid #eee;
     border-top: none !important;
     letter-spacing: 0.02em;
@@ -703,6 +784,22 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
   float: left;
   margin-right: 5px;
 }
+
+.busqueda_texto{
+  margin:10px 0;
+}
+
+
+.op_act{
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #8DCA3D;
+    margin: 0 auto;
+    text-align: center;
+
+}
 .dropdown-menu-op{
       top: -10px;
     right: 0;
@@ -767,6 +864,49 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
          color: #fff;
          border: 1px solid #ce4442;
      }
+
+      .btn-donc-add{
+          font-weight: 600;
+    background: #fff;
+    color: #999;
+    font-size: 10px;
+    -webkit-transition: all 0.05s;
+    -moz-transition: all 0.05s;
+    transition: all 0.05ss;
+    /*border: 1px solid #ccc;*/
+    padding: 5px 7px;
+    margin: -1px 0;
+    }      
+     .btn-donc-add:hover{
+         background:#1399D3;
+         color: #fff;
+         border: 1px solid #1693c9;
+     }
+
+  .btn_g{
+    float: right !important;
+    width: 35px !important;
+    height: 35px !important;
+    margin:5px;
+
+          -webkit-transition: all 0.1s linear;
+         -moz-transition: all 0.1s linear;
+           -o-transition: all 0.1s linear;
+              transition: all 0.1s linear;
+                  opacity: 0.8;
+  }
+
+     .btn_cambiar{
+    border:none !important;
+    border-radius:3px !important;
+    background: #1399D3;
+    color: #fff;
+
+  }
+  .btn_cambiar:hover{
+    background-size: 20px; 
+              opacity: 1;
+  }
 
      /************tabs***************/
      .nav-tabs>li>a{
@@ -869,6 +1009,17 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        background: #eee url('../img/camisola.png') no-repeat center bottom;
        background-size: 35px;
      }
+     .spanli{
+      float: left;
+      padding: 5px;
+      padding-left: 18px;
+      font-size: 11px;
+      background: #f2f2f2 url('../img/ico_circulo.svg') no-repeat 3px center;
+      background-size: 10px;
+      border-radius: 10px 5px 5px 10px;
+      margin-right: 3px;
+      margin-bottom: 3px;
+     }
 
       .img-liga{
       text-align: center;
@@ -882,7 +1033,15 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
       font-size: 15px;
       margin:15px 0;
      }
-
+   
+   .ico_favorito{
+      float: left;
+      width: 25px;
+      height: 25px;
+      background: url('../img/ico_favorito.svg') no-repeat center;
+      background-size: 25px;
+      margin-left: 10px;
+   }
   
     .bs-callout {
     padding: 10px;
@@ -942,9 +1101,16 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
             height: 30px;
             margin-right: 10px;
           }
+          .ico_opli{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+          }
           .area_opciones .dropdown-menu-op{
             top: -12px;
             right: 3px;
+            width: 300px !important;
           }
              .btn_opcio{
               margin-top: 3px !important;
@@ -1191,6 +1357,17 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
         background: url('../img/Tukis.svg') no-repeat center;
         background-size: 25px;
       }
+       .size_esca{
+        width: 30px;
+        height: 30px;
+        padding: 0 5px;
+       }
+       .tex_retos{
+        float: left;
+        padding: 5px 0;
+        padding-left: 5px;
+        margin-right: 5px;
+       }
       .ptable{
         padding-top: 10px;
         padding-bottom: 10px;
@@ -1387,7 +1564,7 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
        }
        .area_crono{
         float: left;
-        padding:5px 5px 0px 10px;
+        padding:0px 5px 0px 10px;
        }
        .area_crono p{
         float: left;
@@ -1546,3 +1723,326 @@ box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.03);
               font-size: 13px;
               text-align: center;
          }
+
+
+
+
+
+@keyframes bocultar {
+  from {
+      right: 0;
+  } to {
+      right: -30%;
+  }
+}
+@keyframes baparecer {
+  from {
+      right: -30%;
+  } to {
+      right: 0;
+  }
+}
+
+
+  #area_mas{
+      position: fixed;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+      height: 100%;
+      width: 60%;
+      right: 0;
+      top: 0;
+      z-index: 200;
+      padding-top: 70px;
+      animation: 0.2s baparecer;
+      overflow-y:auto;
+}
+
+#area_mas.ng-leave{
+  animation: 0.2s bocultar;
+}
+
+
+  #area_nuevo{
+      position: fixed;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+      height: 100%;
+      width: 40%;
+      right: 0;
+      top: 0;
+      z-index: 200;
+      padding-top: 70px;
+      animation: 0.2s baparecer;
+      overflow-y:auto;
+}
+
+#area_nuevo.ng-leave{
+  animation: 0.2s bocultar;
+}
+
+
+.header_nuevo{
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.header_nuevo h1{
+    float: left;
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: normal;
+}
+.header_nuevo h1 span{
+  float: left;
+  padding: 5px;
+  background: #eee;
+     font-size: 16px;
+  border-radius: 5px;
+  margin-right: 5px
+}
+
+.btn_cerrar{
+  position: relative;
+  top: -8px;
+  float: right;
+  width: 35px;
+  height: 35px;
+  background: url('../img/ico_cerrar.svg') no-repeat center;
+  background-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.btn_cerrar:hover{
+  background:#179DD6 url('../img/ico_cerrar_b.svg') no-repeat center;
+  background-size: 14px;
+    border-radius: 50%;
+      -webkit-transition: all 0.2s linear;
+         -moz-transition: all 0.2s linear;
+           -o-transition: all 0.2s linear;
+              transition: all 0.2s linear;
+}
+
+.conte_nuevo{
+  float: left;
+  width: 100%;
+  padding: 20px 0;
+  }
+
+.tab_porliga{
+  padding: 0px 15px 15px 15px;
+}
+.tab_porliga ul{
+  list-style: none;
+  float: left;
+  padding: 0;
+  margin:0;
+  margin-right: 5px;
+}
+.tab_porliga li{
+  float: left;
+  margin-right: 5px;
+}
+.tab_porliga li a{
+  float: left;
+  padding: 5px 15px;
+  padding-left: 18px;
+  background: url(../img/ico_circulo.svg) no-repeat 3px center;
+  background-size: 10px;
+  border-radius: 15px 5px 5px 15px;
+  font-size: 13px;
+  color: #555;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tab_porliga li a:hover{
+  text-decoration: none;
+  background: #ddd url(../img/ico_circulo.svg) no-repeat 3px center;
+  background-size: 10px;
+}
+.tab_porliga .ico_op a{
+  margin: 0 !important;
+}
+.nueva_ligapro{
+  float: left;
+  width: 100%;
+  background: #f2f2f2;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+.nueva_ligapro ol{
+  float: left !important;
+  width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+.nueva_ligapro ol .btn-default{
+  float: left;
+  width: 100%;
+}
+.nueva_ligapro ol .dropdown-menu{
+  width: 100%;
+}
+.pull-left{
+  width: 95%;
+  text-align: left;
+    font-size: 13px;
+}
+
+.nueva_ligapro label{
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.btn_add{
+  float: left;
+  padding: 7px 10px;
+  font-size: 12px;
+  background: #1399D3;
+  color: #fff;
+  border: 1px solid #1693c9;
+  width: 100%;
+}
+  .topbtn{
+    margin-top: 65px;
+  }
+
+.nuevo_multi{
+  float: left;
+  width: 100%;
+  background: #f2f2f2;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+.nuevo_multi ol{
+  float: left !important;
+  width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+.nuevo_multi ol .btn-default{
+  float: left;
+  width: 100%;
+      border: none;
+    border-bottom: 2px solid #84cded;
+    border-radius: 0 !important;
+}
+.nuevo_multi ol .dropdown-menu{
+  width: 100%;
+}
+
+.nuevo_multi label{
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.nuevo_multi .form-control {
+      border: none;
+    border-bottom: 2px solid #84cded;
+    border-radius: 0 !important;
+}
+
+.label_multi{
+  margin-top: 10px !important;
+}
+.label_multif{
+  float: left;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+      font-size: 10px !important;
+    border-radius: 3px;
+    opacity: 0.8;
+}
+    .cla_azul{
+      background: #cde9f4;
+    }
+    .cla_ama{
+      background: #f7f9bb;
+    }
+    .cla_ver{
+      background: #9fef4f;
+    }
+    .lis_multi{
+      float: left;
+      width: 100%;
+      margin: 15px 0;
+    }
+    .lis_multi th,.lis_multi td{
+      font-size: 12px;
+    }
+
+    .lis_multi .btn-donc-editar{
+        border: none !important;
+    }
+
+    .lis_multi td{
+      padding: 10px 8px !important;
+    }
+
+    .lis_multi tr:hover{
+     background: #f9f9f9 !important;
+    }
+
+
+    .th_small th{
+      font-size: 11px !important;
+    }
+    .td_resal{
+      background: #f9f9f9 !important;
+      font-weight: bold;
+    }
+
+
+  
+      .ed_drop .dropdown-menu{
+      padding: 5px 0;
+      margin:0;
+        left: auto !important; 
+      right: 30px !important;
+      top: -10px;
+      width: 280px;
+      animation: 0.2s op_aparecer;
+      border-color: #eee;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .ed_drop .nya-bs-select{
+      width: 100% !important;
+      margin-top: 5px;
+    }
+    
+      .ed_drop .nya-bs-select.btn-group .dropdown-menu{
+          
+                top: 100% !important;
+                left: 0 !important;
+                z-index: 1000 !important;
+                min-width: 160px !important;
+                padding: 5px 0 !important;
+                margin: 2px 0 0 !important;
+          
+      } 
+
+         .ed_drop .nya-bs-select.btn-group .dropdown-menu li a{
+          font-size: 12px !important;
+         }
+
+   .ed_drop  li{
+      float: left;
+      width: 100%;
+    }
+   .ed_drop   p{
+      float: left;
+      width: 100%;
+      padding: 10px 0;
+      margin:0;
+      font-size: 13px;
+      text-align: center;
+      line-height: 17px;
+    }
+    .ed_drop .form-control{
+      margin-top: 10px;
+      width: 100% !important;
+    }

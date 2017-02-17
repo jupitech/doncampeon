@@ -49,4 +49,12 @@ class PartidoCalendario extends Model
      public function NombreLiga(){
         return $this->hasOne('\Doncampeon\Models\Ligas','id','liga');
     }
+
+     public function PartidoFavorito(){
+        return $this->hasOne('\Doncampeon\Models\PartidoFavorito','partido_id','id');
+    }
+
+     public function ProbabilidadLiga(){
+        return $this->hasMany('\Doncampeon\Models\ProbabilidadesLigas','ligas_id','liga');
+    }
 }

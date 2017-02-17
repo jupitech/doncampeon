@@ -27,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password'];
+    protected $fillable = ['username', 'email', 'password','api_token'];
 
 
     /**
@@ -56,6 +56,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return \Doncampeon\Models\UserGame::where('user_id',$this->id)->first();
     }
      
+
+       public function InfoUsuario(){
+        return $this->hasOne('\Doncampeon\Models\UserProfile','user_id','id');
+    }
 
 
 }

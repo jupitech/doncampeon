@@ -11,7 +11,10 @@ use Doncampeon\Http\Requests\EquiposCreateRequest;
 use Doncampeon\Http\Requests\LigaEquipoCreateRequest;
 use Doncampeon\Http\Requests\EquiposUpdateRequest;
 use Doncampeon\Models\Equipos;
-use Doncampeon\Models\Ligasequipos;
+use Doncampeon\Models\LigasEquipos;
+use Doncampeon\Models\Ligas;
+use Doncampeon\Models\PorGanador;
+use Doncampeon\Models\MultiGanador;
 use JWTAuth;
 
 class EquiposController extends Controller
@@ -20,6 +23,8 @@ class EquiposController extends Controller
     public function __contruct(){
        $this->middleware('auth.basic');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +32,95 @@ class EquiposController extends Controller
      */
     public function index()
     {
-        $equipos=Equipos::All();
-         return view('admin.partidos.equipos',compact('equipos'));
+         return view('admin.partidos.equipos');
 
 
     }
+
+
+
+     public function indexequipos()
+    {
+        $equipos=Equipos::with("NombrePais","LigasEquipo")->get();
+           if(!$equipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $equipos],200);
+
+
+    }
+    
+    //Busqueda de equipos por texto
+    public function indexequiposse($search)
+    {
+        $equipos=Equipos::with("NombrePais","LigasEquipo")->where(function($q) use ($search) {
+    $q->where('nombre_equipo', 'LIKE',  '%'.$search.'%');})->get();
+           if(!$equipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $equipos],200);
+
+    }
+
+    public function indexligas()
+    {
+        $ligas=Ligas::all();
+           if(!$ligas){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligas],200);
+
+
+    }
+
+
+     public function indexligasasig($id)
+    {
+        $ligasequipos=LigasEquipos::with("Nombreliga")->where("equipos_id",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
+      public function indexligasganador($id)
+    {
+        $ligasequipos=PorGanador::with("Nombreliga")->where("id_equipo",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
+      public function indexligasequipos($id)
+    {
+        $ligasequipos=LigasEquipos::with("NombreEquipo")->where("ligas_id",$id)->get();
+           if(!$ligasequipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $ligasequipos],200);
+
+
+    }
+
+
+      public function indexmultiganador($id)
+    {
+
+
+        $multiganador=MultiGanador::with("EquipoVisita")->where("id_porganador",$id)->get();
+           if(!$multiganador){
+                return response()->json(['mensaje' =>  'No se encuentran multiplicadores actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $multiganador],200);
+
+
+    }
+
 
 
 
@@ -95,17 +184,56 @@ private function transform($equiposp){
         return Redirect::to('/equipos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function storeligaganador(Request $request)
     {
-        //
+
+        $idliga=$request['id_liga'];
+        $idequipo=$request['id_equipo'];
+        
+        $porganador=PorGanador::where('id_liga',$idliga)->where('id_equipo',$idequipo)->first();
+
+        if(!$porganador){
+            PorGanador::create([
+                'id_liga' =>$idliga,
+                'id_equipo'   =>$idequipo,
+                'estado_ganador'   =>1,
+            ]);
+        }else{
+              return response()->json(['idporganador' =>  $porganador->id],404);
+        }
+        
     }
 
+     public function storemultiganador(Request $request)
+    {
+        
+        $visitaequipo=$request['visita_equipo'];
+        $idganador=$request['id_porganador'];
+        
+        $multiganador=MultiGanador::where('id_porganador',$idganador)->where('visita_equipo',$visitaequipo)->first();
+
+        if($multiganador==null){
+            MultiGanador::create([
+                'visita_equipo' =>$visitaequipo,
+                'id_porganador'   =>$idganador,
+                'resultado_casa'   =>$request['resultado_casa'],
+                'resultado_empate'   =>$request['resultado_empate'],
+                'resultado_visita'   =>$request['resultado_visita'],
+                'probabilidad_casa'   =>$request['probabilidad_casa'],
+                'probabilidad_empate'   =>$request['probabilidad_empate'],
+                'probabilidad_visita'   =>$request['probabilidad_visita'],
+                'multi_casa'   =>$request['multi_casa'],
+                'multi_empate'   =>$request['multi_empate'],
+                'multi_visita'   =>$request['multi_visita'],
+                'estado_multi'   =>1,
+            ]);
+        }else{
+              return response()->json(['idmulti_ganador' =>  $multiganador->id],404);
+        }
+        
+    }
+
+  
     /**
      * Show the form for editing the specified resource.
      *

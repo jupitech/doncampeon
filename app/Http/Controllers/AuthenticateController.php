@@ -14,6 +14,8 @@ use Doncampeon\Models\RoleUser;
 use Doncampeon\Models\UserProfile;
 use Doncampeon\Models\UserGame;
 use Doncampeon\Models\Juego;
+use Doncampeon\Models\Equipos;
+use Doncampeon\Models\EquipoFavorito;
 use Doncampeon\Models\PartidoCalendario;
 use Illuminate\Support\Facades\Mail;
 use Cache;
@@ -28,7 +30,7 @@ class AuthenticateController extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate','register']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate','register','completar1','completar2','pmail']]);
    }
 
     public function index()
@@ -87,23 +89,33 @@ class AuthenticateController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
  
         }
-         
+
+
+        $usuario=User::with("InfoUsuario")->where('id',$user->id)->first();
         // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        return response()->json(compact('usuario'));
     }
 
      public function register(Request $request){
-
+     
+     $email=$request['email'];
+     $exemail= substr($email, 0,4);
+     $randem=str_random(5);
+     $miuser=$exemail.$randem;
+     
      $user=User::create([
-                  'username' => $request['username'],
+                  'username' => $miuser,
                   'email' => $request['email'],
-                  'password' => bcrypt($request['password'])
+                  'password' => bcrypt($request['password']),
+                  'api_token' => str_random(60),
                         ]);
           $user->save();
 
          $userprofile=UserProfile::create([
                   'user_id' => $user->id,
-                   'pais' => 1,
+                  'pais' => $request['pais'],
+                  'telefono' => $request['telefono'],
+                  'estado_profile' => 1,
                         ]);
          $userprofile->save();
 
@@ -146,10 +158,89 @@ class AuthenticateController extends Controller
          {
         $message
             ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
-            ->to('carlos.ruano@crweb.net', 'Nuevo Usuario')
+            ->to('hola@doncampeon.com', 'Nuevo Usuario')
             ->subject('Usuario ['.$user->username.' ] Registrado');
          });
 
     }
+
+   /* public function pmail(){
+      $user=User::where('id',16)->first();
+      Mail::send('emails.bienvenida', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Don Campeon Sports')
+            ->to($user->email, $user->username)
+            ->subject('Bienvenido a Don Campeón');
+         });
+
+         Mail::send('emails.nuevousuario', ['user'=>$user], function($message) use ($user)
+         {
+        $message
+            ->from('hola@doncampeon.com','Nuevo Usuario Don Campeón')
+            ->to('hola@doncampeon.com', 'Nuevo Usuario')
+            ->subject('Usuario ['.$user->username.' ] Registrado');
+         });
+    }*/
+
+
+    public function completar1(Request $request,$id){
+     
+             $alias=$request['alias'];
+
+           
+            
+             $userprofile=UserProfile::where('user_id',$id)->first();
+
+             $userprofile->fill([
+                'alias' => $alias,
+              ]);
+              $userprofile->save();
+
+      }
+
+      public function equipos(){
+
+            $equipos=Equipos::with("NombrePais","LigasEquipo")->get();
+           if(!$equipos){
+                return response()->json(['mensaje' =>  'No se encuentran equipos actualmente','codigo'=>404],404);
+             }
+         return response()->json(['datos' =>  $equipos],200);
+      }
+
+
+     public function completar2(Request $request,$id){
+     
+             $iduser=$id;
+             $idequipo=$request['id_equipo'];
+
+            
+            
+             $equipofav=EquipoFavorito::where('id_equipo',$idequipo)->where('id_user',$iduser)->first();
+
+             if($equipofav==''){
+
+
+                   $equipo=EquipoFavorito::create([
+                          'id_user' => $iduser,
+                          'id_equipo' => $idequipo,
+                          'tipo_equipo' => 1,
+                          'estado_equipo'=> 1,
+                                ]);
+                  $equipo->save();
+
+
+                     $userprofile=UserProfile::where('user_id',$iduser)->first();
+
+                     $userprofile->fill([
+                        'estado_profile' => 2,
+                      ]);
+                      $userprofile->save();
+
+             }else{
+                   return response()->json(['mensaje' =>  'Ya existe equipo favorito asignado a este usuario','codigo'=>404],404);
+             }
+
+      }
 
 }

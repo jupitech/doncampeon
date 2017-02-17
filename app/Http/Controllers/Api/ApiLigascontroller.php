@@ -20,7 +20,7 @@ class ApiLigascontroller extends Controller
        // Apply the jwt.auth middleware to all methods in this controller
        // except for the authenticate method. We don't want to prevent
        // the user from retrieving their token if they don't already have it
-    $this->middleware('jwt.auth');
+   $this->middleware('jwt.auth');
    }
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class ApiLigascontroller extends Controller
     public function indexlistado()
     {
            //Traendo partidos que no han sido terminados en este dia
-         $ligas=Ligas::orderBy('id','ASC')->get();
+         $ligas=Ligas::where('favorito',1)->orderBy('id','ASC')->get();
          if(!$ligas){
              return response()->json(['mensaje' =>  'No se encuentran ligas actualmente','codigo'=>404],404);
         }

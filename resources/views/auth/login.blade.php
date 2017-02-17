@@ -14,9 +14,6 @@
                                 <label>Password</label>
                                 {!! Form::password('password', ['class'=> 'form-control']) !!}
                             </div>
-                            <div class="checkbox">
-                                <label><input name="remember" type="checkbox"> Recordar Password</label>
-                            </div>
                             <div>                            
                                 {!! Form::submit('ENTRAR',['class' => 'btn btn-primary']) !!}
                             </div>

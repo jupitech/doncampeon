@@ -7,14 +7,15 @@
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="{{ URL::to('partidos') }}"><span class="glyphicon-partidosnegro"></span>Partidos</a> </li>
+             <li><a href="{{ URL::to('resultados') }}"><span class="glyphicon-resultadosnegro"></span>Resultados</a> </li>
             <li><a href="{{ URL::to('equipos') }}"><span class="glyphicon-equiposnegro"></span>Equipos</a></li>
             <li><a href="{{ URL::to('juego') }}"><span class="glyphicon-juegonegro"></span>Juego</a></li>
-            <li><a href="#">Notificaciones</a></li>
+            <li><a href="#"><span class="glyphicon-notificacionesnegro"></span>Notificaciones</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="{{ URL::to('/campeones') }}"><span class="glyphicon-huevonegro"></span>Campeones</a> </li>
-            <li><a href="">Movimientos</a></li>
-            <li><a href="">Tukis</a></li>
+            <li><a href=""><span class="glyphicon-movimientosnegro"></span>Movimientos</a></li>
+            <li><a href="{{ URL::to('/tukis') }}"><span class="glyphicon-tukisnegro"></span>Tukis</a></li>
             <li><a href="">News</a></li>
           </ul>
           <ul class="nav nav-sidebar ">

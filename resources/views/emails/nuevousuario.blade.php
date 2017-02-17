@@ -19,6 +19,25 @@
                                       <p>Utilizando este correo "{{$user->email}}", recordar verificar que datos a ingresado.</p>
 
                                 </tbody>
+                                <tfoot style="margin: 10px 0; border-top: 1px solid #eee">
+                                    
+                                </style>>
+                                    <p style="color: #ccc;margin: 10px 0; font-size: 12px;" >DON CAMPEÓN SPORTS - RETOS DEPORTIVOS</p>
+                                    <p style="color: #ccc;margin: 10px 0; font-size: 12px;" >Don Campeón es un juego de entretenimiento y habilidad deportiva. Bajo ningún momento será considerado un juego de azar o suerte. 
+                                       Bajo ninguna circunstancia pretende lucrar en base a prestamos o créditos. Bajo ninguna circunstancia pretende estafas o robos de
+                                       identidades.        
+                                    </p>
+                                    <p style="color: #ccc;margin: 10px 0; font-size: 12px;" >
+                                        Sus datos personales le corresponden solo a usted y este sitio web y aplicación móvil, es responsable de no revelar ninguna clase
+                                        de información que le pertenezca como emails, contraseñas, números de teléfono, número de identificación personal, datos de tarjetas
+                                        bancarias u otros datos personales.
+
+                                    </p>
+                                    <p style="color: #ccc;margin: 10px 0; font-size: 12px;" >
+                                        Don Campeón, se reserva el derecho de rechazar cualquier tipo de registro o usuario, en cualquier momento sin ninguna causa, con el de
+                                        cumplir con las normas internacionales de lavado de dinero y activos.
+                                    </p>
+                                </tfoot>
                             </table>
                         </td>
                     </tr>

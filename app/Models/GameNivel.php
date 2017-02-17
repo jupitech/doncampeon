@@ -18,7 +18,7 @@ class GameNivel extends Model
      *
      * @var array
      */
-    protected $fillable = ['nivel_nombre','nivel_alias','nivel_puntos','nivel_minimo','nivel_bonus'];
+    protected $fillable = ['nivel_nombre','nivel_alias','nivel_puntos','nivel_minimo','nivel_bonus','imagen_nivel','thumb_nivel'];
 
     /**
      * The attributes excluded from the model's JSON form.

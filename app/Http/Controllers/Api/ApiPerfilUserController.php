@@ -42,7 +42,7 @@ class ApiPerfilUserController extends Controller
     {
                //Traendo perfil del usuario
          
-        $perfilusuario=UserGame::with("InfoUsuario","PerfilUsuario","EquipoNacional","EquipoInternacional","NivelGame")->orderBy('user_id','DESC')->where('user_id',$id)->get();
+        $perfilusuario=UserGame::with("InfoUsuario","PerfilUsuario","EquipoNacional","EquipoInternacional","NivelGame")->orderBy('user_id','DESC')->where('user_id',$id)->first();
         if(!$perfilusuario){
              return response()->json(['mensaje' =>  'No se encuentran datos actualmente','codigo'=>404],404);
         }
@@ -52,7 +52,7 @@ class ApiPerfilUserController extends Controller
         }else{
              $sinivel=$perfilusuario->first()->nivel_id+1;
         }
-        $gamenivel=GameNivel::orderBy('id','DESC')->where('id',$sinivel)->get();
+        $gamenivel=GameNivel::orderBy('id','DESC')->where('id',$sinivel)->first();
          return response()->json(['datos' =>  $perfilusuario,'niveles' =>   $gamenivel],200);
     }
     

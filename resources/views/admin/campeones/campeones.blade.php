@@ -5,7 +5,7 @@
     
      $user=\Doncampeon\User::all();
      $userpapelera=\Doncampeon\User::onlyTrashed()->get();
-     $elpais=\Doncampeon\Models\Pais::orderBy('id','ASC')->lists('nombre','id');
+     $elpais=\Doncampeon\Models\Pais::orderBy('id','ASC')->lists('nombre','nombre');
      $equiposnacionales=\Doncampeon\Models\Equipos::where('pais_equipo','1')->orderBy('id','ASC')->lists('nombre_equipo','id');
      $equiposinternacionales=\Doncampeon\Models\Equipos::where('pais_equipo','!=','1')->orderBy('id','ASC')->lists('nombre_equipo','id');
  ?>
@@ -136,7 +136,7 @@
                                                                 <p class="prin_td">{{$users->getUserProfile()->first_name}} {{$users->getUserProfile()->last_name}}</p>
                                                               </td>
                                                               <td>{{$users->username}}({{$users->email}})</td>
-                                                              <td>{{$users->getUserProfile()->getPaisNombre()}}</td>
+                                                              <td>{{$users->getUserProfile()->pais}}</td>
                                                               <td><strong>{{$users->getUserGame()->getNivel()}}</strong></td>
                                                               <td class="puntos_acu">{{$users->getUserGame()->puntos_acumulados}}</td>
                                                               <td>{{$users->getUserGame()->puntos_iniciales}}</td>

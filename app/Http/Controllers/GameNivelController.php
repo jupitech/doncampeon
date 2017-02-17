@@ -46,6 +46,8 @@ class GameNivelController extends Controller
                 'nivel_puntos'   =>$request['nivel_puntos'],
                 'nivel_minimo'   =>$request['nivel_minimo'],
                 'nivel_bonus'   =>$request['nivel_bonus'],
+                'imagen_nivel'   =>$request['imagen_nivel'],
+                'thumb_nivel'   =>$request['thumb_nivel'],
             ]);
        Session::flash('message','Nivel creado correctamente.');
         return Redirect::to('/nivelgame');

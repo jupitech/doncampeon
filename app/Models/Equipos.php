@@ -3,6 +3,8 @@
 namespace Doncampeon\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Doncampeon\Models\Equipos;
+use Doncampeon\Models\LigasEquipos;
 
 class Equipos extends Model{
    
@@ -18,7 +20,7 @@ class Equipos extends Model{
      *
      * @var array
      */
-    protected $fillable = ['nombre_equipo', 'alias', 'pais_equipo'];
+    protected $fillable = ['id','nombre_equipo', 'alias', 'pais_equipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,7 +34,7 @@ class Equipos extends Model{
     }
 
     public function getLigasEquipo($id){
-        $equipoliga= \Doncampeon\Models\Ligasequipos::where('equipos_id',$id)->get();
+        $equipoliga= \Doncampeon\Models\LigasEquipos::where('equipos_id',$id)->get();
         return $equipoliga;
     }
     
@@ -44,7 +46,11 @@ class Equipos extends Model{
      
 
     public function LigasEquipo(){
-        return $this->hasOne('\Doncampeon\Models\Ligasequipos','equipos_id','id');
+        return $this->hasMany('\Doncampeon\Models\LigasEquipos','equipos_id','id')->with("Nombreliga");
+    } 
+
+    public function NombrePais(){
+        return $this->hasOne('\Doncampeon\Models\Pais','id','pais_equipo');
     } 
 
 
